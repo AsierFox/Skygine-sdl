@@ -21,9 +21,14 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\core\Engine.cpp" />
+    <ClCompile Include="src\graphics\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\Engine.h" />
+    <ClInclude Include="src\graphics\TextureManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libs\SDL2_image-2.0.5\lib\x64\zlib1.dll" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

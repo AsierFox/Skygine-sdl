@@ -1,6 +1,7 @@
-#include <spdlog/spdlog.h>
-
 #include "src/core/Engine.h"
+#include "src/graphics/TextureManager.h"
+
+#include <iostream>
 
 int main(int argc, char* argv[])
 {
@@ -12,6 +13,7 @@ int main(int argc, char* argv[])
 	{
 		Engine::getInstance()->events();
 		Engine::getInstance()->update(0);
+
 		Engine::getInstance()->draw();
 	}
 
