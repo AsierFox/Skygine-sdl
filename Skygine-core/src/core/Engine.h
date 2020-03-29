@@ -15,6 +15,8 @@ class Engine
 	SDL_Window* m_window;
 	SDL_Renderer* m_renderer;
 
+protected:
+
 	Engine();
 
 public:
@@ -25,7 +27,7 @@ public:
 	void events();
 	void update(float delta);
 	void draw();
-	bool dispose();
+	void dispose();
 	void quit();
 
 	bool isRunning();

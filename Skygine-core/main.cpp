@@ -1,23 +1,30 @@
-#include "src/core/Engine.h"
-#include "src/graphics/TextureManager.h"
+#include <spdlog/spdlog.h>
+#include <SDL.h>
 
-#include <iostream>
+#include "src/sandbox/ExSideGame.h"
 
 int main(int argc, char* argv[])
 {
 	spdlog::set_level(spdlog::level::debug);
 
-	Engine::getInstance()->init();
+	ExSideGame* game = new ExSideGame();
 
-	while (Engine::getInstance()->isRunning())
+	bool isGameInit = game->init();
+
+	if (!isGameInit)
 	{
-		Engine::getInstance()->events();
-		Engine::getInstance()->update(0);
-
-		Engine::getInstance()->draw();
+		spdlog::critical("Game engine could not been initialize!");
+		return EXIT_FAILURE;
 	}
 
-	Engine::getInstance()->dispose();
+	while (game->isRunning())
+	{
+		game->events();
+		game->update(0);
+		game->draw();
+	}
+
+	game->dispose();
 
 	return EXIT_SUCCESS;
 }

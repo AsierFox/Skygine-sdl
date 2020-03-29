@@ -24,13 +24,13 @@ bool Engine::init()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
-		spdlog::critical("[Engine.init] SDL could not initialise SDL_INIT_VIDEO: {0}", SDL_GetError());
+		spdlog::critical("[Engine::init] SDL could not initialise SDL_INIT_VIDEO: {0}", SDL_GetError());
 		return false;
 	}
 
 	if (SDL_Init(IMG_INIT_JPG | IMG_INIT_PNG))
 	{
-		spdlog::critical("[Engine.init] SDL could not initialise IMG_INIT_JPG | IMG_INIT_PNG: {0}", SDL_GetError());
+		spdlog::critical("[Engine::init] SDL could not initialise IMG_INIT_JPG | IMG_INIT_PNG: {0}", SDL_GetError());
 		return false;
 	}
 
@@ -38,7 +38,7 @@ bool Engine::init()
 
 	if (nullptr == this->m_window)
 	{
-		spdlog::critical("[Engine.init] Error creating Window: {0}", SDL_GetError());
+		spdlog::critical("[Engine::init] Error creating Window: {0}", SDL_GetError());
 		return false;
 	}
 
@@ -46,9 +46,11 @@ bool Engine::init()
 
 	if (nullptr == this->m_renderer)
 	{
-		spdlog::critical("[Engine.init] Error creating Renderer: {0}", SDL_GetError());
+		spdlog::critical("[Engine::init] Error creating Renderer: {0}", SDL_GetError());
 		return false;
 	}
+
+	spdlog::debug("[Engine::init] Initialization success!");
 
 	return true;
 }
@@ -76,7 +78,7 @@ void Engine::draw()
 	SDL_RenderPresent(this->m_renderer);
 }
 
-bool Engine::dispose()
+void Engine::dispose()
 {
 	TextureManager::getInstance()->dispose();
 
@@ -85,8 +87,6 @@ bool Engine::dispose()
 	
 	IMG_Quit();
 	SDL_Quit();
-
-	return true;
 }
 
 void Engine::quit()

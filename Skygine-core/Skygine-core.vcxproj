@@ -19,13 +19,32 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphics\SpriteAnimation.cpp" />
+    <ClCompile Include="src\sandbox\ExSideGame.cpp" />
+    <ClCompile Include="src\sandbox\entities\Player.cpp" />
+    <ClCompile Include="src\entities\GameObject.cpp" />
+    <ClCompile Include="src\graphics\Sprite.cpp" />
+    <ClCompile Include="src\utils\MathUtils.cpp" />
+    <ClCompile Include="src\utils\FileUtils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\core\Engine.cpp" />
     <ClCompile Include="src\graphics\TextureManager.cpp" />
+    <ClCompile Include="src\physics\Transform.cpp" />
+    <ClCompile Include="src\physics\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\graphics\SpriteAnimation.h" />
+    <ClInclude Include="src\sandbox\ExSideGame.h" />
+    <ClInclude Include="src\sandbox\entities\Player.h" />
+    <ClInclude Include="src\entities\GameObject.h" />
+    <ClInclude Include="src\graphics\Sprite.h" />
+    <ClInclude Include="src\utils\MathUtils.h" />
+    <ClInclude Include="src\utils\FileUtils.h" />
     <ClInclude Include="src\core\Engine.h" />
+    <ClInclude Include="src\graphics\IRenderable.h" />
     <ClInclude Include="src\graphics\TextureManager.h" />
+    <ClInclude Include="src\physics\Transform.h" />
+    <ClInclude Include="src\physics\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libs\SDL2_image-2.0.5\lib\x64\zlib1.dll" />

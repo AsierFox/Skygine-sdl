@@ -18,11 +18,17 @@ TextureManager::TextureManager()
 
 bool TextureManager::load(std::string id, std::string resourcePath)
 {
+	if (this->m_loadedTextures.count(id) > 0)
+	{
+		spdlog::critical("[TextureManager::load] The texture with id '{0}' already exists in the map", id);
+		return false;
+	}
+
 	SDL_Surface* surface = IMG_Load(resourcePath.c_str());
 
 	if (nullptr == surface)
 	{
-		spdlog::critical("[TextureManager.load] Cannot load surface from image '{0}': {1}", resourcePath, SDL_GetError());
+		spdlog::critical("[TextureManager::load] Cannot load surface from image '{0}': {1}", resourcePath, SDL_GetError());
 		return false;
 	}
 
@@ -30,9 +36,11 @@ bool TextureManager::load(std::string id, std::string resourcePath)
 
 	if (nullptr == texture)
 	{
-		spdlog::critical("[TextureManager.load] Cannot load texture from surface '{0}': {1}", resourcePath, SDL_GetError());
+		spdlog::critical("[TextureManager::load] Cannot load texture from surface '{0}': {1}", resourcePath, SDL_GetError());
 		return false;
 	}
+
+	spdlog::debug("[TextureManager::load] Texture '{0}' loaded!", resourcePath);
 
 	this->m_loadedTextures.insert({ id, texture });
 
@@ -46,13 +54,33 @@ void TextureManager::render(std::string id, int x, int y, int width, int height)
 
 void TextureManager::render(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip)
 {
+	this->renderFrame(id, x, y, width, height, 0, 0, 1, flip);
+}
+
+void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int row, int col)
+{
+	this->renderFrame(id, x, y, width, height, row, col, 1, SDL_FLIP_NONE);
+}
+
+void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int row, int col, SDL_RendererFlip flip)
+{
+	this->renderFrame(id, x, y, width, height, row, col, 1, SDL_FLIP_NONE);
+}
+
+void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int row, int col, float scale)
+{
+	this->renderFrame(id, x, y, width, height, row, col, scale, SDL_FLIP_NONE);
+}
+
+void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int row, int col, float scale, SDL_RendererFlip flip)
+{
 	SDL_Rect srcRect = {
-		0, 0,
+		col * width, row * height,
 		width, height };
 
 	SDL_Rect destRect = {
 		x, y,
-		width, height };
+		width * scale, height * scale };
 
 	SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
 }
