@@ -26,7 +26,8 @@ public:
 	bool init();
 	void events();
 	void update(float delta);
-	void draw();
+	void drawStart();
+	void drawEnd();
 	void dispose();
 	void quit();
 

@@ -28,12 +28,6 @@ bool Engine::init()
 		return false;
 	}
 
-	if (SDL_Init(IMG_INIT_JPG | IMG_INIT_PNG))
-	{
-		spdlog::critical("[Engine::init] SDL could not initialise IMG_INIT_JPG | IMG_INIT_PNG: {0}", SDL_GetError());
-		return false;
-	}
-
 	this->m_window = SDL_CreateWindow("Skygine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 960, 640, 0);
 
 	if (nullptr == this->m_window)
@@ -47,6 +41,14 @@ bool Engine::init()
 	if (nullptr == this->m_renderer)
 	{
 		spdlog::critical("[Engine::init] Error creating Renderer: {0}", SDL_GetError());
+		return false;
+	}
+
+	SDL_SetRenderDrawColor(this->m_renderer, 124, 218, 254, 255);
+
+	if (SDL_Init(IMG_INIT_JPG | IMG_INIT_PNG))
+	{
+		spdlog::critical("[Engine::init] SDL could not initialise IMG_INIT_JPG | IMG_INIT_PNG: {0}", SDL_GetError());
 		return false;
 	}
 
@@ -72,9 +74,13 @@ void Engine::update(float delta)
 {
 }
 
-void Engine::draw()
+void Engine::drawStart()
 {
-	SDL_SetRenderDrawColor(this->m_renderer, 124, 218, 254, 255);
+	SDL_RenderClear(this->m_renderer);
+}
+
+void Engine::drawEnd()
+{
 	SDL_RenderPresent(this->m_renderer);
 }
 

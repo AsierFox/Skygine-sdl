@@ -6,7 +6,6 @@
 
 class ExSideGame
 {
-
 	Player* player;
 
 public:

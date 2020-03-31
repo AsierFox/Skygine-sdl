@@ -4,10 +4,12 @@
 
 #include "../../entities/GameObject.h"
 #include "../../graphics/SpriteAnimation.h"
+#include "../../physics/RigitBody.h"
 
 class Player : GameObject
 {
 	SpriteAnimation* spriteAnimation;
+	RigitBody* rigitBody;
 
 public:
 

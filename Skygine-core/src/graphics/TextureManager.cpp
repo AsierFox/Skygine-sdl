@@ -85,9 +85,9 @@ void TextureManager::renderFrame(std::string id, int x, int y, int width, int he
 	SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
 }
 
-void TextureManager::queryWidthAndHeight(SDL_Texture* texture, int* width, int* height)
+void TextureManager::queryWidthAndHeight(std::string id, int* width, int* height)
 {
-	SDL_QueryTexture(texture, nullptr, nullptr, width, height);
+	SDL_QueryTexture(getTextureById(id), nullptr, nullptr, width, height);
 }
 
 SDL_Texture* TextureManager::getTextureById(std::string id)

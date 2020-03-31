@@ -28,9 +28,11 @@ void ExSideGame::update(float delta)
 
 void ExSideGame::draw()
 {
-	Engine::getInstance()->draw();
+	Engine::getInstance()->drawStart();
 
 	this->player->draw();
+
+	Engine::getInstance()->drawEnd();
 }
 
 void ExSideGame::dispose()
