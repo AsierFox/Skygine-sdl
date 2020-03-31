@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\input\Input.cpp" />
+    <ClCompile Include="src\physics\RigitBody.cpp" />
     <ClCompile Include="src\graphics\SpriteAnimation.cpp" />
     <ClCompile Include="src\sandbox\ExSideGame.cpp" />
     <ClCompile Include="src\sandbox\entities\Player.cpp" />
@@ -33,6 +35,8 @@
     <ClCompile Include="src\physics\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\input\Input.h" />
+    <ClInclude Include="src\physics\RigitBody.h" />
     <ClInclude Include="src\graphics\SpriteAnimation.h" />
     <ClInclude Include="src\sandbox\ExSideGame.h" />
     <ClInclude Include="src\sandbox\entities\Player.h" />
