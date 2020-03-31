@@ -2,6 +2,7 @@
 #include <SDL.h>
 
 #include "src/sandbox/ExSideGame.h"
+#include "src/time/DeltaTimer.h"
 
 int main(int argc, char* argv[])
 {
@@ -20,8 +21,9 @@ int main(int argc, char* argv[])
 	while (game->isRunning())
 	{
 		game->events();
-		game->update(.2f);
+		game->update(DeltaTimer::getInstance()->getDeltaTime());
 		game->draw();
+		DeltaTimer::getInstance()->tick();
 	}
 
 	game->dispose();

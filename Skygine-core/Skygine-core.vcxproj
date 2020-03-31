@@ -19,13 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\input\Input.cpp" />
+    <ClCompile Include="src\input\InputHandler.cpp" />
     <ClCompile Include="src\physics\RigitBody.cpp" />
     <ClCompile Include="src\graphics\SpriteAnimation.cpp" />
     <ClCompile Include="src\sandbox\ExSideGame.cpp" />
     <ClCompile Include="src\sandbox\entities\Player.cpp" />
     <ClCompile Include="src\entities\GameObject.cpp" />
     <ClCompile Include="src\graphics\Sprite.cpp" />
+    <ClCompile Include="src\tiledmap\Layer.cpp" />
+    <ClCompile Include="src\tiledmap\TiledMap.cpp" />
+    <ClCompile Include="src\tiledmap\LayerTile.cpp" />
+    <ClCompile Include="src\time\DeltaTimer.cpp" />
     <ClCompile Include="src\utils\MathUtils.cpp" />
     <ClCompile Include="src\utils\FileUtils.cpp" />
     <ClCompile Include="main.cpp" />
@@ -35,13 +39,18 @@
     <ClCompile Include="src\physics\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\input\Input.h" />
+    <ClInclude Include="src\input\InputHandler.h" />
     <ClInclude Include="src\physics\RigitBody.h" />
     <ClInclude Include="src\graphics\SpriteAnimation.h" />
     <ClInclude Include="src\sandbox\ExSideGame.h" />
     <ClInclude Include="src\sandbox\entities\Player.h" />
     <ClInclude Include="src\entities\GameObject.h" />
     <ClInclude Include="src\graphics\Sprite.h" />
+    <ClInclude Include="src\tiledmap\Layer.h" />
+    <ClInclude Include="src\tiledmap\TiledMap.h" />
+    <ClInclude Include="src\tiledmap\LayerTile.h" />
+    <ClInclude Include="src\tiledmap\Tileset.h" />
+    <ClInclude Include="src\time\DeltaTimer.h" />
     <ClInclude Include="src\utils\MathUtils.h" />
     <ClInclude Include="src\utils\FileUtils.h" />
     <ClInclude Include="src\core\Engine.h" />

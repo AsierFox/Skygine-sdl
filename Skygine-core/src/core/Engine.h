@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+#include "../input/InputHandler.h"
 #include "../graphics/TextureManager.h"
 
 class Engine

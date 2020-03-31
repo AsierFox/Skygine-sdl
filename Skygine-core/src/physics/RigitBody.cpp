@@ -10,6 +10,17 @@ void RigitBody::update(float delta)
 {
 	// Force + Friction = Mass * Acceleration
 	this->m_acceleration.x = (this->m_force.x + this->m_friction.x) / this->m_mass;
+	this->m_acceleration.y = (this->m_force.y + this->m_friction.y) / this->m_mass;
+
+	this->m_velocity = this->m_acceleration * delta;
+
+	this->m_pos = this->m_velocity * delta;
+}
+
+void RigitBody::updateWithGravity(float delta)
+{
+	// Force + Friction = Mass * Acceleration
+	this->m_acceleration.x = (this->m_force.x + this->m_friction.x) / this->m_mass;
 	// acceleration * mass = gravity * mass + force (drag)
 	this->m_acceleration.y = this->m_gravity + this->m_force.y / m_mass;
 
@@ -41,6 +52,11 @@ Vector2D RigitBody::getVelocity()
 Vector2D RigitBody::getPosition()
 {
 	return this->m_pos;
+}
+
+Vector2D RigitBody::getForce()
+{
+	return this->m_force;
 }
 
 void RigitBody::setForce(Vector2D force)

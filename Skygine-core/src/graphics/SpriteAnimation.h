@@ -14,15 +14,20 @@ class SpriteAnimation
 	int m_frameHeight;
 	int m_currentRow;
 	int m_totalFrames;
+	int m_totalCols;
 	int m_totalRows;
 	float m_scale;
 	int m_delay;
 	int m_currentFrame;
 
+	SDL_RendererFlip m_flip;
+
 public:
 
-	SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int rows, int cols);
-	SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int rows, int cols, float scale);
+	// TODO Refactor cols & rows to totalCols & totalRows
+	SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int cols, int rows);
+	SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int cols, int rows, float scale);
+	SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int cols, int rows, float scale, SDL_RendererFlip flip);
 
 	void update();
 	void render(float x, float y);

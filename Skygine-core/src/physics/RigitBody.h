@@ -21,12 +21,14 @@ public:
 	RigitBody();
 
 	void update(float delta);
+	void updateWithGravity(float delta);
 
 	float getMass();
 	void setMass(float mass);
 	Vector2D getAcceleration();
 	Vector2D getVelocity();
 	Vector2D getPosition();
+	Vector2D getForce();
 	void setForce(Vector2D force);
 	void setForceX(float x);
 	void setForceY(float y);

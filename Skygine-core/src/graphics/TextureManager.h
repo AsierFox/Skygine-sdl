@@ -19,7 +19,7 @@ public:
 
 	static TextureManager* getInstance();
 
-	bool load(std::string id, std::string resourcePath);
+	SDL_Texture* load(std::string id, std::string resourcePath);
 	void render(std::string id, int x, int y, int width, int height);
 	void render(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip);
 	void renderFrame(std::string id, int x, int y, int width, int height, int row, int col);

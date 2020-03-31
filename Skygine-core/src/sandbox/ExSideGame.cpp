@@ -9,7 +9,7 @@ bool ExSideGame::init()
 		return false;
 	}
 
-	this->player = new Player("player", "SkyFoXx", 100, 100);
+	this->player = new Player("player", "SkyFoXx", 300, 300);
 
 	return true;
 }

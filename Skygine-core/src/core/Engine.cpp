@@ -6,7 +6,7 @@ Engine* Engine::getInstance()
 {
 	if (nullptr == Engine::s_Instance)
 	{
-		Engine::s_Instance = new Engine();
+		Engine::s_Instance = new Engine;
 	}
 
 	return Engine::s_Instance;
@@ -59,15 +59,7 @@ bool Engine::init()
 
 void Engine::events()
 {
-	SDL_Event event;
-	SDL_PollEvent(&event);
-
-	switch (event.type)
-	{
-	case SDL_QUIT:
-		this->quit();
-		break;
-	}
+	InputHandler::getInstance()->listen();
 }
 
 void Engine::update(float delta)
@@ -76,6 +68,8 @@ void Engine::update(float delta)
 
 void Engine::drawStart()
 {
+	SDL_SetRenderDrawColor(this->m_renderer, 124, 218, 254, 255);
+
 	SDL_RenderClear(this->m_renderer);
 }
 

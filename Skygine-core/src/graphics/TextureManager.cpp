@@ -16,20 +16,21 @@ TextureManager::TextureManager()
 {
 }
 
-bool TextureManager::load(std::string id, std::string resourcePath)
+SDL_Texture* TextureManager::load(std::string id, std::string resourcePath)
 {
 	if (this->m_loadedTextures.count(id) > 0)
 	{
-		spdlog::critical("[TextureManager::load] The texture with id '{0}' already exists in the map", id);
-		return false;
+		spdlog::debug("[TextureManager::load] The texture with id '{0}' already exists in the map", id);
+		return this->getTextureById(id);
 	}
 
 	SDL_Surface* surface = IMG_Load(resourcePath.c_str());
 
 	if (nullptr == surface)
 	{
+		// TODO Throw exceptions
 		spdlog::critical("[TextureManager::load] Cannot load surface from image '{0}': {1}", resourcePath, SDL_GetError());
-		return false;
+		return nullptr;
 	}
 
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(Engine::getInstance()->getRenderer(), surface);
@@ -37,14 +38,14 @@ bool TextureManager::load(std::string id, std::string resourcePath)
 	if (nullptr == texture)
 	{
 		spdlog::critical("[TextureManager::load] Cannot load texture from surface '{0}': {1}", resourcePath, SDL_GetError());
-		return false;
+		return nullptr;
 	}
 
 	spdlog::debug("[TextureManager::load] Texture '{0}' loaded!", resourcePath);
 
 	this->m_loadedTextures.insert({ id, texture });
 
-	return true;
+	return texture;
 }
 
 void TextureManager::render(std::string id, int x, int y, int width, int height)
@@ -83,6 +84,10 @@ void TextureManager::renderFrame(std::string id, int x, int y, int width, int he
 		width * scale, height * scale };
 
 	SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
+
+	// TODO Refactor debug border to another method
+	SDL_SetRenderDrawColor(Engine::getInstance()->getRenderer(), 255, 0, 0, 255);
+	SDL_RenderDrawRect(Engine::getInstance()->getRenderer(), &destRect);
 }
 
 void TextureManager::queryWidthAndHeight(std::string id, int* width, int* height)

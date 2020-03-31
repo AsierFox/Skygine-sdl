@@ -1,15 +1,19 @@
 #pragma once
 
+#include <spdlog/spdlog.h>
 #include <SDL.h>
 
 #include "../../entities/GameObject.h"
+#include "../../input/InputHandler.h"
 #include "../../graphics/SpriteAnimation.h"
 #include "../../physics/RigitBody.h"
 
 class Player : GameObject
 {
-	SpriteAnimation* spriteAnimation;
-	RigitBody* rigitBody;
+	SpriteAnimation* m_idleAnimation;
+	SpriteAnimation* m_walkAnimation;
+	SpriteAnimation* m_currentAnimation;
+	RigitBody* m_rigitBody;
 
 public:
 
