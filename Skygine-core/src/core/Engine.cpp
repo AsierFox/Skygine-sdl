@@ -28,7 +28,9 @@ bool Engine::init()
 		return false;
 	}
 
-	this->m_window = SDL_CreateWindow("Skygine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 960, 640, 0);
+	SDL_WindowFlags windowFlags = (SDL_WindowFlags) (SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+
+	this->m_window = SDL_CreateWindow("Skygine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 960, 640, windowFlags);
 
 	if (nullptr == this->m_window)
 	{
@@ -52,6 +54,12 @@ bool Engine::init()
 		return false;
 	}
 
+	if (TTF_Init() < 0 || TTF_WasInit() == 0)
+	{
+		spdlog::critical("[Engine::init] SDL could not initialise TTF: {0}", SDL_GetError());
+		return false;
+	}
+
 	spdlog::debug("[Engine::init] Initialization success!");
 
 	return true;
@@ -69,7 +77,6 @@ void Engine::update(float delta)
 void Engine::drawStart()
 {
 	SDL_SetRenderDrawColor(this->m_renderer, 124, 218, 254, 255);
-
 	SDL_RenderClear(this->m_renderer);
 }
 
@@ -85,6 +92,7 @@ void Engine::dispose()
 	SDL_DestroyRenderer(this->m_renderer);
 	SDL_DestroyWindow(this->m_window);
 	
+	TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
 }
