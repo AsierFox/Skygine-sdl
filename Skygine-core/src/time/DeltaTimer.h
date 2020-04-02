@@ -21,4 +21,3 @@ public:
 	void tick();
 	float getDeltaTime();
 };
- 

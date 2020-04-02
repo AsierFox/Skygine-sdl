@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../core/Engine.h"
-
+#include "../tiledmap/TiledMapManager.h"
 #include "entities/Player.h"
 
 class ExSideGame

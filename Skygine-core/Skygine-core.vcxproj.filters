@@ -60,13 +60,16 @@
     <ClCompile Include="src\time\DeltaTimer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tiledmap\Layer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\tiledmap\TiledMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tiledmap\LayerTile.cpp">
+    <ClCompile Include="src\tiledmap\TiledMapManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tiledmap\TileLayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tiledmap\ObjectLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -122,10 +125,16 @@
     <ClInclude Include="src\tiledmap\TiledMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\tiledmap\LayerTile.h">
+    <ClInclude Include="src\tiledmap\Tileset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\tiledmap\Tileset.h">
+    <ClInclude Include="src\tiledmap\TiledMapManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tiledmap\TileLayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tiledmap\ObjectLayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

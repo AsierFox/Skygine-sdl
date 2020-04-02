@@ -8,7 +8,7 @@
 #include "../../graphics/SpriteAnimation.h"
 #include "../../physics/RigitBody.h"
 
-class Player : GameObject
+class Player : public GameObject
 {
 	SpriteAnimation* m_idleAnimation;
 	SpriteAnimation* m_walkAnimation;

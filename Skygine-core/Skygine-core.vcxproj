@@ -26,9 +26,10 @@
     <ClCompile Include="src\sandbox\entities\Player.cpp" />
     <ClCompile Include="src\entities\GameObject.cpp" />
     <ClCompile Include="src\graphics\Sprite.cpp" />
-    <ClCompile Include="src\tiledmap\Layer.cpp" />
+    <ClCompile Include="src\tiledmap\ObjectLayer.cpp" />
+    <ClCompile Include="src\tiledmap\TiledMapManager.cpp" />
     <ClCompile Include="src\tiledmap\TiledMap.cpp" />
-    <ClCompile Include="src\tiledmap\LayerTile.cpp" />
+    <ClCompile Include="src\tiledmap\TileLayer.cpp" />
     <ClCompile Include="src\time\DeltaTimer.cpp" />
     <ClCompile Include="src\utils\MathUtils.cpp" />
     <ClCompile Include="src\utils\FileUtils.cpp" />
@@ -47,8 +48,10 @@
     <ClInclude Include="src\entities\GameObject.h" />
     <ClInclude Include="src\graphics\Sprite.h" />
     <ClInclude Include="src\tiledmap\Layer.h" />
+    <ClInclude Include="src\tiledmap\ObjectLayer.h" />
+    <ClInclude Include="src\tiledmap\TiledMapManager.h" />
     <ClInclude Include="src\tiledmap\TiledMap.h" />
-    <ClInclude Include="src\tiledmap\LayerTile.h" />
+    <ClInclude Include="src\tiledmap\TileLayer.h" />
     <ClInclude Include="src\tiledmap\Tileset.h" />
     <ClInclude Include="src\time\DeltaTimer.h" />
     <ClInclude Include="src\utils\MathUtils.h" />
@@ -151,13 +154,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\SDL2-2.0.12\include;$(SolutionDir)libs\SDL2_image-2.0.5\include;$(SolutionDir)libs\spdlog-1.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\SDL2-2.0.12\include;$(SolutionDir)libs\SDL2_image-2.0.5\include;$(SolutionDir)libs\SDL2_ttf-2.0.15\include;$(SolutionDir)libs\spdlog-1.5.0\include;$(SolutionDir)libs\json-3.7.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)libs\SDL2-2.0.12\lib\x64;$(SolutionDir)libs\SDL2_image-2.0.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)libs\SDL2-2.0.12\lib\x64;$(SolutionDir)libs\SDL2_image-2.0.5\lib\x64;$(SolutionDir)libs\SDL2_ttf-2.0.15\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -188,15 +191,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\SDL2-2.0.12\include;$(SolutionDir)libs\SDL2_image-2.0.5\include;$(SolutionDir)libs\spdlog-1.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)libs\SDL2-2.0.12\include;$(SolutionDir)libs\SDL2_image-2.0.5\include;$(SolutionDir)libs\SDL2_ttf-2.0.15\include;$(SolutionDir)libs\spdlog-1.5.0\include;$(SolutionDir)libs\json-3.7.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)libs\SDL2-2.0.12\lib\x64;$(SolutionDir)libs\SDL2_image-2.0.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)libs\SDL2-2.0.12\lib\x64;$(SolutionDir)libs\SDL2_image-2.0.5\lib\x64;$(SolutionDir)libs\SDL2_ttf-2.0.15\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

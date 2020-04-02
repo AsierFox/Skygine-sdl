@@ -10,5 +10,5 @@ struct Tileset
 	int m_totalRows;
 	int m_tileSize;
 	std::string m_name;
-	std::string m_resourceName;
+	std::string m_resourcePath;
 };

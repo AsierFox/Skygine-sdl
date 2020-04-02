@@ -18,6 +18,7 @@ TextureManager::TextureManager()
 
 SDL_Texture* TextureManager::load(std::string id, std::string resourcePath)
 {
+	// TODO Create method isAlreadyLoaded()
 	if (this->m_loadedTextures.count(id) > 0)
 	{
 		spdlog::debug("[TextureManager::load] The texture with id '{0}' already exists in the map", id);
@@ -58,22 +59,22 @@ void TextureManager::render(std::string id, int x, int y, int width, int height,
 	this->renderFrame(id, x, y, width, height, 0, 0, 1, flip);
 }
 
-void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int row, int col)
+void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int col, int row)
 {
-	this->renderFrame(id, x, y, width, height, row, col, 1, SDL_FLIP_NONE);
+	this->renderFrame(id, x, y, width, height, col, row, 1, SDL_FLIP_NONE);
 }
 
-void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int row, int col, SDL_RendererFlip flip)
+void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int col, int row, SDL_RendererFlip flip)
 {
-	this->renderFrame(id, x, y, width, height, row, col, 1, SDL_FLIP_NONE);
+	this->renderFrame(id, x, y, width, height, col, row, 1, SDL_FLIP_NONE);
 }
 
-void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int row, int col, float scale)
+void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int col, int row, float scale)
 {
-	this->renderFrame(id, x, y, width, height, row, col, scale, SDL_FLIP_NONE);
+	this->renderFrame(id, x, y, width, height, col, row, scale, SDL_FLIP_NONE);
 }
 
-void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int row, int col, float scale, SDL_RendererFlip flip)
+void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int col, int row, float scale, SDL_RendererFlip flip)
 {
 	SDL_Rect srcRect = {
 		col * width, row * height,
@@ -86,8 +87,8 @@ void TextureManager::renderFrame(std::string id, int x, int y, int width, int he
 	SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
 
 	// TODO Refactor debug border to another method
-	SDL_SetRenderDrawColor(Engine::getInstance()->getRenderer(), 255, 0, 0, 255);
-	SDL_RenderDrawRect(Engine::getInstance()->getRenderer(), &destRect);
+	/*SDL_SetRenderDrawColor(Engine::getInstance()->getRenderer(), 255, 0, 0, 255);
+	SDL_RenderDrawRect(Engine::getInstance()->getRenderer(), &destRect);*/
 }
 
 void TextureManager::queryWidthAndHeight(std::string id, int* width, int* height)
