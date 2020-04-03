@@ -60,6 +60,12 @@ bool Engine::init()
 		return false;
 	}
 
+	if (Mix_Init(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) < 0)
+	{
+		spdlog::critical("[Engine::init] SDL could not initialise Mixer: {0}", SDL_GetError());
+		return false;
+	}
+
 	spdlog::debug("[Engine::init] Initialization success!");
 
 	return true;
@@ -92,6 +98,8 @@ void Engine::dispose()
 	SDL_DestroyRenderer(this->m_renderer);
 	SDL_DestroyWindow(this->m_window);
 	
+	Mix_Quit();
+	Mix_CloseAudio();
 	TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
