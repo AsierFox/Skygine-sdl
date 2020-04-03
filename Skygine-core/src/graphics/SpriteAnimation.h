@@ -32,4 +32,7 @@ public:
 	void update();
 	void render(float x, float y);
 	void dispose();
+
+	float getWidth();
+	float getHeight();
 };

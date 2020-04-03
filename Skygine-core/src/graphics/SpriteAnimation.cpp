@@ -49,3 +49,13 @@ void SpriteAnimation::dispose()
 {
 	TextureManager::getInstance()->destroy(this->m_textureId);
 }
+
+float SpriteAnimation::getWidth()
+{
+	return this->m_frameWidth * this->m_scale;
+}
+
+float SpriteAnimation::getHeight()
+{
+	return this->m_frameHeight * this->m_scale;
+}

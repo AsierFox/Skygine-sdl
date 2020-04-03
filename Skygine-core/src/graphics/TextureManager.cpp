@@ -51,12 +51,22 @@ SDL_Texture* TextureManager::load(std::string id, std::string resourcePath)
 
 void TextureManager::render(std::string id, int x, int y, int width, int height)
 {
-	this->render(id, x, y, height, width, SDL_FLIP_NONE);
+	this->render(id, x, y, height, width, SDL_FLIP_NONE, 1, 1);
 }
 
-void TextureManager::render(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip)
+void TextureManager::render(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip, float scale, float moveCameraWithDelay)
 {
-	this->renderFrame(id, x, y, width, height, 0, 0, 1, flip);
+	Vector2D cam = Camera::getInstance()->getPosition() * moveCameraWithDelay;
+
+	SDL_Rect srcRect = {
+		x, y,
+		width, height };
+
+	SDL_Rect destRect = {
+		x - cam.x, y - cam.y,
+		width * scale, height * scale };
+
+	SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
 }
 
 void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int col, int row)
@@ -76,19 +86,40 @@ void TextureManager::renderFrame(std::string id, int x, int y, int width, int he
 
 void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int col, int row, float scale, SDL_RendererFlip flip)
 {
+	Vector2D cam = Camera::getInstance()->getPosition();
+
 	SDL_Rect srcRect = {
 		col * width, row * height,
 		width, height };
 
 	SDL_Rect destRect = {
-		x, y,
+		x - cam.x, y - cam.y,
 		width * scale, height * scale };
 
 	SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
+}
 
-	// TODO Refactor debug border to another method
-	/*SDL_SetRenderDrawColor(Engine::getInstance()->getRenderer(), 255, 0, 0, 255);
-	SDL_RenderDrawRect(Engine::getInstance()->getRenderer(), &destRect);*/
+void TextureManager::renderRect(float x, float y, float width, float height)
+{
+	this->renderRect(x, y, width, height, 1);
+}
+
+void TextureManager::renderRect(float x, float y, float width, float height, float scale)
+{
+	Vector2D cam = Camera::getInstance()->getPosition();
+
+	SDL_Rect rect = {
+		x - cam.x, y - cam.y,
+		width * scale, height * scale};
+
+	SDL_SetRenderDrawColor(Engine::getInstance()->getRenderer(), 255, 0, 0, 255);
+	SDL_RenderDrawRect(Engine::getInstance()->getRenderer(), &rect);
+}
+
+void TextureManager::renderPoint(float x, float y)
+{
+	SDL_SetRenderDrawColor(Engine::getInstance()->getRenderer(), 255, 255, 255, 255);
+	SDL_RenderDrawPoint(Engine::getInstance()->getRenderer(), x, y);
 }
 
 void TextureManager::queryWidthAndHeight(std::string id, int* width, int* height)

@@ -10,8 +10,10 @@ bool ExSideGame::init()
 	}
 
 	this->player = new Player("player", "SkyFoXx", 300, 300);
+	
+	Camera::getInstance()->updateTarget(this->player->getOrigin());
 
-	TiledMapManager::getInstance()->load("test-map", "assets/maps/", "map-tiled.json");
+	TiledMapManager::getInstance()->load("test-map", "assets/maps/", "map-tiled.json", 3);
 
 	return true;
 }
@@ -28,6 +30,8 @@ void ExSideGame::update(float delta)
 	this->player->update(delta);
 
 	TiledMapManager::getInstance()->getMap("test-map")->update();
+
+	Camera::getInstance()->update(delta);
 }
 
 void ExSideGame::draw()
@@ -36,7 +40,7 @@ void ExSideGame::draw()
 
 	TiledMapManager::getInstance()->getMap("test-map")->render();
 	this->player->draw();
-
+	
 	Engine::getInstance()->drawEnd();
 }
 

@@ -2,6 +2,7 @@
 
 #include "../core/Engine.h"
 #include "../tiledmap/TiledMapManager.h"
+#include "../graphics/Camera.h"
 #include "entities/Player.h"
 
 class ExSideGame
