@@ -16,7 +16,7 @@ TiledMapManager* TiledMapManager::getInstance()
 }
 
 // TODO Refactor this method
-void TiledMapManager::load(std::string mapId, std::string resourcesDirPath, std::string filename)
+void TiledMapManager::load(std::string mapId, std::string resourcesDirPath, std::string filename, float scale)
 {
 	// TODO Create method isAlreadyLoaded()
 	if (this->m_maps.count(mapId) > 0)
@@ -36,8 +36,8 @@ void TiledMapManager::load(std::string mapId, std::string resourcesDirPath, std:
 
 	for (unsigned int i = 0; i < mapJson["tilesets"].size(); i++)
 	{
-		Tileset tileset;
 		nlohmann::json tilesetJson = mapJson["tilesets"][i];
+		Tileset tileset;
 
 		int tileCount = tilesetJson["tilecount"];
 		tileset.m_firstId = tilesetJson["firstgid"];
@@ -73,12 +73,30 @@ void TiledMapManager::load(std::string mapId, std::string resourcesDirPath, std:
 				}
 			}
 
-			mapLayers.push_back(new TileLayer(tileMapIds, mapTilesets));
+			mapLayers.push_back(new TileLayer(tileMapIds, mapTilesets, scale));
 			
 			tileMapIds.clear();
 		}
 		else if (std::string("objectgroup").compare(layerJson["type"].get<std::string>()) == 0)
 		{
+			std::vector<TiledObject> objects;
+
+			for (unsigned int j = 0; j < layerJson["objects"].size(); j++)
+			{
+				nlohmann::json objectJson = layerJson["objects"][j];
+				TiledObject tiledObject;
+
+				tiledObject.m_x = objectJson["x"];
+				tiledObject.m_y = objectJson["y"];
+				tiledObject.m_width = objectJson["width"];
+				tiledObject.m_height = objectJson["height"];
+
+				objects.push_back(tiledObject);
+			}
+
+			mapLayers.push_back(new ObjectLayer(objects, scale));
+
+			objects.clear();
 		}
 	}
 

@@ -12,7 +12,7 @@ Vector2D::Vector2D(float x, float y)
 
 void Vector2D::log()
 {
-	spdlog::debug("[Vector2D::log] Transform x ({0}) y ({1})", this->x, this->y);
+	spdlog::debug("[Vector2D::log] x ({0}) y ({1})", this->x, this->y);
 }
 
 Vector2D Vector2D::operator+(const Vector2D& other) const

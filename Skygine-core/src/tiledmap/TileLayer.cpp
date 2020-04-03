@@ -11,12 +11,19 @@ void TileLayer::loadTilesetsTextures()
 }
 
 TileLayer::TileLayer(std::vector<std::vector<int> > tileMapIds, std::vector<Tileset> tilesets)
+	: TileLayer(tileMapIds, tilesets, 1)
+{
+}
+
+TileLayer::TileLayer(std::vector<std::vector<int> > tileMapIds, std::vector<Tileset> tilesets, float scale)
 {
 	this->m_tileMapIds = tileMapIds;
-	this->m_tilesets   = tilesets;
+	this->m_tilesets = tilesets;
+	this->m_scale = scale;
 
 	this->loadTilesetsTextures();
 }
+
 
 void TileLayer::update()
 {
@@ -41,8 +48,10 @@ void TileLayer::render()
 
 				if (tileId >= tileset.m_firstId && tileId <= tileset.m_lastId)
 				{
-					TextureManager::getInstance()->renderFrame(tileset.m_name, col * tileset.m_tileSize, row * tileset.m_tileSize,
-						tileset.m_tileSize, tileset.m_tileSize, (tileId - tileset.m_firstId) % tileset.m_totalCols, (tileId - tileset.m_firstId) / tileset.m_totalCols);
+					TextureManager::getInstance()->renderFrame(tileset.m_name,
+						(col * tileset.m_tileSize) * this->m_scale, (row * tileset.m_tileSize) * this->m_scale,
+						tileset.m_tileSize, tileset.m_tileSize,
+						(tileId - tileset.m_firstId) % tileset.m_totalCols, (tileId - tileset.m_firstId) / tileset.m_totalCols, this->m_scale);
 					break;
 				}
 			}

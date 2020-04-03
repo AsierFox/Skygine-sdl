@@ -1,6 +1,18 @@
 #include "MathUtils.h"
 
-void MathUtils::clamp(float& n, float min, float max)
+void MathUtils::clampInt(int& n, int min, int max)
+{
+	if (n < min)
+	{
+		n = min;
+	}
+	else if (n > max)
+	{
+		n = max;
+	}
+}
+
+void MathUtils::clampFloat(float& n, float min, float max)
 {
 	if (n < min)
 	{

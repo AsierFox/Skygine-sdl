@@ -6,6 +6,7 @@
 
 struct MathUtils
 {
-	static void clamp(float& n, float min, float max);
+	static void clampInt(int& n, int min, int max);
+	static void clampFloat(float& n, float min, float max);
 	static float to_radians(float degrees);
 };

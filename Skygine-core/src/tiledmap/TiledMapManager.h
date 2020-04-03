@@ -12,6 +12,7 @@
 #include "TileLayer.h"
 #include "ObjectLayer.h"
 #include "Tileset.h"
+#include "TiledObject.h"
 
 class TiledMapManager
 {
@@ -25,7 +26,7 @@ public:
 
 	static TiledMapManager* getInstance();
 
-	void load(std::string mapId, std::string resourcesDirPath, std::string filename);
+	void load(std::string mapId, std::string resourcesDirPath, std::string filename, float scale);
 	void dispose(std::string mapId);
 
 	TiledMap* getMap(std::string mapId);
