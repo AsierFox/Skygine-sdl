@@ -27,9 +27,9 @@ void ExSideGame::update(float delta)
 {
 	Engine::getInstance()->update(delta);
 
-	this->player->update(delta);
-
 	TiledMapManager::getInstance()->getMap("test-map")->update();
+
+	this->player->update(delta);
 
 	Camera::getInstance()->update(delta);
 }

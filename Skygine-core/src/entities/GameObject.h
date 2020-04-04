@@ -12,6 +12,8 @@ protected:
 
 	Transform* m_transform;
 	Point* m_origin;
+	// TODO Review if the SDL_Rect can be encapsulated into a Collider class,
+	// it can have attrs like enabled and so.
 	SDL_Rect m_collider;
 
 	std::string m_id;

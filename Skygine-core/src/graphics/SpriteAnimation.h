@@ -24,10 +24,9 @@ class SpriteAnimation
 
 public:
 
-	// TODO Refactor cols & rows to totalCols & totalRows
-	SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int cols, int rows);
-	SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int cols, int rows, float scale);
-	SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int cols, int rows, float scale, SDL_RendererFlip flip);
+	SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int totalCols, int totalRows);
+	SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int totalCols, int totalRows, float scale);
+	SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int totalCols, int totalRows, float scale, SDL_RendererFlip flip);
 
 	void update();
 	void render(float x, float y);

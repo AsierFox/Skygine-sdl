@@ -2,7 +2,7 @@
 
 #include <SDL.h>
 
-#include "../physics/Transform.h"
+#include "TextureManager.h"
 
 class Sprite
 {
@@ -17,6 +17,13 @@ protected:
 
 public:
 
-	Sprite(std::string textureId, int width, int height);
-	Sprite(std::string textureId, int width, int height, float scale);
+	Sprite(std::string textureId, std::string resourcePath);
+	Sprite(std::string textureId, std::string resourcePath, float scale);
+	Sprite(std::string textureId, std::string resourcePath, int width, int height);
+	Sprite(std::string textureId, std::string resourcePath, int width, int height, float scale);
+
+	void render(float x, float y);
+	void render(float x, float y, SDL_RendererFlip flip);
+	void render(float x, float y, SDL_RendererFlip flip, float moveWithCameraScalar);
+	void dispose();
 };

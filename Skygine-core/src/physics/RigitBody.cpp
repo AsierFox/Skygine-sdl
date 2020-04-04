@@ -29,6 +29,11 @@ void RigitBody::updateWithGravity(float delta)
 	this->m_newPosition = this->m_velocity * delta;
 }
 
+void RigitBody::setGravity(float gravity)
+{
+	this->m_gravity = gravity;
+}
+
 float RigitBody::getMass()
 {
 	return this->m_mass;

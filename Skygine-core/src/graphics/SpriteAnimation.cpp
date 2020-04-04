@@ -1,16 +1,16 @@
 #include "SpriteAnimation.h"
 
-SpriteAnimation::SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int cols, int rows)
-	: SpriteAnimation(textureId, resourcePath, rowToAnimate, totalFrames, cols, rows, 1, SDL_FLIP_NONE)
+SpriteAnimation::SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int totalCols, int totalRows)
+	: SpriteAnimation(textureId, resourcePath, rowToAnimate, totalFrames, totalCols, totalRows, 1, SDL_FLIP_NONE)
 {
 }
 
-SpriteAnimation::SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int cols, int rows, float scale)
-	: SpriteAnimation(textureId, resourcePath, rowToAnimate, totalFrames, cols, rows, scale, SDL_FLIP_NONE)
+SpriteAnimation::SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int totalCols, int totalRows, float scale)
+	: SpriteAnimation(textureId, resourcePath, rowToAnimate, totalFrames, totalCols, totalRows, scale, SDL_FLIP_NONE)
 {
 }
 
-SpriteAnimation::SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int cols, int rows, float scale, SDL_RendererFlip flip)
+SpriteAnimation::SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int totalCols, int totalRows, float scale, SDL_RendererFlip flip)
 {
 	TextureManager::getInstance()->load(textureId, resourcePath);
 
@@ -18,8 +18,8 @@ SpriteAnimation::SpriteAnimation(std::string textureId, std::string resourcePath
 	// Subtract 1 to be the first row 1 for contructor
 	this->m_currentRow = rowToAnimate - 1;
 	this->m_totalFrames = totalFrames;
-	this->m_totalCols = cols;
-	this->m_totalRows = rows;
+	this->m_totalCols = totalCols;
+	this->m_totalRows = totalRows;
 	this->m_scale = scale;
 
 	int textureWidth = 0;

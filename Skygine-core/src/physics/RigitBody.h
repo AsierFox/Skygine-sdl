@@ -23,6 +23,7 @@ public:
 	void update(float delta);
 	void updateWithGravity(float delta);
 
+	void setGravity(float gravity);
 	float getMass();
 	void setMass(float mass);
 	Vector2D getAcceleration();

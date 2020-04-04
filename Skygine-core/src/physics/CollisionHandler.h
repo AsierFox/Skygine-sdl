@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <SDL.h>
+#include <spdlog/spdlog.h>
 
 class CollisionHandler
 {
@@ -13,6 +14,6 @@ public:
 
 	static CollisionHandler*  getInstance();
 
-	bool checkCollision(SDL_Rect a, SDL_Rect b );
+	bool checkCollision(SDL_Rect a, SDL_Rect b);
 	bool checkMapCollision(SDL_Rect a);
 };

@@ -15,11 +15,10 @@ TiledMapManager* TiledMapManager::getInstance()
 	return TiledMapManager::s_instance;
 }
 
-// TODO Refactor this method
 void TiledMapManager::load(std::string mapId, std::string resourcesDirPath, std::string filename, float scale)
 {
 	// TODO Create method isAlreadyLoaded()
-	if (this->m_maps.count(mapId) > 0)
+	if (this->isMapAlreadyLoaded(mapId))
 	{
 		spdlog::debug("[TiledMapManager::load] The map with id '{0}' is already created!", mapId);
 		return;
@@ -122,4 +121,9 @@ void TiledMapManager::dispose(std::string mapId)
 TiledMap* TiledMapManager::getMap(std::string mapId)
 {
 	return this->m_maps[mapId];
+}
+
+bool TiledMapManager::isMapAlreadyLoaded(std::string mapId)
+{
+	return this->m_maps.count(mapId) > 0;
 }

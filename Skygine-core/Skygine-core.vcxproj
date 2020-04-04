@@ -47,6 +47,7 @@
   <ItemGroup>
     <ClInclude Include="src\entities\InteractionRect.h" />
     <ClInclude Include="src\graphics\Camera.h" />
+    <ClInclude Include="src\input\AxisDirection.h" />
     <ClInclude Include="src\input\InputHandler.h" />
     <ClInclude Include="src\physics\CollisionHandler.h" />
     <ClInclude Include="src\physics\Point.h" />

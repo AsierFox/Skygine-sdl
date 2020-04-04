@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 
+#include "AxisDirection.h"
 #include "../core/Engine.h"
 
 class InputHandler
@@ -21,4 +22,5 @@ public:
 
 	void listen();
 	bool isKeyDown(SDL_Scancode key);
+	bool isAxisKey(AxisDirection key);
 };

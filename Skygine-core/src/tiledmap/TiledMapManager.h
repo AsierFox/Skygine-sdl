@@ -31,4 +31,5 @@ public:
 
 	// TODO Test this without a pointer
 	TiledMap* getMap(std::string mapId);
+	bool isMapAlreadyLoaded(std::string mapId);
 };

@@ -23,7 +23,7 @@ public:
 
 	SDL_Texture* load(std::string id, std::string resourcePath);
 	void render(std::string id, int x, int y, int width, int height);
-	void render(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip, float scale, float moveCameraWithDelay);
+	void render(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip, float scale, float moveCameraWithScalar);
 	void renderFrame(std::string id, int x, int y, int width, int height, int col, int row);
 	void renderFrame(std::string id, int x, int y, int width, int height, int col, int row, SDL_RendererFlip flip);
 	void renderFrame(std::string id, int x, int y, int width, int height, int col, int row, float scale);
