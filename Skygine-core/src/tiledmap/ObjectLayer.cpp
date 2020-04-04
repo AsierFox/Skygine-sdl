@@ -15,7 +15,17 @@ void ObjectLayer::render()
 	for (unsigned int i = 0; i < this->m_objects.size(); i++)
 	{
 		TiledObject tiledObject = this->m_objects[i];
-		TextureManager::getInstance()->renderRect(tiledObject.m_x * this->m_scale, tiledObject.m_y * this->m_scale,
-			tiledObject.m_width, tiledObject.m_height, this->m_scale);
+		TextureManager::getInstance()->renderRect(tiledObject.m_collider);
 	}
+}
+
+std::vector<SDL_Rect> ObjectLayer::getColliders()
+{
+	std::vector<SDL_Rect> colliders(this->m_objects.size());
+
+	std::transform(this->m_objects.begin(), this->m_objects.end(), colliders.begin(), [](TiledObject const& tiledObject) {
+		return tiledObject.m_collider;
+	});
+	
+	return colliders;
 }

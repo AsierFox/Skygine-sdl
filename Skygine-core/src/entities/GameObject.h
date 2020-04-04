@@ -12,14 +12,16 @@ protected:
 
 	Transform* m_transform;
 	Point* m_origin;
+	SDL_Rect m_collider;
 
 	std::string m_id;
 	std::string m_name;
-
+	
 public:
 
 	GameObject(std::string id, std::string name, int x, int y);
 
+	virtual void setCollidernRegion() = 0;
 	virtual void update(float delta) = 0;
 	virtual void draw() = 0;
 	virtual void dispose() = 0;

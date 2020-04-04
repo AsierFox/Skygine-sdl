@@ -28,6 +28,7 @@ public:
 	void renderFrame(std::string id, int x, int y, int width, int height, int col, int row, SDL_RendererFlip flip);
 	void renderFrame(std::string id, int x, int y, int width, int height, int col, int row, float scale);
 	void renderFrame(std::string id, int x, int y, int width, int height, int col, int row, float scale, SDL_RendererFlip flip);
+	void renderRect(SDL_Rect rect);
 	void renderRect(float x, float y, float width, float height);
 	void renderRect(float x, float y, float width, float height, float scale);
 	void renderPoint(float x, float y);

@@ -22,6 +22,7 @@
     <ClCompile Include="src\entities\InteractionRect.cpp" />
     <ClCompile Include="src\graphics\Camera.cpp" />
     <ClCompile Include="src\input\InputHandler.cpp" />
+    <ClCompile Include="src\physics\CollisionHandler.cpp" />
     <ClCompile Include="src\physics\Point.cpp" />
     <ClCompile Include="src\physics\RigitBody.cpp" />
     <ClCompile Include="src\graphics\SpriteAnimation.cpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="src\entities\InteractionRect.h" />
     <ClInclude Include="src\graphics\Camera.h" />
     <ClInclude Include="src\input\InputHandler.h" />
+    <ClInclude Include="src\physics\CollisionHandler.h" />
     <ClInclude Include="src\physics\Point.h" />
     <ClInclude Include="src\physics\RigitBody.h" />
     <ClInclude Include="src\graphics\SpriteAnimation.h" />

@@ -9,11 +9,11 @@ bool ExSideGame::init()
 		return false;
 	}
 
-	this->player = new Player("player", "SkyFoXx", 300, 300);
-	
-	Camera::getInstance()->updateTarget(this->player->getOrigin());
-
 	TiledMapManager::getInstance()->load("test-map", "assets/maps/", "map-tiled.json", 3);
+
+	this->player = new Player("player", "SkyFoXx", 300, 300);
+
+	Camera::getInstance()->updateTarget(this->player->getOrigin());
 
 	return true;
 }

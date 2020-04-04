@@ -51,7 +51,8 @@ void TiledMapManager::load(std::string mapId, std::string resourcesDirPath, std:
 		mapTilesets.push_back(tileset);
 	}
 
-	std::vector<Layer*> mapLayers;
+	std::vector<TileLayer*> mapTileLayers;
+	std::vector<TiledObject> mapObjects;
 
 	for (unsigned int i = 0; i < mapJson["layers"].size(); i++)
 	{
@@ -73,7 +74,7 @@ void TiledMapManager::load(std::string mapId, std::string resourcesDirPath, std:
 				}
 			}
 
-			mapLayers.push_back(new TileLayer(tileMapIds, mapTilesets, scale));
+			mapTileLayers.push_back(new TileLayer(tileMapIds, mapTilesets, scale));
 			
 			tileMapIds.clear();
 		}
@@ -91,16 +92,22 @@ void TiledMapManager::load(std::string mapId, std::string resourcesDirPath, std:
 				tiledObject.m_width = objectJson["width"];
 				tiledObject.m_height = objectJson["height"];
 
+				tiledObject.m_collider = {
+					static_cast<int>(tiledObject.m_x * scale),
+					static_cast<int>(tiledObject.m_y * scale),
+					static_cast<int>(tiledObject.m_width * scale),
+					static_cast<int>(tiledObject.m_height * scale) };
+
+				mapObjects.push_back(tiledObject);
+
 				objects.push_back(tiledObject);
 			}
-
-			mapLayers.push_back(new ObjectLayer(objects, scale));
 
 			objects.clear();
 		}
 	}
 
-	TiledMap* tiledMap = new TiledMap(mapTileSize, mapTileCols, mapTileRows, mapLayers);
+	TiledMap* tiledMap = new TiledMap(mapTileSize, mapTileCols, mapTileRows, mapTileLayers, new ObjectLayer(mapObjects, scale));
 	this->m_maps.insert({ mapId, tiledMap });
 
 	spdlog::debug("[TiledMapManager::load] The map with id '{0}' loaded successfully!", mapId);
@@ -108,7 +115,8 @@ void TiledMapManager::load(std::string mapId, std::string resourcesDirPath, std:
 
 void TiledMapManager::dispose(std::string mapId)
 {
-	this->m_maps["mapid"]->dispose();
+	// TODO Dispose maps
+	//this->m_maps["mapid"]->dispose();
 }
 
 TiledMap* TiledMapManager::getMap(std::string mapId)

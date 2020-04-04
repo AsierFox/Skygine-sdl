@@ -14,7 +14,7 @@ void RigitBody::update(float delta)
 
 	this->m_velocity = this->m_acceleration * delta;
 
-	this->m_pos = this->m_velocity * delta;
+	this->m_newPosition = this->m_velocity * delta;
 }
 
 void RigitBody::updateWithGravity(float delta)
@@ -26,7 +26,7 @@ void RigitBody::updateWithGravity(float delta)
 
 	this->m_velocity = this->m_acceleration * delta;
 
-	this->m_pos = this->m_velocity * delta;
+	this->m_newPosition = this->m_velocity * delta;
 }
 
 float RigitBody::getMass()
@@ -49,9 +49,9 @@ Vector2D RigitBody::getVelocity()
 	return this->m_velocity;
 }
 
-Vector2D RigitBody::getPosition()
+Vector2D RigitBody::getNewPosition()
 {
-	return this->m_pos;
+	return this->m_newPosition;
 }
 
 Vector2D RigitBody::getForce()

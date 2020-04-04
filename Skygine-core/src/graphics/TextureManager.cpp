@@ -99,6 +99,13 @@ void TextureManager::renderFrame(std::string id, int x, int y, int width, int he
 	SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
 }
 
+
+void TextureManager::renderRect(SDL_Rect rect)
+{
+	this->renderRect(rect.x, rect.y, rect.w, rect.h, 1);
+}
+
+
 void TextureManager::renderRect(float x, float y, float width, float height)
 {
 	this->renderRect(x, y, width, height, 1);

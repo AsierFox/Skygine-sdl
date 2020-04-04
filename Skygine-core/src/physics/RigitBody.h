@@ -12,7 +12,7 @@ class RigitBody
 
 	Vector2D m_acceleration;
 	Vector2D m_velocity;
-	Vector2D m_pos;
+	Vector2D m_newPosition;
 	Vector2D m_force;
 	Vector2D m_friction;
 
@@ -27,7 +27,7 @@ public:
 	void setMass(float mass);
 	Vector2D getAcceleration();
 	Vector2D getVelocity();
-	Vector2D getPosition();
+	Vector2D getNewPosition();
 	Vector2D getForce();
 	void setForce(Vector2D force);
 	void setForceX(float x);

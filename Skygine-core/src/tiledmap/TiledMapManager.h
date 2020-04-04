@@ -29,5 +29,6 @@ public:
 	void load(std::string mapId, std::string resourcesDirPath, std::string filename, float scale);
 	void dispose(std::string mapId);
 
+	// TODO Test this without a pointer
 	TiledMap* getMap(std::string mapId);
 };

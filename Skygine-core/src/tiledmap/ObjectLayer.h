@@ -1,6 +1,8 @@
 #pragma once
 
 #include <vector>
+#include <algorithm>
+#include <SDL.h>
 
 #include "Layer.h"
 #include "TiledObject.h"
@@ -17,4 +19,6 @@ public:
 
 	void update() override;
 	void render() override;
+
+	std::vector<SDL_Rect> getColliders();
 };

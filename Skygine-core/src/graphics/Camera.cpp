@@ -35,7 +35,8 @@ void Camera::update(float delta)
 
 	this->m_viewport.x = this->m_target->x - (this->m_displayMode.w / 2);
 	this->m_viewport.y = this->m_target->y - (this->m_displayMode.h / 2);
-	// TODO Add dynamic width to camera (getting the width of the map i.e.)
+	// TODO Add dynamic width to camera (getting the width of the map i.e.),
+	// Add to the update target, the width o the worldmap
 	MathUtils::clampInt(this->m_viewport.x, 0, (this->m_displayMode.w + 250) - this->m_viewport.w);
 	MathUtils::clampInt(this->m_viewport.y, 0, (this->m_displayMode.h + 300) - this->m_viewport.h);
 

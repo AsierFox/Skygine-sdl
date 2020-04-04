@@ -3,7 +3,7 @@
 #include <SDL.h>
 
 const int TARGET_FPS = 60;
-const int TARGET_DELTATIME = 1.5f;
+const float TARGET_DELTATIME = 1.5f;
 
 class DeltaTimer
 {
