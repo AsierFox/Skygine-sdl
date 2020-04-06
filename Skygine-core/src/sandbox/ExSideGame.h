@@ -4,10 +4,12 @@
 #include "../tiledmap/TiledMapManager.h"
 #include "../graphics/Camera.h"
 #include "entities/Player.h"
+#include "entities/Enemy.h"
 
 class ExSideGame
 {
 	Player* player;
+	Enemy* enemy;
 
 public:
 
@@ -16,6 +18,6 @@ public:
 	void update(float delta);
 	void draw();
 	void dispose();
-
+	
 	bool isRunning();
 };

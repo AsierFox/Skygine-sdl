@@ -18,7 +18,7 @@ protected:
 
 	std::string m_id;
 	std::string m_name;
-	
+
 public:
 
 	GameObject(std::string id, std::string name, int x, int y);

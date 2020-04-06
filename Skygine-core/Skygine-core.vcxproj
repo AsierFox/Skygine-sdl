@@ -19,13 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\entities\Entity.cpp" />
     <ClCompile Include="src\entities\InteractionRect.cpp" />
     <ClCompile Include="src\graphics\Camera.cpp" />
+    <ClCompile Include="src\graphics\TextureSequence.cpp" />
     <ClCompile Include="src\input\InputHandler.cpp" />
     <ClCompile Include="src\physics\CollisionHandler.cpp" />
     <ClCompile Include="src\physics\Point.cpp" />
     <ClCompile Include="src\physics\RigitBody.cpp" />
     <ClCompile Include="src\graphics\SpriteAnimation.cpp" />
+    <ClCompile Include="src\sandbox\entities\Enemy.cpp" />
     <ClCompile Include="src\sandbox\ExSideGame.cpp" />
     <ClCompile Include="src\sandbox\entities\Player.cpp" />
     <ClCompile Include="src\entities\GameObject.cpp" />
@@ -36,6 +39,7 @@
     <ClCompile Include="src\tiledmap\TileLayer.cpp" />
     <ClCompile Include="src\time\DeltaTimer.cpp" />
     <ClCompile Include="src\time\Timer.cpp" />
+    <ClCompile Include="src\ui\ProgressBar.cpp" />
     <ClCompile Include="src\utils\MathUtils.cpp" />
     <ClCompile Include="src\utils\FileUtils.cpp" />
     <ClCompile Include="main.cpp" />
@@ -43,16 +47,20 @@
     <ClCompile Include="src\graphics\TextureManager.cpp" />
     <ClCompile Include="src\physics\Transform.cpp" />
     <ClCompile Include="src\physics\Vector2D.cpp" />
+    <ClCompile Include="src\utils\SDLColor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\entities\Entity.h" />
     <ClInclude Include="src\entities\InteractionRect.h" />
     <ClInclude Include="src\graphics\Camera.h" />
+    <ClInclude Include="src\graphics\TextureSequence.h" />
     <ClInclude Include="src\input\AxisDirection.h" />
     <ClInclude Include="src\input\InputHandler.h" />
     <ClInclude Include="src\physics\CollisionHandler.h" />
     <ClInclude Include="src\physics\Point.h" />
     <ClInclude Include="src\physics\RigitBody.h" />
     <ClInclude Include="src\graphics\SpriteAnimation.h" />
+    <ClInclude Include="src\sandbox\entities\Enemy.h" />
     <ClInclude Include="src\sandbox\ExSideGame.h" />
     <ClInclude Include="src\sandbox\entities\Player.h" />
     <ClInclude Include="src\entities\GameObject.h" />
@@ -66,6 +74,7 @@
     <ClInclude Include="src\tiledmap\Tileset.h" />
     <ClInclude Include="src\time\DeltaTimer.h" />
     <ClInclude Include="src\time\Timer.h" />
+    <ClInclude Include="src\ui\ProgressBar.h" />
     <ClInclude Include="src\utils\MathUtils.h" />
     <ClInclude Include="src\utils\FileUtils.h" />
     <ClInclude Include="src\core\Engine.h" />
@@ -73,6 +82,7 @@
     <ClInclude Include="src\graphics\TextureManager.h" />
     <ClInclude Include="src\physics\Transform.h" />
     <ClInclude Include="src\physics\Vector2D.h" />
+    <ClInclude Include="src\utils\SDLUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libs\SDL2_image-2.0.5\lib\x64\zlib1.dll" />

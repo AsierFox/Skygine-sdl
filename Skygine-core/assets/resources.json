@@ -1,0 +1,32 @@
+{
+  "textures": [
+    {
+      "nysonSequences": [
+        {
+          "id": "idle",
+          "type": "sprite-animation",
+          "resourcePath": "assets/entities/nyson/nyson-sheet.png",
+          "rowToAnimate": 1,
+          "totalFrames": 3,
+          "totalCols": 4,
+          "totalRows": 4,
+          "scale": 1,
+          "delay": 213,
+          "repeat": true
+        },
+        {
+          "id": "walking",
+          "type": "sprite-animation",
+          "resourcePath": "assets/entities/nyson/nyson-sheet.png",
+          "rowToAnimate": 1,
+          "totalFrames": 3,
+          "totalCols": 4,
+          "totalRows": 4,
+          "scale": 1,
+          "delay": 213,
+          "repeat": true
+        }
+      ]
+    }
+  ]
+ }

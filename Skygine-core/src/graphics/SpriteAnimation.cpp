@@ -32,7 +32,12 @@ SpriteAnimation::SpriteAnimation(std::string textureId, std::string resourcePath
 	this->m_flip = flip;
 
 	this->m_delay = 350;
+	this->m_repeat = true;
 	this->m_currentFrame = 0;
+}
+
+void SpriteAnimation::loadTextureSequence(std::string sequenceId)
+{
 }
 
 void SpriteAnimation::update()

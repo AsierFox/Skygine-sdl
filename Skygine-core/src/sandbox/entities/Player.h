@@ -4,6 +4,7 @@
 #include <SDL.h>
 
 #include "../../entities/GameObject.h"
+#include "../../entities/Entity.h"
 #include "../../input/InputHandler.h"
 #include "../../input/AxisDirection.h"
 #include "../../graphics/SpriteAnimation.h"
@@ -13,17 +14,10 @@
 #include "../../tiledmap/TiledMapManager.h"
 #include "../../physics/Vector2D.h"
 
-class Player : public GameObject
+class Player : public Entity
 {
 	SpriteAnimation* m_idleAnimation;
 	SpriteAnimation* m_walkAnimation;
-	SpriteAnimation* m_currentAnimation;
-	RigitBody* m_rigitBody;
-	TiledMap* belongsToMap;
-
-	Vector2D m_lastSafePosition;
-
-	float m_speed;
 
 	float m_maxJumpTime;
 	float m_jumpTime;

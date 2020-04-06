@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player(std::string id, std::string name, int x, int y)
-	: GameObject(id, name, x, y)
+	: Entity(id, name, x, y)
 {
 	this->m_speed     = 3.0f;
 	this->m_maxJumpTime = 15.0f;
@@ -17,8 +17,6 @@ Player::Player(std::string id, std::string name, int x, int y)
 	this->m_currentAnimation = this->m_idleAnimation;
 
 	this->m_origin = new Point(x + (this->m_currentAnimation->getWidth() / 2), y + (this->m_currentAnimation->getHeight() / 2));
-
-	this->m_rigitBody = new RigitBody();
 
 	this->belongsToMap = TiledMapManager::getInstance()->getMap("test-map");
 
