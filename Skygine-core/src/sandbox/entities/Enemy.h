@@ -1,16 +1,19 @@
 #pragma once
 
+#include <SDL.h>
+
 #include "../../entities/Entity.h"
 #include "../../graphics/SpriteAnimation.h"
 #include "../../graphics/TextureManager.h"
 
 class Enemy : public Entity
 {
-
 	SpriteAnimation* m_idleAnimation;
 
+	int m_waittingTimeCount;
+	int m_waittingTime;
+
 public:
-	bool test = false;
 
 	Enemy(std::string id, std::string name, int x, int y);
 

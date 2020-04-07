@@ -12,7 +12,7 @@ bool ExSideGame::init()
 	TiledMapManager::getInstance()->load("test-map", "assets/maps/", "map-tiled.json", 3);
 
 	this->player = new Player("player", "SkyFoXx", 300, 300);
-	this->enemy = new Enemy("enemy", "adsf", 500, 300);
+	this->enemy = GameObjectFactory::getInstance()->createEnemy(500, 300);
 
 	Camera::getInstance()->updateTarget(this->player->getOrigin());
 

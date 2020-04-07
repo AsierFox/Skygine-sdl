@@ -4,8 +4,10 @@ Enemy::Enemy(std::string id, std::string name, int x, int y)
 	: Entity(id, name, x, y)
 {
 	this->m_speed = 3.0f;
-
 	this->m_currentAnimation = new SpriteAnimation(id, "assets/entities/nyson/nyson-sheet.png", 2, 2, 4, 3, 3);
+
+	this->m_waittingTimeCount = 60.0f;
+	this->m_waittingTime = 0;
 }
 
 void Enemy::setCollidernRegion()
@@ -19,8 +21,6 @@ void Enemy::setCollidernRegion()
 
 void Enemy::update(float delta)
 {
-	this->m_currentAnimation->update();
-
 	this->m_rigitBody->update(delta);
 
 	this->m_transform->translateX(this->m_rigitBody->getNewPosition().x);
@@ -31,6 +31,8 @@ void Enemy::update(float delta)
 		static_cast<int>(this->m_transform->y),
 		static_cast<int>(this->m_currentAnimation->getWidth()),
 		static_cast<int>(this->m_currentAnimation->getHeight()) };
+
+	this->m_currentAnimation->update();
 }
 
 void Enemy::draw()

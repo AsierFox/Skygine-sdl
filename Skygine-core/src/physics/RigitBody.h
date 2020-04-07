@@ -2,7 +2,8 @@
 
 #include "Vector2D.h"
 
-#define GRAVITY 9.81f
+//#define GRAVITY 9.81f
+#define GRAVITY 2.8f
 #define DEFAULT_MASS 1.0f
 
 class RigitBody  

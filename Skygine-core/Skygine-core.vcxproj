@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\entities\Entity.cpp" />
+    <ClCompile Include="src\entities\GameObjectFactory.cpp" />
     <ClCompile Include="src\entities\InteractionRect.cpp" />
     <ClCompile Include="src\graphics\Camera.cpp" />
     <ClCompile Include="src\graphics\TextureSequence.cpp" />
@@ -51,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\entities\Entity.h" />
+    <ClInclude Include="src\entities\GameObjectFactory.h" />
     <ClInclude Include="src\entities\InteractionRect.h" />
     <ClInclude Include="src\graphics\Camera.h" />
     <ClInclude Include="src\graphics\TextureSequence.h" />
