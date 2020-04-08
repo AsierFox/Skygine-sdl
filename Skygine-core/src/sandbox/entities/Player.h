@@ -5,6 +5,7 @@
 
 #include "../../entities/GameObject.h"
 #include "../../entities/Entity.h"
+#include "../../tiledmap/TiledMap.h"
 #include "../../input/InputHandler.h"
 #include "../../input/AxisDirection.h"
 #include "../../graphics/SpriteAnimation.h"
@@ -30,7 +31,7 @@ class Player : public Entity
 
 public:
 
-	Player(std::string id, std::string name, int x, int y);
+	Player(std::string id, std::string name, int x, int y, TiledMap* map);
 
 	virtual void setCollidernRegion() override;
 	virtual void update(float delta) override;

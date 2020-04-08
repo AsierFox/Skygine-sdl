@@ -3,9 +3,9 @@
 #include <string>
 
 #include "GameObject.h"
+#include "../tiledmap/TiledMap.h"
 #include "../graphics/SpriteAnimation.h"
 #include "../physics/RigitBody.h"
-#include "../tiledmap/TiledMap.h"
 
 class Entity : public GameObject
 {
@@ -15,13 +15,11 @@ protected:
 	RigitBody* m_rigitBody;
 	Vector2D m_lastSafePosition;
 
-	TiledMap* belongsToMap;
-
 	float m_speed;
 
 public:
 	
-	Entity(std::string id, std::string name, int x, int y);
+	Entity(std::string id, std::string name, int x, int y, TiledMap* map);
 
 	virtual void setCollidernRegion() = 0;
 	virtual void update(float delta) = 0;

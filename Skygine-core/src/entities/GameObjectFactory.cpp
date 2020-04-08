@@ -17,9 +17,9 @@ GameObjectFactory* GameObjectFactory::getInstance()
 	return GameObjectFactory::s_instance;
 }
 
-Enemy* GameObjectFactory::createEnemy(int x, int y)
+Enemy* GameObjectFactory::createEnemy(int x, int y, TiledMap* map)
 {
 	this->nextEnemyId++;
 
-	return new Enemy("enemy" + this->nextEnemyId, "Basic Enemy", x, y);
+	return new Enemy("enemy" + this->nextEnemyId, "Basic Enemy", x, y, map);
 }

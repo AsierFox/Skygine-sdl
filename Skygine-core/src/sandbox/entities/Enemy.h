@@ -3,6 +3,7 @@
 #include <SDL.h>
 
 #include "../../entities/Entity.h"
+#include "../../tiledmap/TiledMap.h"
 #include "../../graphics/SpriteAnimation.h"
 #include "../../graphics/TextureManager.h"
 
@@ -15,7 +16,7 @@ class Enemy : public Entity
 
 public:
 
-	Enemy(std::string id, std::string name, int x, int y);
+	Enemy(std::string id, std::string name, int x, int y, TiledMap* map);
 
 	virtual void setCollidernRegion() override;
 	virtual void update(float delta) override;

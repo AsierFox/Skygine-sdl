@@ -76,6 +76,7 @@
     <ClInclude Include="src\tiledmap\Tileset.h" />
     <ClInclude Include="src\time\DeltaTimer.h" />
     <ClInclude Include="src\time\Timer.h" />
+    <ClInclude Include="src\types\Direction.h" />
     <ClInclude Include="src\ui\ProgressBar.h" />
     <ClInclude Include="src\utils\MathUtils.h" />
     <ClInclude Include="src\utils\FileUtils.h" />

@@ -2,6 +2,7 @@
 
 #include "../core/Engine.h"
 #include "../tiledmap/TiledMapManager.h"
+#include "../tiledmap/TiledMap.h"
 #include "../graphics/Camera.h"
 #include "../entities/GameObjectFactory.h"
 #include "entities/Player.h"
@@ -9,10 +10,10 @@
 
 class ExSideGame
 {
+	TiledMap* currentMap;
+
 	Player* player;
 	Enemy* enemy;
-
-	bool test = false;
 
 public:
 

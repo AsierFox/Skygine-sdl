@@ -26,7 +26,7 @@ public:
 
 	static TiledMapManager* getInstance();
 
-	void load(std::string mapId, std::string resourcesDirPath, std::string filename, float scale);
+	TiledMap* load(std::string mapId, std::string resourcesDirPath, std::string filename, float scale);
 	void dispose(std::string mapId);
 
 	// TODO Test this without a pointer

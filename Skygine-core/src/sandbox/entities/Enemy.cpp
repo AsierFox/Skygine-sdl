@@ -1,7 +1,7 @@
 #include "Enemy.h"
 
-Enemy::Enemy(std::string id, std::string name, int x, int y)
-	: Entity(id, name, x, y)
+Enemy::Enemy(std::string id, std::string name, int x, int y, TiledMap* map)
+	: Entity(id, name, x, y, map)
 {
 	this->m_speed = 3.0f;
 	this->m_currentAnimation = new SpriteAnimation(id, "assets/entities/nyson/nyson-sheet.png", 2, 2, 4, 3, 3);

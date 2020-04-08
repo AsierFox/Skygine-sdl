@@ -1,7 +1,7 @@
 #include "Player.h"
 
-Player::Player(std::string id, std::string name, int x, int y)
-	: Entity(id, name, x, y)
+Player::Player(std::string id, std::string name, int x, int y, TiledMap* map)
+	: Entity(id, name, x, y, map)
 {
 	this->m_speed     = 3.0f;
 	this->m_maxJumpTime = 15.0f;
@@ -117,7 +117,6 @@ void Player::input(float delta)
 	if (this->m_isAttacking && this->m_attackTime > 0)
 	{
 		this->m_attackTime -= delta;
-		spdlog::debug("MEW");
 	}
 	else {
 		this->m_isAttacking = false;
@@ -130,24 +129,7 @@ void Player::checkCollisions(float delta)
 {
 	this->m_lastSafePosition.y = this->m_transform->y;
 	this->m_transform->translateY(this->m_rigitBody->getNewPosition().y);
-	this->m_collider = {
-		static_cast<int>(this->m_transform->x),
-		static_cast<int>(this->m_transform->y),
-		static_cast<int>(this->m_currentAnimation->getWidth()),
-		static_cast<int>(this->m_currentAnimation->getHeight()) };
-	this->m_origin->y = this->m_transform->y + (this->m_currentAnimation->getHeight() / 2);
 
-	for (int i = 0; i < this->belongsToMap->getColliders().size(); i++)
-	{
-		SDL_Rect mapCollider = this->belongsToMap->getColliders()[i];
-		if (CollisionHandler::getInstance()->checkCollision(this->m_collider, this->belongsToMap->getColliders()[i]))
-		{
-			this->m_transform->y = this->m_lastSafePosition.y;
-		}
-	}
-
-	this->m_lastSafePosition.x = this->m_transform->x;
-	this->m_transform->translateX(this->m_rigitBody->getNewPosition().x);
 	this->m_collider = {
 		static_cast<int>(this->m_transform->x),
 		static_cast<int>(this->m_transform->y),
@@ -158,12 +140,35 @@ void Player::checkCollisions(float delta)
 	for (int i = 0; i < this->belongsToMap->getColliders().size(); i++)
 	{
 		SDL_Rect mapCollider = this->belongsToMap->getColliders()[i];
+
 		if (CollisionHandler::getInstance()->checkCollision(this->m_collider, mapCollider))
 		{
-			this->m_transform->x = this->m_lastSafePosition.x;
+			this->m_transform->y = this->m_lastSafePosition.y;
+			break;
 		}
 	}
 
+
+	this->m_lastSafePosition.x = this->m_transform->x;
+	this->m_transform->translateX(this->m_rigitBody->getNewPosition().x);
+
+	this->m_collider = {
+		static_cast<int>(this->m_transform->x),
+		static_cast<int>(this->m_transform->y),
+		static_cast<int>(this->m_currentAnimation->getWidth()),
+		static_cast<int>(this->m_currentAnimation->getHeight()) };
+	this->m_origin->x = this->m_transform->x + (this->m_currentAnimation->getWidth() / 2);
+
+	for (int i = 0; i < this->belongsToMap->getColliders().size(); i++)
+	{
+		SDL_Rect mapCollider = this->belongsToMap->getColliders()[i];
+
+		if (CollisionHandler::getInstance()->checkCollision(this->m_collider, mapCollider))
+		{
+			this->m_transform->x = this->m_lastSafePosition.x;
+			break;
+		}
+	}
 }
 
 void Player::updateAnimationState()

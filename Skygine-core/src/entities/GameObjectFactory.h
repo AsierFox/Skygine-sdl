@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../sandbox/entities/Enemy.h"
+#include "../tiledmap/TiledMap.h"
 
 class GameObjectFactory
 {
@@ -15,5 +16,5 @@ public:
 	static GameObjectFactory* getInstance();
 
 	// TODO Pass enemy type in future
-	Enemy* createEnemy(int x, int y);
+	Enemy* createEnemy(int x, int y, TiledMap* map);
 };

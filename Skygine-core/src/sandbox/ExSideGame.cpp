@@ -9,10 +9,10 @@ bool ExSideGame::init()
 		return false;
 	}
 
-	TiledMapManager::getInstance()->load("test-map", "assets/maps/", "map-tiled.json", 3);
+	this->currentMap = TiledMapManager::getInstance()->load("test-map", "assets/maps/", "map-tiled.json", 3);
 
-	this->player = new Player("player", "SkyFoXx", 300, 300);
-	this->enemy = GameObjectFactory::getInstance()->createEnemy(500, 300);
+	this->player = new Player("player", "SkyFoXx", 300, 300, this->currentMap);
+	this->enemy = GameObjectFactory::getInstance()->createEnemy(500, 300, this->currentMap);
 
 	Camera::getInstance()->updateTarget(this->player->getOrigin());
 
@@ -28,7 +28,7 @@ void ExSideGame::update(float delta)
 {
 	Engine::getInstance()->update(delta);
 
-	TiledMapManager::getInstance()->getMap("test-map")->update();
+	this->currentMap->update();
 
 	this->enemy->update(delta);
 	this->player->update(delta);
@@ -40,7 +40,7 @@ void ExSideGame::draw()
 {
 	Engine::getInstance()->drawStart();
 
-	TiledMapManager::getInstance()->getMap("test-map")->render();
+	this->currentMap->render();
 	this->enemy->draw();
 	this->player->draw();
 
@@ -50,6 +50,8 @@ void ExSideGame::draw()
 void ExSideGame::dispose()
 {
 	Engine::getInstance()->dispose();
+
+	// TODO Dispose everything
 
 	this->player->dispose();
 }
