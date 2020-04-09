@@ -3,7 +3,7 @@
 Player::Player(std::string id, std::string name, int x, int y, TiledMap* map)
 	: Entity(id, name, x, y, map)
 {
-	this->m_speed     = 3.0f;
+	this->m_speed = 3.0f;
 	this->m_maxJumpTime = 15.0f;
 	this->m_jumpTime = this->m_maxJumpTime;
 	this->m_JumpForce = 10.0f;
@@ -157,7 +157,7 @@ void Player::checkCollisions(float delta)
 		static_cast<int>(this->m_transform->y),
 		static_cast<int>(this->m_currentAnimation->getWidth()),
 		static_cast<int>(this->m_currentAnimation->getHeight()) };
-	this->m_origin->x = this->m_transform->x + (this->m_currentAnimation->getWidth() / 2);
+	this->m_origin->y = this->m_transform->y + (this->m_currentAnimation->getWidth() / 2);
 
 	for (int i = 0; i < this->belongsToMap->getColliders().size(); i++)
 	{

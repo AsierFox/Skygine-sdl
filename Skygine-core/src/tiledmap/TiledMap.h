@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
 #include <vector>
 
 #include "TileLayer.h"
@@ -12,6 +11,7 @@ class TiledMap
 	int m_totalCols;
 	int m_totalRows;
 	int m_totalTileLayers;
+	float m_scale;
 
 	std::vector<TileLayer*> m_tileLayers;
 	ObjectLayer* m_objectLayer;
@@ -19,6 +19,7 @@ class TiledMap
 public:
 
 	TiledMap(int tileSize, int totalCols, int totalRows, std::vector<TileLayer*> tileLayers, ObjectLayer* objectLayer);
+	TiledMap(int tileSize, int totalCols, int totalRows, std::vector<TileLayer*> tileLayers, ObjectLayer* objectLayer, float scale);
 
 	void update();
 	void render();
@@ -28,5 +29,8 @@ public:
 	int getTileSize();
 	int getTotalCols();
 	int getTotalRows();
+	float getScale();
+	int getTotalWidth();
+	int getTotalHeight();
 	std::vector<SDL_Rect> getColliders();
 };

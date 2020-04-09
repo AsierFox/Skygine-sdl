@@ -1,11 +1,11 @@
 #pragma once
 
-#include <spdlog/spdlog.h>
 #include <SDL.h>
 
 #include "../physics/Vector2D.h"
 #include "../physics/Point.h"
 #include "../utils/MathUtils.h"
+#include "../graphics/TextureManager.h"
 
 class Camera
 {
@@ -14,7 +14,12 @@ class Camera
 	Vector2D m_pos;
 	Point* m_target;
 	SDL_Rect m_viewport;
-	SDL_DisplayMode m_displayMode;
+
+	int m_windowWidth;
+	int m_windowHeight;
+
+	int m_mapTotalWidth;
+	int m_mapTotalHeight;
 
 public:
 
@@ -22,9 +27,11 @@ public:
 
 	Camera();
 
-	void update(float delta);
 	void updateTarget(Point* newTarget);
+	void update(float delta);
+	void drawDebug();
 
+	void setSceneMapDimensions(int mapTotalWidth, int mapTotalHeight);
 	Vector2D getPosition();
 	SDL_Rect getViewport();
 };

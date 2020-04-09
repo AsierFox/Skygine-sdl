@@ -119,3 +119,8 @@ SDL_Renderer* Engine::getRenderer()
 {
 	return this->m_renderer;
 }
+
+void Engine::getWindowSize(int* width, int* height)
+{
+	SDL_GetWindowSize(this->m_window, width, height);
+}

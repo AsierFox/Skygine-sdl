@@ -106,7 +106,7 @@ TiledMap* TiledMapManager::load(std::string mapId, std::string resourcesDirPath,
 		}
 	}
 
-	TiledMap* tiledMap = new TiledMap(mapTileSize, mapTileCols, mapTileRows, mapTileLayers, new ObjectLayer(mapObjects, scale));
+	TiledMap* tiledMap = new TiledMap(mapTileSize, mapTileCols, mapTileRows, mapTileLayers, new ObjectLayer(mapObjects, scale), scale);
 	this->m_maps.insert({ mapId, tiledMap });
 
 	spdlog::debug("[TiledMapManager::load] The map with id '{0}' loaded successfully!", mapId);

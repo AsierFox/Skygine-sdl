@@ -1,13 +1,19 @@
 #include "TiledMap.h"
 
 TiledMap::TiledMap(int tileSize, int totalCols, int totalRows, std::vector<TileLayer*> tileLayers, ObjectLayer* objectLayer)
+	: TiledMap(tileSize, totalCols, totalRows, tileLayers, objectLayer, 1)
 {
-	this->m_tileSize    = tileSize;
-	this->m_totalCols   = totalCols;
-	this->m_totalRows   = totalRows;
+}
+
+TiledMap::TiledMap(int tileSize, int totalCols, int totalRows, std::vector<TileLayer*> tileLayers, ObjectLayer* objectLayer, float scale)
+{
+	this->m_tileSize = tileSize;
+	this->m_totalCols = totalCols;
+	this->m_totalRows = totalRows;
 	this->m_tileLayers = tileLayers;
 	this->m_totalTileLayers = tileLayers.size();
 	this->m_objectLayer = objectLayer;
+	this->m_scale = scale;
 }
 
 void TiledMap::update()
@@ -42,7 +48,7 @@ void TiledMap::dispose()
 
 int TiledMap::getTileSize()
 {
-	return this->m_tileSize;
+	return this->m_tileSize * this->getScale();
 }
 
 int TiledMap::getTotalCols()
@@ -53,6 +59,21 @@ int TiledMap::getTotalCols()
 int TiledMap::getTotalRows()
 {
 	return this->m_totalRows;
+}
+
+float TiledMap::getScale()
+{
+	return this->m_scale;
+}
+
+int TiledMap::getTotalWidth()
+{
+	return this->getTotalCols() * this->getTileSize();
+}
+
+int TiledMap::getTotalHeight()
+{
+	return this->getTotalRows() * this->getTileSize();
 }
 
 std::vector<SDL_Rect> TiledMap::getColliders()

@@ -8,6 +8,7 @@ TestLevelScene::TestLevelScene()
 	this->m_entities.push_back(GameObjectFactory::getInstance()->createEnemy(500, 300, this->m_map));
 
 	Camera::getInstance()->updateTarget(this->m_player->getOrigin());
+	Camera::getInstance()->setSceneMapDimensions(this->m_map->getTotalWidth(), this->m_map->getTotalHeight());
 }
 
 void TestLevelScene::update(float delta)

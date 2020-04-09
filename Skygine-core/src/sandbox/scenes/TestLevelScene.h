@@ -1,5 +1,7 @@
 #pragma once
 
+#include <spdlog/spdlog.h>
+
 #include "BaseLevelScene.h"
 #include "../../entities/GameObjectFactory.h"
 #include "../../tiledmap/TiledMapManager.h"

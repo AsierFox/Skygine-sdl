@@ -42,7 +42,7 @@ SDL_Texture* TextureManager::load(std::string id, std::string resourcePath)
 		return nullptr;
 	}
 
-	spdlog::debug("[TextureManager::load] Texture '{0}' loaded!", resourcePath);
+	spdlog::debug("[TextureManager::load] Texture '{0}' loaded successfully!", resourcePath);
 
 	this->m_loadedTextures.insert({ id, texture });
 

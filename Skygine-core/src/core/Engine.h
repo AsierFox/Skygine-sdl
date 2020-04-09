@@ -36,4 +36,5 @@ public:
 
 	bool isRunning();
 	SDL_Renderer* getRenderer();
+	void getWindowSize(int* width, int* height);
 };

@@ -14,15 +14,19 @@ Camera* Camera::getInstance()
 
 Camera::Camera()
 {
-	// TODO Check if Full Screen -> FullScreen (SDL_GetRendererOutputSize), NO FullScreen (SDL_GetDesktopDisplayMode)
-	if (SDL_GetDesktopDisplayMode(0, &this->m_displayMode) != 0)
-	{
-		spdlog::critical("[Camera::Camera()] SDL_GetDesktopDisplayMode error: {0}", SDL_GetError());
-	}
+	Engine::getInstance()->getWindowSize(&this->m_windowWidth, &this->m_windowHeight);
 
 	this->m_viewport = {
 		0, 0,
-		this->m_displayMode.w, this->m_displayMode.h };
+		this->m_windowWidth, this->m_windowHeight };
+
+	this->m_mapTotalWidth = 0;
+	this->m_mapTotalHeight = 0;
+}
+
+void Camera::updateTarget(Point* newTarget)
+{
+	this->m_target = newTarget;
 }
 
 void Camera::update(float delta)
@@ -32,20 +36,30 @@ void Camera::update(float delta)
 		spdlog::critical("[Camera::update] The camera doesn't have any target!");
 		return;
 	}
+	else if (this->m_mapTotalWidth == 0 || this->m_mapTotalHeight == 0)
+	{
+		spdlog::critical("[Camera::update] The camera doesn't have any map dimensions!");
+		return;
+	}
 
-	this->m_viewport.x = this->m_target->x - (this->m_displayMode.w / 2);
-	this->m_viewport.y = this->m_target->y - (this->m_displayMode.h / 2);
-	// TODO Add dynamic width to camera (getting the width of the map i.e.),
-	// Add to the update target, the width and height of the worldmap
-	MathUtils::clampInt(this->m_viewport.x, 0, (this->m_displayMode.w + 250) - this->m_viewport.w);
-	MathUtils::clampInt(this->m_viewport.y, 0, (this->m_displayMode.h + 300) - this->m_viewport.h);
+	this->m_viewport.x = this->m_target->x - (this->m_windowWidth >> 1);
+	this->m_viewport.y = this->m_target->y - (this->m_windowHeight >> 1);
+
+	MathUtils::clampInt(this->m_viewport.x, 0, this->m_mapTotalWidth - this->m_viewport.w);
+	MathUtils::clampInt(this->m_viewport.y, 0, this->m_mapTotalHeight - this->m_viewport.h);
 
 	this->m_pos = Vector2D(this->m_viewport.x, this->m_viewport.y);
 }
 
-void Camera::updateTarget(Point* newTarget)
+void Camera::drawDebug()
 {
-	this->m_target = newTarget;
+	TextureManager::getInstance()->renderRect(this->m_viewport);
+}
+
+void Camera::setSceneMapDimensions(int mapTotalWidth, int mapTotalHeight)
+{
+	this->m_mapTotalWidth = mapTotalWidth;
+	this->m_mapTotalHeight = mapTotalHeight;
 }
 
 Vector2D Camera::getPosition()
