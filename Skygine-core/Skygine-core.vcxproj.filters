@@ -105,6 +105,9 @@
     <ClCompile Include="src\entities\GameObjectFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\sandbox\scenes\TestLevelScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\Engine.h">
@@ -210,6 +213,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\types\Direction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sandbox\scenes\BaseLevelScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sandbox\scenes\BaseScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sandbox\scenes\TestLevelScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

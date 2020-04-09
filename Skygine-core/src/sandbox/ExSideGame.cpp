@@ -9,12 +9,7 @@ bool ExSideGame::init()
 		return false;
 	}
 
-	this->currentMap = TiledMapManager::getInstance()->load("test-map", "assets/maps/", "map-tiled.json", 3);
-
-	this->player = new Player("player", "SkyFoXx", 300, 300, this->currentMap);
-	this->enemy = GameObjectFactory::getInstance()->createEnemy(500, 300, this->currentMap);
-
-	Camera::getInstance()->updateTarget(this->player->getOrigin());
+	this->currentScene = new TestLevelScene();
 
 	return true;
 }
@@ -28,10 +23,7 @@ void ExSideGame::update(float delta)
 {
 	Engine::getInstance()->update(delta);
 
-	this->currentMap->update();
-
-	this->enemy->update(delta);
-	this->player->update(delta);
+	this->currentScene->update(delta);
 
 	Camera::getInstance()->update(delta);
 }
@@ -40,23 +32,28 @@ void ExSideGame::draw()
 {
 	Engine::getInstance()->drawStart();
 
-	this->currentMap->render();
-	this->enemy->draw();
-	this->player->draw();
+	this->currentScene->draw();
 
 	Engine::getInstance()->drawEnd();
 }
 
 void ExSideGame::dispose()
 {
+	this->currentScene->dispose();
+
 	Engine::getInstance()->dispose();
-
-	// TODO Dispose everything
-
-	this->player->dispose();
 }
 
 bool ExSideGame::isRunning()
 {
 	return Engine::getInstance()->isRunning();
+}
+
+void ExSideGame::changeScene(BaseScene* newScene)
+{
+	BaseScene* previousScene = this->currentScene;
+
+	this->currentScene = newScene;
+
+	previousScene->dispose();
 }

@@ -7,13 +7,12 @@
 #include "../entities/GameObjectFactory.h"
 #include "entities/Player.h"
 #include "entities/Enemy.h"
+#include "scenes/BaseScene.h"
+#include "scenes/TestLevelScene.h"
 
 class ExSideGame
 {
-	TiledMap* currentMap;
-
-	Player* player;
-	Enemy* enemy;
+	BaseScene* currentScene;
 
 public:
 
@@ -24,4 +23,6 @@ public:
 	void dispose();
 	
 	bool isRunning();
+
+	void changeScene(BaseScene* newScene);
 };

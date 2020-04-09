@@ -34,6 +34,7 @@
     <ClCompile Include="src\sandbox\entities\Player.cpp" />
     <ClCompile Include="src\entities\GameObject.cpp" />
     <ClCompile Include="src\graphics\Sprite.cpp" />
+    <ClCompile Include="src\sandbox\scenes\TestLevelScene.cpp" />
     <ClCompile Include="src\tiledmap\ObjectLayer.cpp" />
     <ClCompile Include="src\tiledmap\TiledMapManager.cpp" />
     <ClCompile Include="src\tiledmap\TiledMap.cpp" />
@@ -67,6 +68,9 @@
     <ClInclude Include="src\sandbox\entities\Player.h" />
     <ClInclude Include="src\entities\GameObject.h" />
     <ClInclude Include="src\graphics\Sprite.h" />
+    <ClInclude Include="src\sandbox\scenes\BaseLevelScene.h" />
+    <ClInclude Include="src\sandbox\scenes\BaseScene.h" />
+    <ClInclude Include="src\sandbox\scenes\TestLevelScene.h" />
     <ClInclude Include="src\tiledmap\Layer.h" />
     <ClInclude Include="src\tiledmap\ObjectLayer.h" />
     <ClInclude Include="src\tiledmap\TiledMapManager.h" />

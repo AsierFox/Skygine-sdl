@@ -21,5 +21,6 @@ Enemy* GameObjectFactory::createEnemy(int x, int y, TiledMap* map)
 {
 	this->nextEnemyId++;
 
+	// TODO Refactor to Flightweight design pattern (creating a map of objects)
 	return new Enemy("enemy" + this->nextEnemyId, "Basic Enemy", x, y, map);
 }
