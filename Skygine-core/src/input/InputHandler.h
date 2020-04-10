@@ -3,6 +3,7 @@
 #include <SDL.h>
 
 #include "AxisDirection.h"
+#include "../physics/Vector2D.h"
 #include "../core/Engine.h"
 
 class InputHandler
@@ -11,16 +12,23 @@ class InputHandler
 
 	const Uint8* m_keyStates;
 
-	void keyDown();
-	void keyUp();
+	bool m_hasMouseClicked;
+	Vector2D m_mousePosition;
+
+	InputHandler();
 
 public:
 
 	static InputHandler* getInstance();
 
-	InputHandler();
-
 	void listen();
 	bool isKeyDown(SDL_Scancode key);
 	bool isAxisKey(AxisDirection key);
+	bool isMouseClicked();
+	Vector2D getMousePosition();
+
+private:
+
+	void keyDown();
+	void keyUp();
 };

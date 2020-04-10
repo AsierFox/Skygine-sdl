@@ -29,3 +29,8 @@ Vector2D Vector2D::operator*(const float scalar) const
 {
 	return Vector2D(this->x * scalar, this->y * scalar);
 }
+
+float Vector2D::length()
+{
+	return fabsf(sqrtf(this->x * this->x) + (this->y * this->y));
+}

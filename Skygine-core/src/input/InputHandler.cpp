@@ -2,14 +2,11 @@
 
 InputHandler* InputHandler::s_instance = nullptr;
 
-void InputHandler::keyDown()
+InputHandler::InputHandler()
 {
 	this->m_keyStates = SDL_GetKeyboardState(nullptr);
-}
-
-void InputHandler::keyUp()
-{
-	this->m_keyStates = SDL_GetKeyboardState(nullptr);
+	this->m_hasMouseClicked = false;
+	this->m_mousePosition = Vector2D(0, 0);
 }
 
 InputHandler* InputHandler::getInstance()
@@ -20,11 +17,6 @@ InputHandler* InputHandler::getInstance()
 	}
 
 	return InputHandler::s_instance;
-}
-
-InputHandler::InputHandler()
-{
-	this->m_keyStates = SDL_GetKeyboardState(nullptr);
 }
 
 void InputHandler::listen()
@@ -45,6 +37,19 @@ void InputHandler::listen()
 		
 		case SDL_KEYUP:
 			this->keyUp();
+			break;
+
+		case SDL_MOUSEMOTION:
+			this->m_mousePosition.x = event.button.x;
+			this->m_mousePosition.y = event.button.y;
+			break;
+
+		case SDL_MOUSEBUTTONDOWN:
+			this->m_hasMouseClicked = true;
+			break;
+
+		case SDL_MOUSEBUTTONUP:
+			this->m_hasMouseClicked = false;
 			break;
 		}
 	}
@@ -74,4 +79,24 @@ bool InputHandler::isAxisKey(AxisDirection key)
 	}
 
 	return false;
+}
+
+bool InputHandler::isMouseClicked()
+{
+	return this->m_hasMouseClicked;
+}
+
+Vector2D InputHandler::getMousePosition()
+{
+	return this->m_mousePosition;
+}
+
+void InputHandler::keyDown()
+{
+	this->m_keyStates = SDL_GetKeyboardState(nullptr);
+}
+
+void InputHandler::keyUp()
+{
+	this->m_keyStates = SDL_GetKeyboardState(nullptr);
 }
