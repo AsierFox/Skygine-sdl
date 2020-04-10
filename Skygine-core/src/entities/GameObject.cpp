@@ -13,3 +13,13 @@ Point* GameObject::getOrigin()
 {
 	return this->m_origin;
 }
+
+int GameObject::getMapCellCoordX()
+{
+	return (int) (this->m_origin->x / belongsToMap->getTileSize());
+}
+
+int GameObject::getMapCellCoordY()
+{
+	return (int) (this->m_origin->y / belongsToMap->getTileSize());
+}

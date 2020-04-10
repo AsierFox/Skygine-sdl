@@ -24,6 +24,21 @@ void MathUtils::clampFloat(float& n, float min, float max)
 	}
 }
 
+double MathUtils::getDistanceBetweenCoords(Point* a, Point* b)
+{
+	double dx = std::abs(a->x - b->x);
+	double dy = std::abs(a->y - b->y);
+
+	return std::sqrt((dx * dx) + (dy * dy));
+}
+
+bool MathUtils::isInRadius(Point* a, Point* b, int radius)
+{
+	double distance = getDistanceBetweenCoords(a, b);
+
+	return distance <= radius;
+}
+
 float MathUtils::to_radians(float degrees)
 {
 	return degrees * (M_PI / 180.0f);

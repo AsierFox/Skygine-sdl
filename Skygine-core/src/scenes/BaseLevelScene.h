@@ -3,9 +3,9 @@
 #include <vector>
 
 #include "BaseScene.h"
-#include "../../tiledmap/TiledMap.h"
-#include "../../entities/Entity.h"
-#include "../entities/Player.h"
+#include "../tiledmap/TiledMap.h"
+#include "../entities/Entity.h"
+#include "../sandbox/entities/Player.h"
 
 class BaseLevelScene : public BaseScene
 {

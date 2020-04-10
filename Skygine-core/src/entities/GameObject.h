@@ -31,4 +31,6 @@ public:
 	virtual void dispose() = 0;
 
 	Point* getOrigin();
+	int getMapCellCoordX();
+	int getMapCellCoordY();
 };

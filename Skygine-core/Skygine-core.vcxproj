@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ai\AStarFinding.cpp" />
+    <ClCompile Include="src\ai\AStarSearchCell.cpp" />
     <ClCompile Include="src\entities\Entity.cpp" />
     <ClCompile Include="src\entities\GameObjectFactory.cpp" />
     <ClCompile Include="src\entities\InteractionRect.cpp" />
@@ -41,6 +43,8 @@
     <ClCompile Include="src\tiledmap\TileLayer.cpp" />
     <ClCompile Include="src\time\DeltaTimer.cpp" />
     <ClCompile Include="src\time\Timer.cpp" />
+    <ClCompile Include="src\ui\BaseUI.cpp" />
+    <ClCompile Include="src\ui\Button.cpp" />
     <ClCompile Include="src\ui\ProgressBar.cpp" />
     <ClCompile Include="src\utils\MathUtils.cpp" />
     <ClCompile Include="src\utils\FileUtils.cpp" />
@@ -52,6 +56,8 @@
     <ClCompile Include="src\utils\SDLColor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ai\AStarFinding.h" />
+    <ClInclude Include="src\ai\AStarSearchCell.h" />
     <ClInclude Include="src\entities\Entity.h" />
     <ClInclude Include="src\entities\GameObjectFactory.h" />
     <ClInclude Include="src\entities\InteractionRect.h" />
@@ -68,8 +74,9 @@
     <ClInclude Include="src\sandbox\entities\Player.h" />
     <ClInclude Include="src\entities\GameObject.h" />
     <ClInclude Include="src\graphics\Sprite.h" />
-    <ClInclude Include="src\sandbox\scenes\BaseLevelScene.h" />
-    <ClInclude Include="src\sandbox\scenes\BaseScene.h" />
+    <ClInclude Include="src\scenes\BaseLevelScene.h" />
+    <ClInclude Include="src\scenes\BaseMenuScene.h" />
+    <ClInclude Include="src\scenes\BaseScene.h" />
     <ClInclude Include="src\sandbox\scenes\TestLevelScene.h" />
     <ClInclude Include="src\tiledmap\Layer.h" />
     <ClInclude Include="src\tiledmap\ObjectLayer.h" />
@@ -81,7 +88,10 @@
     <ClInclude Include="src\time\DeltaTimer.h" />
     <ClInclude Include="src\time\Timer.h" />
     <ClInclude Include="src\types\Direction.h" />
+    <ClInclude Include="src\ui\BaseUI.h" />
+    <ClInclude Include="src\ui\Button.h" />
     <ClInclude Include="src\ui\ProgressBar.h" />
+    <ClInclude Include="src\ui\UIState.h" />
     <ClInclude Include="src\utils\MathUtils.h" />
     <ClInclude Include="src\utils\FileUtils.h" />
     <ClInclude Include="src\core\Engine.h" />

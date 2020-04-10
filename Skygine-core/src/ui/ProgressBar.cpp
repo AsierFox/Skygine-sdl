@@ -1,5 +1,22 @@
 #include "ProgressBar.h"
 
+ProgressBar::ProgressBar(int x, int y)
+	: BaseUI(x, y)
+{
+}
+
+void ProgressBar::update()
+{
+}
+
+void ProgressBar::draw()
+{
+}
+
+void ProgressBar::dispose()
+{
+}
+
 void ProgressBar::renderHealthBar(int x, int y, int w, int h, float Percent, SDL_Color FGColor, SDL_Color BGColor) {
 	Percent = Percent > 1.f ? 1.f : Percent < 0.f ? 0.f : Percent;
 	SDL_Color old;

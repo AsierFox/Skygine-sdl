@@ -2,7 +2,7 @@
 
 #include <spdlog/spdlog.h>
 
-#include "BaseLevelScene.h"
+#include "../../scenes/BaseLevelScene.h"
 #include "../../entities/GameObjectFactory.h"
 #include "../../tiledmap/TiledMapManager.h"
 #include "../../entities/GameObjectFactory.h"

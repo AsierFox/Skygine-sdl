@@ -7,7 +7,7 @@
 #include "../entities/GameObjectFactory.h"
 #include "entities/Player.h"
 #include "entities/Enemy.h"
-#include "scenes/BaseScene.h"
+#include "../scenes/BaseScene.h"
 #include "scenes/TestLevelScene.h"
 
 class ExSideGame
