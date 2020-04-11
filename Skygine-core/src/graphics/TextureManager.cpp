@@ -59,7 +59,7 @@ void TextureManager::render(std::string id, int x, int y, int width, int height,
 	Vector2D cam = Camera::getInstance()->getPosition() * moveCameraWithScalar;
 
 	SDL_Rect srcRect = {
-		x, y,
+		0, 0,
 		width, height };
 
 	SDL_Rect destRect = {

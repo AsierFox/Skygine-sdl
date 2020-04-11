@@ -2,8 +2,9 @@
 
 #include <vector>
 
-#include"../physics/Vector2D.h"
 #include "AStarSearchCell.h"
+#include"../physics/Vector2D.h"
+#include "../entities/GameObject.h"
 
 class AStarFinding
 {
@@ -22,7 +23,7 @@ public:
 	AStarFinding();
 
 	void findPath(Vector2D currentNode, Vector2D goalNode);
-	Vector2D nextPathPosition();
+	Vector2D nextPathPosition(GameObject* gameObject);
 	void clearOpenList();
 	void clearVisitedList();
 	void clearPathToGoal();

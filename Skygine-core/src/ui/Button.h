@@ -4,6 +4,8 @@
 
 class Button : public BaseUI
 {
+	std::string m_textureId;
+
 public:
 
 	Button(int x, int y);

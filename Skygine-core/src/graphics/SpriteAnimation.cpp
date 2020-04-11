@@ -36,10 +36,6 @@ SpriteAnimation::SpriteAnimation(std::string textureId, std::string resourcePath
 	this->m_currentFrame = 0;
 }
 
-void SpriteAnimation::loadTextureSequence(std::string sequenceId)
-{
-}
-
 void SpriteAnimation::update()
 {
 	this->m_currentFrame = (SDL_GetTicks() / this->m_delay) % this->m_totalFrames;
