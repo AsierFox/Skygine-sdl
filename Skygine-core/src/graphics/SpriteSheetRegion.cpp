@@ -11,10 +11,8 @@ SpriteSheetRegion::SpriteSheetRegion(std::string textureId, std::string resource
 }
 
 SpriteSheetRegion::SpriteSheetRegion(std::string textureId, std::string resourcePath, int col, int row, int totalCols, int totalRows, float scale, SDL_RendererFlip flip)
+	: BaseSprite(textureId, resourcePath)
 {
-	TextureManager::getInstance()->load(textureId, resourcePath);
-
-	this->m_textureId = textureId;
 	this->m_col = col;
 	this->m_row = row;
 	this->m_totalCols = totalCols;
@@ -33,12 +31,12 @@ SpriteSheetRegion::SpriteSheetRegion(std::string textureId, std::string resource
 
 void SpriteSheetRegion::render(float x, float y)
 {
-	TextureManager::getInstance()->renderFrame(this->m_textureId, x, y, this->m_frameWidth, this->m_frameHeight, this->m_col, this->m_row, this->m_scale, this->m_flip);
+	TextureManager::getInstance()->renderFrame(this->getTextureId(), x, y, this->m_frameWidth, this->m_frameHeight, this->m_col, this->m_row, this->m_scale, this->m_flip);
 }
 
 void SpriteSheetRegion::dispose()
 {
-	TextureManager::getInstance()->destroy(this->m_textureId);
+	TextureManager::getInstance()->destroy(this->getTextureId());
 }
 
 float SpriteSheetRegion::getWidth()

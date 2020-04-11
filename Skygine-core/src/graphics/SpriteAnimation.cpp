@@ -11,10 +11,8 @@ SpriteAnimation::SpriteAnimation(std::string textureId, std::string resourcePath
 }
 
 SpriteAnimation::SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int totalCols, int totalRows, float scale, SDL_RendererFlip flip)
+	: BaseSprite(textureId, resourcePath)
 {
-	TextureManager::getInstance()->load(textureId, resourcePath);
-
-	this->m_textureId = textureId;
 	// Subtract 1 to be the first row 1 for contructor
 	this->m_currentRow = rowToAnimate - 1;
 	this->m_totalFrames = totalFrames;
@@ -43,12 +41,12 @@ void SpriteAnimation::update()
 
 void SpriteAnimation::render(float x, float y)
 {
-	TextureManager::getInstance()->renderFrame(this->m_textureId, x, y, this->m_frameWidth, this->m_frameHeight, this->m_currentFrame, this->m_currentRow, this->m_scale, this->m_flip);
+	TextureManager::getInstance()->renderFrame(this->getTextureId(), x, y, this->m_frameWidth, this->m_frameHeight, this->m_currentFrame, this->m_currentRow, this->m_scale, this->m_flip);
 }
 
 void SpriteAnimation::dispose()
 {
-	TextureManager::getInstance()->destroy(this->m_textureId);
+	TextureManager::getInstance()->destroy(this->getTextureId());
 }
 
 float SpriteAnimation::getWidth()

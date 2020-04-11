@@ -22,6 +22,8 @@ Engine::Engine()
 
 bool Engine::init()
 {
+	srand(time(NULL));
+
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
 		spdlog::critical("[Engine::init] SDL could not initialise SDL_INIT_VIDEO: {0}", SDL_GetError());

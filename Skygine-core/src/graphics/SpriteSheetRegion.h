@@ -4,13 +4,11 @@
 #include <spdlog/spdlog.h>
 #include <SDL.h>
 
-#include "IRenderable.h"
+#include "BaseSprite.h"
 #include "TextureManager.h"
 
-class SpriteSheetRegion
+class SpriteSheetRegion : public BaseSprite
 {
-	std::string m_textureId;
-
 	int m_col;
 	int m_row;
 	int m_frameWidth;
@@ -27,9 +25,8 @@ public:
 	SpriteSheetRegion(std::string textureId, std::string resourcePath, int col, int row, int totalCols, int totalRows, float scale);
 	SpriteSheetRegion(std::string textureId, std::string resourcePath, int col, int row, int totalCols, int totalRows, float scale, SDL_RendererFlip flip);
 
-	void render(float x, float y);
-	void dispose();
-
-	float getWidth();
-	float getHeight();
+	void render(float x, float y) override;
+	void dispose() override;
+	float getWidth() override;
+	float getHeight() override;
 };

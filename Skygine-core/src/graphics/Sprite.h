@@ -2,14 +2,12 @@
 
 #include <SDL.h>
 
+#include "BaseSprite.h"
 #include "TextureManager.h"
 
-class Sprite
+class Sprite : public BaseSprite
 {
-protected:
-
-	std::string m_textureId;
-	int m_with;
+	int m_width;
 	int height;
 	float m_scale;
 
@@ -22,8 +20,10 @@ public:
 	Sprite(std::string textureId, std::string resourcePath, int width, int height);
 	Sprite(std::string textureId, std::string resourcePath, int width, int height, float scale);
 
-	void render(float x, float y);
+	void render(float x, float y) override;
 	void render(float x, float y, SDL_RendererFlip flip);
 	void render(float x, float y, SDL_RendererFlip flip, float moveWithCameraScalar);
-	void dispose();
+	void dispose() override;
+	float getWidth() override;
+	float getHeight() override;
 };

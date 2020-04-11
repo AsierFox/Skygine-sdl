@@ -1,9 +1,16 @@
 #pragma once
 
+#include <vector>
+
 #include "BaseScene.h"
+#include "../ui/BaseUI.h"
 
 class BaseMenuScene : public BaseScene
 {
+protected:
+
+	std::vector<BaseUI*> m_uiComponents;
+
 public:
 
 	virtual void update(float delta) = 0;

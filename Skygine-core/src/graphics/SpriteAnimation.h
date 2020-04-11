@@ -4,13 +4,11 @@
 #include <spdlog/spdlog.h>
 #include <SDL.h>
 
-#include "IRenderable.h"
+#include "BaseSprite.h"
 #include "TextureManager.h"
 
-class SpriteAnimation
+class SpriteAnimation : public BaseSprite
 {
-	std::string m_textureId;
-
 	int m_frameWidth;
 	int m_frameHeight;
 	int m_currentRow;
@@ -31,9 +29,8 @@ public:
 	SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int totalCols, int totalRows, float scale, SDL_RendererFlip flip);
 
 	void update();
-	void render(float x, float y);
-	void dispose();
-
-	float getWidth();
-	float getHeight();
+	void render(float x, float y) override;
+	void dispose() override;
+	float getWidth() override;
+	float getHeight() override;
 };
