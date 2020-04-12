@@ -29,6 +29,9 @@
     <ClCompile Include="src\graphics\Sprite.cpp" />
     <ClCompile Include="src\graphics\SpriteSheetRegion.cpp" />
     <ClCompile Include="src\input\InputHandler.cpp" />
+    <ClCompile Include="src\media\Font.cpp" />
+    <ClCompile Include="src\media\FontManager.cpp" />
+    <ClCompile Include="src\media\SoundManager.cpp" />
     <ClCompile Include="src\physics\CollisionHandler.cpp" />
     <ClCompile Include="src\physics\Point.cpp" />
     <ClCompile Include="src\physics\RigitBody.cpp" />
@@ -68,6 +71,9 @@
     <ClInclude Include="src\graphics\SpriteSheetRegion.h" />
     <ClInclude Include="src\input\AxisDirection.h" />
     <ClInclude Include="src\input\InputHandler.h" />
+    <ClInclude Include="src\media\Font.h" />
+    <ClInclude Include="src\media\FontManager.h" />
+    <ClInclude Include="src\media\SoundManager.h" />
     <ClInclude Include="src\physics\CollisionHandler.h" />
     <ClInclude Include="src\physics\Point.h" />
     <ClInclude Include="src\physics\RigitBody.h" />
