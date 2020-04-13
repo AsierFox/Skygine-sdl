@@ -1,3 +1,7 @@
 # Skygine
 
-A 2d game engine done in SDL2,
+A 2D game engine done in SDL2.
+
+## Engine structure
+
+![Skygine Structure](./docs/EngineStructure.png)
