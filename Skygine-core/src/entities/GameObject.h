@@ -31,6 +31,7 @@ public:
 	virtual void dispose() = 0;
 
 	Point* getOrigin();
+	Vector2D getMapCellCoords();
 	int getMapCellCoordX();
 	int getMapCellCoordY();
 };

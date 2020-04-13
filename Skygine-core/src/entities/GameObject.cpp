@@ -14,6 +14,11 @@ Point* GameObject::getOrigin()
 	return this->m_origin;
 }
 
+Vector2D GameObject::getMapCellCoords()
+{
+	return Vector2D(this->getMapCellCoordX(), this->getMapCellCoordY());
+}
+
 int GameObject::getMapCellCoordX()
 {
 	return (int) (this->m_origin->x / belongsToMap->getTileSize());

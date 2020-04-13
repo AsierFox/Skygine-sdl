@@ -10,6 +10,7 @@ class AStarFinding
 {
 	bool m_isStartGoalInitialized;
 	bool m_isGoalFounded;
+	bool m_isGoalReached;
 
 	AStarSearchCell* m_startCell;
 	AStarSearchCell* m_goalCell;
@@ -27,6 +28,9 @@ public:
 	void clearOpenList();
 	void clearVisitedList();
 	void clearPathToGoal();
+
+	bool isGoalFounded();
+	bool isGoalReached();
 
 private:
 

@@ -30,6 +30,11 @@ Vector2D Vector2D::operator*(const float scalar) const
 	return Vector2D(this->x * scalar, this->y * scalar);
 }
 
+bool Vector2D::operator==(const Vector2D& other) const
+{
+	return this->x == other.x && this->y == other.y;
+}
+
 float Vector2D::length()
 {
 	return fabsf(sqrtf(this->x * this->x) + (this->y * this->y));

@@ -239,6 +239,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)libs\SDL2-2.0.12\include;$(SolutionDir)libs\SDL2_image-2.0.5\include;$(SolutionDir)libs\SDL2_ttf-2.0.15\include;$(SolutionDir)libs\SDL2_mixer-2.0.4\include;$(SolutionDir)libs\spdlog-1.5.0\include;$(SolutionDir)libs\json-3.7.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>MaxSpeed</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

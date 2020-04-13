@@ -52,6 +52,11 @@ void TileLayer::render()
 						(col * tileset.m_tileSize) * this->m_scale, (row * tileset.m_tileSize) * this->m_scale,
 						tileset.m_tileSize, tileset.m_tileSize,
 						(tileId - tileset.m_firstId) % tileset.m_totalCols, (tileId - tileset.m_firstId) / tileset.m_totalCols, this->m_scale);
+
+					//SDL_Rect tileRect = {
+					//	(col * tileset.m_tileSize)* this->m_scale, (row * tileset.m_tileSize)* this->m_scale,
+					//	tileset.m_tileSize * this->m_scale, tileset.m_tileSize * this->m_scale };
+					//TextureManager::getInstance()->renderRect(tileRect);
 					break;
 				}
 			}

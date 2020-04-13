@@ -11,7 +11,7 @@ AStarSearchCell::AStarSearchCell(int x, int y, AStarSearchCell* parent)
 	this->m_yCoord = y;
 	this->parent = parent;
 	// TODO include map size here
-	this->m_id = y * (25 * 16 * 3) + x;
+	this->m_id = y * (25 * 16 * 5) + x;
 	this->m_g = 0;
 	this->m_h = 0;
 }

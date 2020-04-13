@@ -8,9 +8,14 @@
 #include "../../entities/GameObjectFactory.h"
 #include "../../entities/Entity.h"
 #include "../entities/Player.h"
+#include "../../ai/AStarFinding.h"
 
 class TestLevelScene : public BaseLevelScene
 {
+	AStarFinding aStar;
+
+	Vector2D nextCell;
+
 public:
 
 	TestLevelScene();

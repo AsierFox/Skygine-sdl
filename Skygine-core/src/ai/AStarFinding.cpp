@@ -4,6 +4,7 @@ AStarFinding::AStarFinding()
 {
 	this->m_isStartGoalInitialized = false;
 	this->m_isGoalFounded = false;
+	this->m_isGoalReached = false;
 }
 
 void AStarFinding::findPath(Vector2D currentNode, Vector2D goalNode)
@@ -33,8 +34,8 @@ void AStarFinding::findPath(Vector2D currentNode, Vector2D goalNode)
 		start.m_yCoord = currentNode.y;
 
 		AStarSearchCell goal;
-		start.m_xCoord = goalNode.x;
-		start.m_yCoord = goalNode.y;
+		goal.m_xCoord = goalNode.x;
+		goal.m_yCoord = goalNode.y;
 
 		this->setStartAndGoal(start, goal);
 
@@ -51,16 +52,18 @@ Vector2D AStarFinding::nextPathPosition(GameObject* gameObject)
 {
 	int index = 1;
 	Vector2D nextCell;
-	// TODO include map tile size here
-	nextCell.x = this->m_shortestPath[this->m_shortestPath.size() - index]->x + ((16 * 3) >> 1);
-	nextCell.y = this->m_shortestPath[this->m_shortestPath.size() - index]->y + ((16 * 3) >> 1);
+	nextCell.x = this->m_shortestPath[this->m_shortestPath.size() - index]->x;
+	nextCell.y = this->m_shortestPath[this->m_shortestPath.size() - index]->y;
 
-	if (index < this->m_shortestPath.size())
+	if (!this->m_isGoalReached && gameObject->getMapCellCoords() == nextCell)
 	{
-		Vector2D distance = nextCell - Vector2D(gameObject->getMapCellCoordX(), gameObject->getMapCellCoordY());
-		if (distance.length() < 32 /* TODO Radius */)
+		if (this->m_shortestPath.size() > 1)
 		{
-			this->m_shortestPath.erase(this->m_shortestPath.end() - index);
+			this->m_shortestPath.pop_back();
+		}
+		else
+		{
+			this->m_isGoalReached = true;
 		}
 	}
 
@@ -80,6 +83,16 @@ void AStarFinding::clearVisitedList()
 void AStarFinding::clearPathToGoal()
 {
 	this->m_shortestPath.clear();
+}
+
+bool AStarFinding::isGoalFounded()
+{
+	return this->m_isGoalFounded;
+}
+
+bool AStarFinding::isGoalReached()
+{
+	return this->m_isGoalReached;
 }
 
 void AStarFinding::setStartAndGoal(AStarSearchCell start, AStarSearchCell goal)
@@ -102,7 +115,7 @@ void AStarFinding::isInOpenedList(int x, int y, float newCost, AStarSearchCell* 
 		return;
 	}*/
 
-	int id = y * (25 * 16 * 3) + x;
+	int id = y * (25 * 16 * 5) + x;
 
 	// If it is already visited, return
 	for (AStarSearchCell* visitedList : this->m_visitedList)
