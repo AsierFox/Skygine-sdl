@@ -84,6 +84,7 @@ void TextureManager::renderFrame(std::string id, int x, int y, int width, int he
 	this->renderFrame(id, x, y, width, height, col, row, scale, SDL_FLIP_NONE);
 }
 
+// TODO Pass the width of the texture already with de scale multiplied!!!
 void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int col, int row, float scale, SDL_RendererFlip flip)
 {
 	Vector2D cam = Camera::getInstance()->getPosition();
@@ -96,9 +97,14 @@ void TextureManager::renderFrame(std::string id, int x, int y, int width, int he
 		x - cam.x, y - cam.y,
 		width * scale, height * scale };
 
-	SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
+	if (x + (width * scale) > Camera::getInstance()->getViewport().x
+		&& y + (height * scale) > Camera::getInstance()->getViewport().y
+		&& x < (Camera::getInstance()->getViewport().x + Camera::getInstance()->getViewport().w)
+		&& y < (Camera::getInstance()->getViewport().y + Camera::getInstance()->getViewport().h))
+	{
+		SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
+	}
 }
-
 
 void TextureManager::renderRect(SDL_Rect rect)
 {

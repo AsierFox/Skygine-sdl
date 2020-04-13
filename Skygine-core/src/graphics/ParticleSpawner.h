@@ -19,6 +19,7 @@ public:
 	static ParticleSpawner* getInstance();
 
 	void loadParticles(ParticleType type, int quantity);
+	void loadParticles(ParticleType type, int quantity, bool isLoop);
 
 	void update(float dt);
 	void render();
