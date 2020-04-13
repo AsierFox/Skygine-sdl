@@ -15,9 +15,6 @@ class SpriteSheetRegion : public BaseSprite
 	int m_frameHeight;
 	int m_totalCols;
 	int m_totalRows;
-	float m_scale;
-
-	SDL_RendererFlip m_flip;
 
 public:
 

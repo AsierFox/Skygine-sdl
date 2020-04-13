@@ -1,8 +1,23 @@
 #include "Transform.h"
 
+Transform::Transform()
+	: Transform(0, 0)
+{
+}
+
 Transform::Transform(float x, float y)
 	: x(x), y(y)
 {
+}
+
+Transform Transform::operator+(const Vector2D& other) const
+{
+	return Transform(this->x + other.x, this->y + other.y);
+}
+
+Transform Transform::operator-(const Vector2D& other) const
+{
+	return Transform(this->x - other.x, this->y - other.y);
 }
 
 void Transform::translateX(float x)

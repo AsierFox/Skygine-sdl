@@ -15,12 +15,9 @@ class SpriteAnimation : public BaseSprite
 	int m_totalFrames;
 	int m_totalCols;
 	int m_totalRows;
-	float m_scale;
 	int m_delay;
 	int m_currentFrame;
 	bool m_repeat;
-
-	SDL_RendererFlip m_flip;
 
 public:
 

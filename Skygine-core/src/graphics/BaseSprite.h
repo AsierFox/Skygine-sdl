@@ -8,6 +8,12 @@ class BaseSprite
 {
 	std::string m_textureId;
 
+protected:
+
+	float m_scale;
+
+	SDL_RendererFlip m_flip;
+
 public:
 
 	BaseSprite(std::string textureId, std::string resourcePath);
@@ -18,4 +24,5 @@ public:
 	virtual float getHeight() = 0;
 
 	std::string getTextureId();
+	float getFlip();
 };

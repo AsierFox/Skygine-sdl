@@ -25,6 +25,7 @@ void TestLevelScene::update(float delta)
 	this->m_player->update(delta);
 
 	aStar.findPath(this->m_player->getMapCellCoords(), this->m_entities[0]->getMapCellCoords());
+
 	if (aStar.isGoalFounded())
 	{
 		this->nextCell = aStar.nextPathPosition(this->m_player);

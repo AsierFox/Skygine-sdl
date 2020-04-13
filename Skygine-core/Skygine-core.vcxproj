@@ -26,6 +26,9 @@
     <ClCompile Include="src\entities\InteractionRect.cpp" />
     <ClCompile Include="src\graphics\BaseSprite.cpp" />
     <ClCompile Include="src\graphics\Camera.cpp" />
+    <ClCompile Include="src\graphics\particles\Particle.cpp" />
+    <ClCompile Include="src\graphics\ParticleSpawner.cpp" />
+    <ClCompile Include="src\graphics\particles\WindParticle.cpp" />
     <ClCompile Include="src\graphics\Sprite.cpp" />
     <ClCompile Include="src\graphics\SpriteSheetRegion.cpp" />
     <ClCompile Include="src\input\InputHandler.cpp" />
@@ -67,6 +70,10 @@
     <ClInclude Include="src\entities\InteractionRect.h" />
     <ClInclude Include="src\graphics\BaseSprite.h" />
     <ClInclude Include="src\graphics\Camera.h" />
+    <ClInclude Include="src\graphics\particles\Particle.h" />
+    <ClInclude Include="src\graphics\ParticleSpawner.h" />
+    <ClInclude Include="src\graphics\particles\ParticleType.h" />
+    <ClInclude Include="src\graphics\particles\WindParticle.h" />
     <ClInclude Include="src\graphics\Sprite.h" />
     <ClInclude Include="src\graphics\SpriteSheetRegion.h" />
     <ClInclude Include="src\input\AxisDirection.h" />

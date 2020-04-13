@@ -13,4 +13,5 @@ struct MathUtils
 	static double getDistanceBetweenCoords(Point* a, Point* b);
 	static bool isInRadius(Point* a, Point* b, int radius);
 	static float to_radians(float degrees);
+	static int getRandomNumber(int from, int to);
 };

@@ -11,3 +11,8 @@ std::string BaseSprite::getTextureId()
 {
 	return this->m_textureId;
 }
+
+float BaseSprite::getFlip()
+{
+	return this->m_flip;
+}

@@ -1,0 +1,27 @@
+#pragma once
+
+#include <vector>
+
+#include "particles/Particle.h"
+#include "particles/ParticleType.h"
+#include "particles/WindParticle.h"
+
+class ParticleSpawner
+{
+	static ParticleSpawner* s_instance;
+
+	std::vector<Particle*> m_generatedParticles;
+
+	ParticleSpawner();
+
+public:
+
+	static ParticleSpawner* getInstance();
+
+	void loadParticles(ParticleType type, int quantity);
+
+	void update(float dt);
+	void render();
+
+	void dispose();
+};

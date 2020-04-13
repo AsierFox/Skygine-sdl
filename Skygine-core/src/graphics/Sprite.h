@@ -8,10 +8,8 @@
 class Sprite : public BaseSprite
 {
 	int m_width;
-	int height;
+	int m_height;
 	float m_scale;
-
-	SDL_RendererFlip m_flip;
 
 public:
 

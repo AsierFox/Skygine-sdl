@@ -43,3 +43,12 @@ float MathUtils::to_radians(float degrees)
 {
 	return degrees * (M_PI / 180.0f);
 }
+
+int MathUtils::getRandomNumber(int from, int to)
+{
+	if (from == 0)
+	{
+		return rand() % to;
+	}
+	return rand() % from + to;
+}

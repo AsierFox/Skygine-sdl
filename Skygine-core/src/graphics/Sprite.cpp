@@ -13,7 +13,7 @@ Sprite::Sprite(std::string textureId, std::string resourcePath, float scale)
 	TextureManager::getInstance()->queryWidthAndHeight(textureId, &textureWidth, &textureHeight);
 
 	this->m_width = textureWidth;
-	this->height = textureHeight;
+	this->m_height = textureHeight;
 	this->m_scale = scale;
 }
 
@@ -26,23 +26,23 @@ Sprite::Sprite(std::string textureId, std::string resourcePath, int width, int h
 	: BaseSprite(textureId, resourcePath)
 {
 	this->m_width = width;
-	this->height = height;
+	this->m_height = height;
 	this->m_scale = scale;
 }
 
 void Sprite::render(float x, float y)
 {
-	TextureManager::getInstance()->render(this->getTextureId(), x, y, this->m_width, this->height, SDL_FLIP_NONE, this->m_scale, 1);
+	TextureManager::getInstance()->render(this->getTextureId(), x, y, this->m_width, this->m_height, SDL_FLIP_NONE, this->m_scale, 1);
 }
 
 void Sprite::render(float x, float y, SDL_RendererFlip flip)
 {
-	TextureManager::getInstance()->render(this->getTextureId(), x, y, this->m_width, this->height, flip, this->m_scale, 1);
+	TextureManager::getInstance()->render(this->getTextureId(), x, y, this->m_width, this->m_height, flip, this->m_scale, 1);
 }
 
 void Sprite::render(float x, float y, SDL_RendererFlip flip, float moveWithCameraScalar)
 {
-	TextureManager::getInstance()->render(this->getTextureId(), x, y, this->m_width, this->height, flip, this->m_scale, moveWithCameraScalar);
+	TextureManager::getInstance()->render(this->getTextureId(), x, y, this->m_width, this->m_height, flip, this->m_scale, moveWithCameraScalar);
 }
 
 void Sprite::dispose()
@@ -57,5 +57,5 @@ float Sprite::getWidth()
 
 float Sprite::getHeight()
 {
-	return this->height * this->m_scale;
+	return this->m_height * this->m_scale;
 }
