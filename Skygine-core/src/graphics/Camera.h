@@ -4,8 +4,8 @@
 
 #include "../physics/Vector2D.h"
 #include "../physics/Point.h"
+#include "../core/Engine.h"
 #include "../utils/MathUtils.h"
-#include "../graphics/TextureManager.h"
 
 class Camera
 {

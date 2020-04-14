@@ -1,19 +1,12 @@
 #pragma once
 
-#include <spdlog/spdlog.h>
-#include <SDL.h>
+#include <string>
 
-#include "../../entities/GameObject.h"
 #include "../../entities/Entity.h"
-#include "../../tiledmap/TiledMap.h"
-#include "../../input/InputHandler.h"
-#include "../../input/AxisDirection.h"
 #include "../../graphics/SpriteAnimation.h"
-#include "../../physics/RigitBody.h"
+#include "../../input/InputHandler.h"
 #include "../../physics/CollisionHandler.h"
 #include "../../tiledmap/TiledMap.h"
-#include "../../tiledmap/TiledMapManager.h"
-#include "../../physics/Vector2D.h"
 
 class Player : public Entity
 {

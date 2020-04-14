@@ -2,8 +2,6 @@
 
 #include <map>
 #include <string>
-#include <spdlog/spdlog.h>
-#include <SDL_ttf.h>
 
 #include "Font.h"
 

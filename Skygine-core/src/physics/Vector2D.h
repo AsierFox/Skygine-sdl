@@ -1,8 +1,6 @@
 #pragma once
 
-#include <spdlog/spdlog.h>
-
-#include <math.h>
+#include "spdlog/spdlog.h"
 
 struct Vector2D
 {

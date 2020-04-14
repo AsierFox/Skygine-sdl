@@ -1,11 +1,6 @@
 #pragma once
 
-#include <iostream>
-#include <spdlog/spdlog.h>
-#include <SDL.h>
-
 #include "BaseSprite.h"
-#include "TextureManager.h"
 
 class SpriteSheetRegion : public BaseSprite
 {

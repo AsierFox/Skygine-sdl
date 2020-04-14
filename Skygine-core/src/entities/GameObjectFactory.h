@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../sandbox/entities/Enemy.h"
-#include "../tiledmap/TiledMap.h"
 
 class GameObjectFactory
 {

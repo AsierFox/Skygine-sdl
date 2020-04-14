@@ -41,7 +41,7 @@ void SpriteAnimation::update()
 
 void SpriteAnimation::render(float x, float y)
 {
-	TextureManager::getInstance()->renderFrame(this->getTextureId(), x, y, this->m_frameWidth, this->m_frameHeight, this->m_currentFrame, this->m_currentRow, this->m_scale, this->m_flip);
+	TextureManager::getInstance()->renderFrame(this->getTextureId(), x, y, this->m_frameWidth, this->m_frameHeight, this->getWidth(), this->getHeight(), this->m_currentFrame, this->m_currentRow, this->m_flip);
 }
 
 void SpriteAnimation::dispose()

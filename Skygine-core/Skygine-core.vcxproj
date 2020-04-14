@@ -44,6 +44,7 @@
     <ClCompile Include="src\sandbox\entities\Player.cpp" />
     <ClCompile Include="src\entities\GameObject.cpp" />
     <ClCompile Include="src\sandbox\scenes\TestLevelScene.cpp" />
+    <ClCompile Include="src\scenes\BaseLevelScene.cpp" />
     <ClCompile Include="src\tiledmap\ObjectLayer.cpp" />
     <ClCompile Include="src\tiledmap\TiledMapManager.cpp" />
     <ClCompile Include="src\tiledmap\TiledMap.cpp" />

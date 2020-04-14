@@ -17,7 +17,6 @@ TiledMapManager* TiledMapManager::getInstance()
 
 TiledMap* TiledMapManager::load(std::string mapId, std::string resourcesDirPath, std::string filename, float scale)
 {
-	// TODO Create method isAlreadyLoaded()
 	if (this->isMapAlreadyLoaded(mapId))
 	{
 		spdlog::debug("[TiledMapManager::load] The map with id '{0}' is already created!", mapId);
@@ -43,6 +42,7 @@ TiledMap* TiledMapManager::load(std::string mapId, std::string resourcesDirPath,
 		tileset.m_lastId  = tileset.m_firstId + (tileCount - 1);
 		tileset.m_name    = tilesetJson["name"].get<std::string>();
 		tileset.m_tileSize = mapTileSize;
+		tileset.m_totalTileSize = mapTileSize * scale;
 		tileset.m_totalCols = tilesetJson["columns"];
 		tileset.m_totalRows = tileCount / tileset.m_totalCols;
 		tileset.m_resourcePath = resourcesDirPath + tilesetJson["image"].get<std::string>();
@@ -116,8 +116,9 @@ TiledMap* TiledMapManager::load(std::string mapId, std::string resourcesDirPath,
 
 void TiledMapManager::dispose(std::string mapId)
 {
-	// TODO Dispose maps
-	//this->m_maps["mapid"]->dispose();
+	this->m_maps[mapId]->dispose();
+	// TODO Test this
+	delete this->m_maps[mapId];
 }
 
 TiledMap* TiledMapManager::getMap(std::string mapId)

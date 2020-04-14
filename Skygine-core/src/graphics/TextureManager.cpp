@@ -18,8 +18,7 @@ TextureManager::TextureManager()
 
 SDL_Texture* TextureManager::load(std::string id, std::string resourcePath)
 {
-	// TODO Create method isAlreadyLoaded()
-	if (this->m_loadedTextures.count(id) > 0)
+	if (this->isAlreadyLoaded(id))
 	{
 		spdlog::debug("[TextureManager::load] The texture with id '{0}' already exists in the map", id);
 		return this->getTextureById(id);
@@ -49,56 +48,45 @@ SDL_Texture* TextureManager::load(std::string id, std::string resourcePath)
 	return texture;
 }
 
-void TextureManager::render(std::string id, int x, int y, int width, int height)
+void TextureManager::render(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight)
 {
-	this->render(id, x, y, height, width, SDL_FLIP_NONE, 1, 1);
+	this->render(id, x, y, frameWidth, frameHeight, scaledWidth, scaledHeight, SDL_FLIP_NONE, 1);
 }
 
-void TextureManager::render(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip, float scale, float moveCameraWithScalar)
+void TextureManager::render(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight, SDL_RendererFlip flip, float moveCameraWithScalar)
 {
 	Vector2D cam = Camera::getInstance()->getPosition() * moveCameraWithScalar;
 
 	SDL_Rect srcRect = {
 		0, 0,
-		width, height };
+		frameWidth, frameHeight };
 
 	SDL_Rect destRect = {
 		x - cam.x, y - cam.y,
-		width * scale, height * scale };
+		scaledWidth, scaledHeight };
 
 	SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
 }
 
-void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int col, int row)
+void TextureManager::renderFrame(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight, int col, int row)
 {
-	this->renderFrame(id, x, y, width, height, col, row, 1, SDL_FLIP_NONE);
+	this->renderFrame(id, x, y, frameWidth, frameHeight, scaledWidth, scaledHeight, col, row, SDL_FLIP_NONE);
 }
 
-void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int col, int row, SDL_RendererFlip flip)
-{
-	this->renderFrame(id, x, y, width, height, col, row, 1, SDL_FLIP_NONE);
-}
-
-void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int col, int row, float scale)
-{
-	this->renderFrame(id, x, y, width, height, col, row, scale, SDL_FLIP_NONE);
-}
-
-// TODO Pass the width of the texture already with de scale multiplied!!!
-void TextureManager::renderFrame(std::string id, int x, int y, int width, int height, int col, int row, float scale, SDL_RendererFlip flip)
+void TextureManager::renderFrame(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight, int col, int row, SDL_RendererFlip flip)
 {
 	Vector2D cam = Camera::getInstance()->getPosition();
 
 	SDL_Rect srcRect = {
-		col * width, row * height,
-		width, height };
+		col * frameWidth, row * frameHeight,
+		frameWidth, frameHeight };
 
 	SDL_Rect destRect = {
 		x - cam.x, y - cam.y,
-		width * scale, height * scale };
+		scaledWidth, scaledHeight };
 
-	if (x + (width * scale) > Camera::getInstance()->getViewport().x
-		&& y + (height * scale) > Camera::getInstance()->getViewport().y
+	if (x + scaledWidth > Camera::getInstance()->getViewport().x
+		&& y + scaledHeight > Camera::getInstance()->getViewport().y
 		&& x < (Camera::getInstance()->getViewport().x + Camera::getInstance()->getViewport().w)
 		&& y < (Camera::getInstance()->getViewport().y + Camera::getInstance()->getViewport().h))
 	{
@@ -108,22 +96,17 @@ void TextureManager::renderFrame(std::string id, int x, int y, int width, int he
 
 void TextureManager::renderRect(SDL_Rect rect)
 {
-	this->renderRect(rect.x, rect.y, rect.w, rect.h, 1);
+	this->renderRect(rect.x, rect.y, rect.w, rect.h);
 }
 
 
 void TextureManager::renderRect(float x, float y, float width, float height)
 {
-	this->renderRect(x, y, width, height, 1);
-}
-
-void TextureManager::renderRect(float x, float y, float width, float height, float scale)
-{
 	Vector2D cam = Camera::getInstance()->getPosition();
 
 	SDL_Rect rect = {
 		x - cam.x, y - cam.y,
-		width * scale, height * scale};
+		width, height };
 
 	SDL_SetRenderDrawColor(Engine::getInstance()->getRenderer(), 255, 0, 0, 255);
 	SDL_RenderDrawRect(Engine::getInstance()->getRenderer(), &rect);
@@ -163,4 +146,9 @@ void TextureManager::dispose()
 	}
 	
 	this->m_loadedTextures.clear();
+}
+
+bool TextureManager::isAlreadyLoaded(std::string id)
+{
+	return this->m_loadedTextures.count(id) > 0;
 }

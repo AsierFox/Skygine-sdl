@@ -23,7 +23,7 @@ std::vector<SDL_Rect> ObjectLayer::getColliders()
 {
 	std::vector<SDL_Rect> colliders(this->m_objects.size());
 
-	std::transform(this->m_objects.begin(), this->m_objects.end(), colliders.begin(), [](TiledObject const& tiledObject) {
+	std::transform(this->m_objects.begin(), this->m_objects.end(), colliders.begin(), [] (TiledObject const& tiledObject) {
 		return tiledObject.m_collider;
 	});
 	

@@ -49,13 +49,13 @@ void TileLayer::render()
 				if (tileId >= tileset.m_firstId && tileId <= tileset.m_lastId)
 				{
 					TextureManager::getInstance()->renderFrame(tileset.m_name,
-						(col * tileset.m_tileSize) * this->m_scale, (row * tileset.m_tileSize) * this->m_scale,
-						tileset.m_tileSize, tileset.m_tileSize,
-						(tileId - tileset.m_firstId) % tileset.m_totalCols, (tileId - tileset.m_firstId) / tileset.m_totalCols, this->m_scale);
+						col * tileset.m_totalTileSize, row * tileset.m_totalTileSize,
+						tileset.m_tileSize, tileset.m_tileSize, tileset.m_totalTileSize, tileset.m_totalTileSize,
+						(tileId - tileset.m_firstId) % tileset.m_totalCols, (tileId - tileset.m_firstId) / tileset.m_totalCols);
 
 					//SDL_Rect tileRect = {
-					//	(col * tileset.m_tileSize)* this->m_scale, (row * tileset.m_tileSize)* this->m_scale,
-					//	tileset.m_tileSize * this->m_scale, tileset.m_tileSize * this->m_scale };
+					//	col * tileset.m_totalTileSize, row * tileset.m_totalTileSize,
+					//	tileset.m_totalTileSize, tileset.m_totalTileSize };
 					//TextureManager::getInstance()->renderRect(tileRect);
 					break;
 				}

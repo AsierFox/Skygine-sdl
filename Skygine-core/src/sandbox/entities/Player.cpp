@@ -18,8 +18,6 @@ Player::Player(std::string id, std::string name, int x, int y, TiledMap* map)
 
 	this->m_origin = new Point(x + (this->m_currentAnimation->getWidth() / 2), y + (this->m_currentAnimation->getHeight() / 2));
 
-	this->belongsToMap = TiledMapManager::getInstance()->getMap("test-map");
-
 	// TODO Load for the collision handler the map
 
 	setCollidernRegion();

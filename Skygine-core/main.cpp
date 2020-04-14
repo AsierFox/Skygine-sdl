@@ -1,5 +1,4 @@
 #include <spdlog/spdlog.h>
-#include <SDL.h>
 
 #include "src/sandbox/ExSideGame.h"
 #include "src/time/DeltaTimer.h"

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <SDL.h>
-
 struct TiledObject
 {
 	float m_x;

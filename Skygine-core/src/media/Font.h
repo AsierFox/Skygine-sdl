@@ -1,9 +1,12 @@
 #pragma once
 
-#include <string>
+#include <SDL.h>
 #include <SDL_ttf.h>
 
+#include <string>
+
 #include "../core/Engine.h"
+#include "../graphics/TextureManager.h"
 
 class Font
 {

@@ -3,7 +3,6 @@
 #include <vector>
 
 #include "BaseScene.h"
-#include "../ui/BaseUI.h"
 
 class BaseMenuScene : public BaseScene
 {

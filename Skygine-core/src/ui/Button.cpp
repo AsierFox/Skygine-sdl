@@ -44,5 +44,11 @@ void Button::draw()
 
 void Button::dispose()
 {
-	// TODO Dispose
+	delete this->m_currentStateSprite;
+
+	this->m_normalStateSprite->dispose();
+	delete this->m_normalStateSprite;
+
+	this->m_hoverStateSprite->dispose();
+	delete this->m_hoverStateSprite;
 }

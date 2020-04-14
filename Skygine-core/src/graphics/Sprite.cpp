@@ -32,17 +32,17 @@ Sprite::Sprite(std::string textureId, std::string resourcePath, int width, int h
 
 void Sprite::render(float x, float y)
 {
-	TextureManager::getInstance()->render(this->getTextureId(), x, y, this->m_width, this->m_height, SDL_FLIP_NONE, this->m_scale, 1);
+	TextureManager::getInstance()->render(this->getTextureId(), x, y, this->m_width, this->m_height, this->getWidth(), this->getHeight(), SDL_FLIP_NONE, 1);
 }
 
 void Sprite::render(float x, float y, SDL_RendererFlip flip)
 {
-	TextureManager::getInstance()->render(this->getTextureId(), x, y, this->m_width, this->m_height, flip, this->m_scale, 1);
+	TextureManager::getInstance()->render(this->getTextureId(), x, y, this->m_width, this->m_height, this->getWidth(), this->getHeight(), flip, 1);
 }
 
 void Sprite::render(float x, float y, SDL_RendererFlip flip, float moveWithCameraScalar)
 {
-	TextureManager::getInstance()->render(this->getTextureId(), x, y, this->m_width, this->m_height, flip, this->m_scale, moveWithCameraScalar);
+	TextureManager::getInstance()->render(this->getTextureId(), x, y, this->m_width, this->m_height, this->getWidth(), this->getHeight(), flip, moveWithCameraScalar);
 }
 
 void Sprite::dispose()

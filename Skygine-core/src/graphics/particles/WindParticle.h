@@ -3,7 +3,6 @@
 #include <string>
 
 #include "Particle.h"
-#include "../SpriteSheetRegion.h"
 
 class WindParticle : public Particle
 {

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <spdlog/spdlog.h>
-#include <string>
 #include <vector>
 
 #include "Layer.h"

@@ -2,8 +2,8 @@
 
 #include <SDL.h>
 
-#include "AxisDirection.h"
 #include "../physics/Vector2D.h"
+#include "AxisDirection.h"
 #include "../core/Engine.h"
 
 class InputHandler

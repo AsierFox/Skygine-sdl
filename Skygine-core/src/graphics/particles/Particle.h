@@ -2,10 +2,9 @@
 
 #include <SDL.h>
 
-#include "../../physics/Transform.h"
-#include "ParticleType.h"
 #include "../BaseSprite.h"
-#include "../TextureManager.h"
+#include "../../physics/Transform.h"
+#include "../../physics/Vector2D.h"
 
 class Particle
 {

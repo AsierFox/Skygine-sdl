@@ -18,7 +18,6 @@ AStarSearchCell::AStarSearchCell(int x, int y, AStarSearchCell* parent)
 
 float AStarSearchCell::getManhattanDistance(AStarSearchCell* goalNode)
 {
-	// TODO Check this!
 	float xx = (float) (fabs((float) (this->m_xCoord - goalNode->m_xCoord)));
 	float yy = (float) (fabs((float) (this->m_yCoord - goalNode->m_yCoord)));
 

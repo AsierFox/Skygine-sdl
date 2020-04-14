@@ -1,9 +1,6 @@
 #pragma once
 
-#include <SDL.h>
-
 #include "BaseSprite.h"
-#include "TextureManager.h"
 
 class Sprite : public BaseSprite
 {

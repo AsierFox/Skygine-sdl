@@ -1,11 +1,10 @@
 #pragma once
 
-#include <string>
-
 #include "GameObject.h"
-#include "../tiledmap/TiledMap.h"
-#include "../graphics/SpriteAnimation.h"
 #include "../physics/RigitBody.h"
+#include "../physics/Vector2D.h"
+#include "../graphics/SpriteAnimation.h"
+#include "../tiledmap/TiledMap.h"
 
 class Entity : public GameObject
 {
@@ -25,5 +24,4 @@ public:
 	virtual void update(float delta) = 0;
 	virtual void draw() = 0;
 	virtual void dispose() = 0;
-
 };

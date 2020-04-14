@@ -48,11 +48,3 @@ Direction CollisionHandler::getRectDepthSideCollision(SDL_Rect a, SDL_Rect b)
 		}
 	}
 }
-
-bool CollisionHandler::checkMapCollision(SDL_Rect a)
-{
-	// TODO The collision handler can have the map (?)
-	// And here, I can do the checking of neighbour tile,
-	// adding currentTile position as parameter of this funcion
-	return false;
-}

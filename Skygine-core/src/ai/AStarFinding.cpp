@@ -156,7 +156,6 @@ void AStarFinding::isInOpenedList(int x, int y, float newCost, AStarSearchCell* 
 
 AStarSearchCell* AStarFinding::getNextCell()
 {
-	// TODO Review this
 	float bestF = 999999.0f;
 	int bestCellIndex = -1;
 

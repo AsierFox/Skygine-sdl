@@ -1,14 +1,9 @@
 #pragma once
 
 #include "../core/Engine.h"
-#include "../tiledmap/TiledMapManager.h"
-#include "../tiledmap/TiledMap.h"
-#include "../graphics/Camera.h"
-#include "../entities/GameObjectFactory.h"
-#include "entities/Player.h"
-#include "entities/Enemy.h"
 #include "../scenes/BaseScene.h"
-#include "scenes/TestLevelScene.h"
+#include "../sandbox/scenes/TestLevelScene.h"
+#include "../graphics/Camera.h"
 
 class ExSideGame
 {

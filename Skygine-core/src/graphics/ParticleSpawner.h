@@ -2,9 +2,13 @@
 
 #include <vector>
 
+#include <spdlog/spdlog.h>
+
 #include "particles/Particle.h"
 #include "particles/ParticleType.h"
 #include "particles/WindParticle.h"
+#include "SpriteSheetRegion.h"
+#include "../utils/MathUtils.h"
 
 class ParticleSpawner
 {

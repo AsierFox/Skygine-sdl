@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include <SDL.h>
+
 #include "TileLayer.h"
 #include "ObjectLayer.h"
 

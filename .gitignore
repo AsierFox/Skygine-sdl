@@ -49,6 +49,7 @@ Temporary Items
 # Skygine
 .git
 .vs
+.idea
 Debug
 Release
 /x64

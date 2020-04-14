@@ -3,8 +3,8 @@
 #include <vector>
 
 #include "AStarSearchCell.h"
-#include"../physics/Vector2D.h"
 #include "../entities/GameObject.h"
+#include "../physics/Vector2D.h"
 
 class AStarFinding
 {

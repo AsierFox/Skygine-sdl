@@ -31,7 +31,7 @@ SpriteSheetRegion::SpriteSheetRegion(std::string textureId, std::string resource
 
 void SpriteSheetRegion::render(float x, float y)
 {
-	TextureManager::getInstance()->renderFrame(this->getTextureId(), x, y, this->m_frameWidth, this->m_frameHeight, this->m_col, this->m_row, this->m_scale, this->m_flip);
+	TextureManager::getInstance()->renderFrame(this->getTextureId(), x, y, this->m_frameWidth, this->m_frameHeight, this->getWidth(), this->getHeight(), this->m_col, this->m_row, this->m_flip);
 }
 
 void SpriteSheetRegion::dispose()

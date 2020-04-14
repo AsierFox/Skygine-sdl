@@ -1,7 +1,12 @@
 #pragma once
 
+#include <SDL.h>
+
+#include <spdlog/spdlog.h>
+
 #include "BaseUI.h"
 #include "../graphics/BaseSprite.h"
+#include "../input/InputHandler.h"
 
 class Button : public BaseUI
 {

@@ -1,10 +1,12 @@
 #pragma once
 
-#define _USE_MATH_DEFINES
+#include <iostream>
 
-#include <math.h>
+#include <SDL.h>
 
 #include "../physics/Point.h"
+
+#define _USE_MATH_DEFINES
 
 struct MathUtils
 {

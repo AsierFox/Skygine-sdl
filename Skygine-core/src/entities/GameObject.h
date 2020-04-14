@@ -2,17 +2,22 @@
 
 #include <SDL.h>
 
+#include <string>
+
 #include "../graphics/IRenderable.h"
-#include "../tiledmap/TiledMap.h"
 #include "../physics/Transform.h"
 #include "../physics/Point.h"
+#include "../physics/Vector2D.h"
+#include "../scenes/BaseLevelScene.h"
+#include "../tiledmap/TiledMap.h"
 
 class GameObject : IRenderable
 {
 protected:
 
-	Transform* m_transform;
+	BaseLevelScene* belongsToLevel;
 	TiledMap* belongsToMap;
+	Transform* m_transform;
 	Point* m_origin;
 	// TODO Review if the SDL_Rect can be encapsulated into a Collider class,
 	// it can have attrs like enabled and so.

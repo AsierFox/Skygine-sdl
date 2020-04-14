@@ -1,20 +1,22 @@
 #pragma once
 
-#include <spdlog/spdlog.h>
+#include <SDL.h>
 
 #include "../../scenes/BaseLevelScene.h"
-#include "../../entities/GameObjectFactory.h"
+#include "../../physics/Vector2D.h"
 #include "../../tiledmap/TiledMapManager.h"
 #include "../../entities/GameObjectFactory.h"
 #include "../../entities/Entity.h"
 #include "../entities/Player.h"
-#include "../../ai/AStarFinding.h"
+#include "../../graphics/Camera.h"
+#include "../../graphics/TextureManager.h"
 
 class TestLevelScene : public BaseLevelScene
 {
-	AStarFinding aStar;
+	TiledMap* m_map;
 
-	Vector2D nextCell;
+	Player* m_player;
+	std::vector<Entity*> m_entities;
 
 public:
 
