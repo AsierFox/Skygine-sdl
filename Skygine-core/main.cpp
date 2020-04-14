@@ -1,3 +1,4 @@
+#include <SDL.h>
 #include <spdlog/spdlog.h>
 
 #include "src/sandbox/ExSideGame.h"
@@ -5,6 +6,7 @@
 
 int main(int argc, char* argv[])
 {
+    SDL_Init(SDL_INIT_EVERYTHING);
 	spdlog::set_level(spdlog::level::info);
 
 	ExSideGame* game = new ExSideGame();

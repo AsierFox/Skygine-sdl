@@ -7,7 +7,7 @@
 class BaseLevelScene : public BaseScene
 {
 protected:
-	
+
 public:
 
 	virtual void update(float delta) = 0;

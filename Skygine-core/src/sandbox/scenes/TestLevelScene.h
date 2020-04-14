@@ -3,16 +3,18 @@
 #include <SDL.h>
 
 #include "../../scenes/BaseLevelScene.h"
+#include "../../entities/GameObjectFactory.h"
 #include "../../physics/Vector2D.h"
 #include "../../tiledmap/TiledMapManager.h"
-#include "../../entities/GameObjectFactory.h"
-#include "../../entities/Entity.h"
 #include "../entities/Player.h"
+#include "../../scenes/BaseLevelScene.h"
 #include "../../graphics/Camera.h"
 #include "../../graphics/TextureManager.h"
 
 class TestLevelScene : public BaseLevelScene
 {
+protected:
+
 	TiledMap* m_map;
 
 	Player* m_player;

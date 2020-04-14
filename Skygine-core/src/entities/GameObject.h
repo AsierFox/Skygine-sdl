@@ -5,10 +5,10 @@
 #include <string>
 
 #include "../graphics/IRenderable.h"
+#include "../scenes/BaseLevelScene.h"
 #include "../physics/Transform.h"
 #include "../physics/Point.h"
 #include "../physics/Vector2D.h"
-#include "../scenes/BaseLevelScene.h"
 #include "../tiledmap/TiledMap.h"
 
 class GameObject : IRenderable
