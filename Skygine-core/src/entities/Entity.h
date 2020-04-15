@@ -11,6 +11,7 @@ class Entity : public GameObject
 protected:
 
 	SpriteAnimation* m_currentAnimation;
+
 	RigitBody* m_rigitBody;
 	Vector2D m_lastSafePosition;
 

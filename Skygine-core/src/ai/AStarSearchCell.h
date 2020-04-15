@@ -11,17 +11,21 @@ public:
 	int m_yCoord;
 
 	// Distance between start node and current node
-	float m_g;
+	int m_g;
 	// Heuristic value is the estimated distance to the goal
-	float m_h;
+	int m_h;
 
 	AStarSearchCell* parent;
 
 	AStarSearchCell();
-	AStarSearchCell(int x, int y, AStarSearchCell* parent);
+	AStarSearchCell(int id, int x, int y, AStarSearchCell* parent);
 
 	// Direct/Straight distance between start node to goal node
-	float getManhattanDistance(AStarSearchCell* goalNode);
+	int getManhattanDistance(AStarSearchCell* goalNode);
+	void setManhattanDistanceToHeuristic(AStarSearchCell* goalNode);
+	// Direct/Straight distance between start node to goal node with diagonal
+	int getEuclideanDistance(AStarSearchCell* goalNode);
+
 	// G + H
-	float getF();
+	int getF();
 };

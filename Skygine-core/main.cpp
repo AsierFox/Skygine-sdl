@@ -7,7 +7,7 @@
 int main(int argc, char* argv[])
 {
     SDL_Init(SDL_INIT_EVERYTHING);
-	spdlog::set_level(spdlog::level::info);
+	spdlog::set_level(spdlog::level::debug);
 
 	ExSideGame* game = new ExSideGame();
 

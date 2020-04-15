@@ -6,16 +6,14 @@
 #include "../../graphics/SpriteAnimation.h"
 #include "../../tiledmap/TiledMap.h"
 #include "../../ai/AStarFinding.h"
+#include "../../physics/CollisionHandler.h"
 
 class Enemy : public Entity
 {
 	SpriteAnimation* m_idleAnimation;
 
-	AStarFinding aStar;
+	AStarFinding* aStar;
 	Vector2D nextCell;
-
-	int m_waittingTimeCount;
-	int m_waittingTime;
 
 public:
 
@@ -25,4 +23,10 @@ public:
 	virtual void update(float delta) override;
 	virtual void draw() override;
 	virtual void dispose() override;
+
+	virtual void updatePathFinding(Entity* target);
+
+private:
+
+	void checkCollisions(float delta);
 };

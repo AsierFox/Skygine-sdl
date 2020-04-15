@@ -5,26 +5,38 @@ AStarSearchCell::AStarSearchCell()
 	this->parent = nullptr;
 }
 
-AStarSearchCell::AStarSearchCell(int x, int y, AStarSearchCell* parent)
+AStarSearchCell::AStarSearchCell(int id, int x, int y, AStarSearchCell* parent)
 {
+	this->m_id = id;
 	this->m_xCoord = x;
 	this->m_yCoord = y;
 	this->parent = parent;
-	// TODO include map size here
-	this->m_id = y * (25 * 16 * 5) + x;
 	this->m_g = 0;
 	this->m_h = 0;
 }
 
-float AStarSearchCell::getManhattanDistance(AStarSearchCell* goalNode)
+int AStarSearchCell::getManhattanDistance(AStarSearchCell* goalNode)
 {
-	float xx = (float) (fabs((float) (this->m_xCoord - goalNode->m_xCoord)));
-	float yy = (float) (fabs((float) (this->m_yCoord - goalNode->m_yCoord)));
+	int xx = abs(this->m_xCoord - goalNode->m_xCoord);
+	int yy = abs(this->m_yCoord - goalNode->m_yCoord);
 
 	return xx + yy;
 }
 
-float AStarSearchCell::getF()
+void AStarSearchCell::setManhattanDistanceToHeuristic(AStarSearchCell* goalNode)
+{
+	this->m_h = this->getManhattanDistance(goalNode);
+}
+
+int AStarSearchCell::getEuclideanDistance(AStarSearchCell* goalNode)
+{
+	int xx = pow(abs(this->m_xCoord - goalNode->m_xCoord), 2);
+	int yy = pow(abs(this->m_yCoord - goalNode->m_yCoord), 2);
+
+	return sqrt(xx + yy);
+}
+
+int AStarSearchCell::getF()
 {
 	return this->m_g + m_h;
 }

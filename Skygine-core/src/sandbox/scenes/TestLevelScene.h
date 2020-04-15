@@ -6,20 +6,14 @@
 #include "../../entities/GameObjectFactory.h"
 #include "../../physics/Vector2D.h"
 #include "../../tiledmap/TiledMapManager.h"
-#include "../entities/Player.h"
 #include "../../scenes/BaseLevelScene.h"
+#include "../../sandbox/entities/Player.h"
 #include "../../graphics/Camera.h"
 #include "../../graphics/TextureManager.h"
+#include "../../media/FontManager.h"
 
 class TestLevelScene : public BaseLevelScene
 {
-protected:
-
-	TiledMap* m_map;
-
-	Player* m_player;
-	std::vector<Entity*> m_entities;
-
 public:
 
 	TestLevelScene();

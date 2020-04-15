@@ -5,7 +5,6 @@
 #include <string>
 
 #include "../graphics/IRenderable.h"
-#include "../scenes/BaseLevelScene.h"
 #include "../physics/Transform.h"
 #include "../physics/Point.h"
 #include "../physics/Vector2D.h"
@@ -15,7 +14,6 @@ class GameObject : IRenderable
 {
 protected:
 
-	BaseLevelScene* belongsToLevel;
 	TiledMap* belongsToMap;
 	Transform* m_transform;
 	Point* m_origin;

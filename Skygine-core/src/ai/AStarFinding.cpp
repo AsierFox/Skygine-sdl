@@ -1,32 +1,23 @@
 #include "AStarFinding.h"
 
-AStarFinding::AStarFinding()
+AStarFinding::AStarFinding(TiledMap* map)
 {
-	this->m_isStartGoalInitialized = false;
-	this->m_isGoalFounded = false;
-	this->m_isGoalReached = false;
+	this->m_map = map;
+
+	this->reset();
 }
 
 void AStarFinding::findPath(Vector2D currentNode, Vector2D goalNode)
 {
+	if (this->isGoalFounded())
+	{
+		return;
+	}
+
 	if (!this->m_isStartGoalInitialized)
 	{
-		for (AStarSearchCell* openCell : this->m_openList)
-		{
-			delete openCell;
-		}
 		this->clearOpenList();
-
-		for (AStarSearchCell* visitedCell : this->m_visitedList)
-		{
-			delete visitedCell;
-		}
 		this->clearVisitedList();
-
-		for (Vector2D* step : this->m_shortestPath)
-		{
-			delete step;
-		}
 		this->clearPathToGoal();
 
 		AStarSearchCell start;
@@ -63,6 +54,10 @@ Vector2D AStarFinding::nextPathPosition(GameObject* gameObject)
 		}
 		else
 		{
+			this->clearOpenList();
+			this->clearVisitedList();
+			this->clearPathToGoal();
+
 			this->m_isGoalReached = true;
 		}
 	}
@@ -72,17 +67,40 @@ Vector2D AStarFinding::nextPathPosition(GameObject* gameObject)
 
 void AStarFinding::clearOpenList()
 {
+	for (AStarSearchCell* openCell : this->m_openList)
+	{
+		delete openCell;
+	}
 	this->m_openList.clear();
 }
 
 void AStarFinding::clearVisitedList()
 {
+	for (AStarSearchCell* visitedCell : this->m_visitedList)
+	{
+		delete visitedCell;
+	}
 	this->m_visitedList.clear();
 }
 
 void AStarFinding::clearPathToGoal()
 {
+	for (Vector2D* step : this->m_shortestPath)
+	{
+		delete step;
+	}
 	this->m_shortestPath.clear();
+}
+
+void AStarFinding::reset()
+{
+	this->m_isStartGoalInitialized = false;
+	this->m_isGoalFounded = false;
+	this->m_isGoalReached = false;
+
+	this->clearOpenList();
+	this->clearVisitedList();
+	this->clearPathToGoal();
 }
 
 bool AStarFinding::isGoalFounded()
@@ -95,13 +113,18 @@ bool AStarFinding::isGoalReached()
 	return this->m_isGoalReached;
 }
 
+AStarSearchCell* AStarFinding::getGoalCell()
+{
+	return this->m_goalCell;
+}
+
 void AStarFinding::setStartAndGoal(AStarSearchCell start, AStarSearchCell goal)
 {
-	this->m_startCell = new AStarSearchCell(start.m_xCoord, start.m_yCoord, nullptr);
+	this->m_startCell = new AStarSearchCell(this->generateCellId(start.m_xCoord, start.m_yCoord), start.m_xCoord, start.m_yCoord, nullptr);
 	this->m_startCell->m_g = 0;
 	this->m_startCell->m_h = this->m_startCell->getManhattanDistance(&goal);
 
-	this->m_goalCell = new AStarSearchCell(goal.m_xCoord, goal.m_yCoord, &goal);
+	this->m_goalCell = new AStarSearchCell(this->generateCellId(goal.m_xCoord, goal.m_xCoord), goal.m_xCoord, goal.m_yCoord, &goal);
 
 	this->m_openList.push_back(this->m_startCell);
 }
@@ -115,7 +138,7 @@ void AStarFinding::isInOpenedList(int x, int y, float newCost, AStarSearchCell* 
 		return;
 	}*/
 
-	int id = y * (25 * 16 * 5) + x;
+	int id = this->generateCellId(x, y);
 
 	// If it is already visited, return
 	for (AStarSearchCell* visitedList : this->m_visitedList)
@@ -126,9 +149,9 @@ void AStarFinding::isInOpenedList(int x, int y, float newCost, AStarSearchCell* 
 		}
 	}
 
-	AStarSearchCell* newChild = new AStarSearchCell(x, y, parent);
+	AStarSearchCell* newChild = new AStarSearchCell(this->generateCellId(x, y), x, y, parent);
 	newChild->m_g = newCost;
-	newChild->m_h = parent->getManhattanDistance(this->m_goalCell);
+	newChild->m_h = newChild->getManhattanDistance(this->m_goalCell);
 
 
 	for (AStarSearchCell* openCell : this->m_openList)
@@ -143,7 +166,8 @@ void AStarFinding::isInOpenedList(int x, int y, float newCost, AStarSearchCell* 
 				openCell->m_g = newChild->m_g + newCost;
 				openCell->parent = newChild;
 			}
-			else {
+			else
+			{
 				// If the F is not better
 				delete newChild;
 				return;
@@ -212,16 +236,17 @@ void AStarFinding::continuePath()
 		}
 		else
 		{
-			// Right side
+			// Sides
 			this->isInOpenedList(currentCell->m_xCoord + 1, currentCell->m_yCoord, currentCell->m_g + 1, currentCell);
-			// Left side
 			this->isInOpenedList(currentCell->m_xCoord - 1, currentCell->m_yCoord, currentCell->m_g + 1, currentCell);
-			// Top side
 			this->isInOpenedList(currentCell->m_xCoord, currentCell->m_yCoord + 1, currentCell->m_g + 1, currentCell);
-			// Bottom side
 			this->isInOpenedList(currentCell->m_xCoord, currentCell->m_yCoord - 1, currentCell->m_g + 1, currentCell);
+			
 			// To calculate diagonals, add/subtract appropriate x/y
-			//this->isInOpenedList(currentCell->m_xCoord + 1, currentCell->m_yCoord - 1, currentCell->m_g + 1, currentCell);
+			/*this->isInOpenedList(currentCell->m_xCoord + 1, currentCell->m_yCoord + 1, currentCell->m_g + 1, currentCell);
+			this->isInOpenedList(currentCell->m_xCoord + 1, currentCell->m_yCoord - 1, currentCell->m_g + 1, currentCell);
+			this->isInOpenedList(currentCell->m_xCoord - 1, currentCell->m_yCoord - 1, currentCell->m_g + 1, currentCell);
+			this->isInOpenedList(currentCell->m_xCoord - 1, currentCell->m_yCoord + 1, currentCell->m_g + 1, currentCell);*/
 
 			for (unsigned int i = 0; i < this->m_openList.size(); i++)
 			{
@@ -232,4 +257,9 @@ void AStarFinding::continuePath()
 			}
 		}
 	}
+}
+
+int AStarFinding::generateCellId(int x, int y)
+{
+	return y * this->m_map->getTotalCols() + x;
 }

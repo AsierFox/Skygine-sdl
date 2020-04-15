@@ -302,6 +302,9 @@
     <ClInclude Include="src\graphics\particles\WindParticle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\types\EntityStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="libs\SDL2_image-2.0.5\lib\x64\zlib1.dll" />

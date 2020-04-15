@@ -5,12 +5,15 @@
 #include "AStarSearchCell.h"
 #include "../entities/GameObject.h"
 #include "../physics/Vector2D.h"
+#include "../tiledmap/TiledMap.h"
 
 class AStarFinding
 {
 	bool m_isStartGoalInitialized;
 	bool m_isGoalFounded;
 	bool m_isGoalReached;
+
+	TiledMap* m_map;
 
 	AStarSearchCell* m_startCell;
 	AStarSearchCell* m_goalCell;
@@ -21,7 +24,7 @@ class AStarFinding
 
 public:
 
-	AStarFinding();
+	AStarFinding(TiledMap* map);
 
 	void findPath(Vector2D currentNode, Vector2D goalNode);
 	Vector2D nextPathPosition(GameObject* gameObject);
@@ -29,8 +32,11 @@ public:
 	void clearVisitedList();
 	void clearPathToGoal();
 
+	void reset();
+
 	bool isGoalFounded();
 	bool isGoalReached();
+	AStarSearchCell* getGoalCell();
 
 private:
 
@@ -40,4 +46,6 @@ private:
 	AStarSearchCell* getNextCell();
 	// Searches through the world, finding the target position using G and H
 	void continuePath();
+
+	int generateCellId(int x, int y);
 };
