@@ -5,7 +5,6 @@
 #include "AStarSearchCell.h"
 #include "../entities/GameObject.h"
 #include "../physics/Vector2D.h"
-#include "../tiledmap/TiledMap.h"
 
 class AStarFinding
 {

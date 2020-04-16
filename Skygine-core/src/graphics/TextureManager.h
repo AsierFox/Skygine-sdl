@@ -9,6 +9,7 @@
 #include "../core/Engine.h"
 #include "../physics/Vector2D.h"
 #include "Camera.h"
+#include "../utils/SDLUtils.h"
 
 class TextureManager
 {
@@ -29,6 +30,7 @@ public:
 	void renderFrame(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight, int col, int row, SDL_RendererFlip flip);
 	void renderRect(SDL_Rect rect);
 	void renderRect(float x, float y, float width, float height);
+	void renderRect(float x, float y, float width, float height, SDL_Color color);
 	void renderPoint(float x, float y);
 	void queryWidthAndHeight(std::string id, int* width, int* height);
 	SDL_Texture* getTextureById(std::string id);

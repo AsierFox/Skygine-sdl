@@ -124,7 +124,7 @@ void AStarFinding::setStartAndGoal(AStarSearchCell start, AStarSearchCell goal)
 	this->m_startCell->m_g = 0;
 	this->m_startCell->m_h = this->m_startCell->getManhattanDistance(&goal);
 
-	this->m_goalCell = new AStarSearchCell(this->generateCellId(goal.m_xCoord, goal.m_xCoord), goal.m_xCoord, goal.m_yCoord, &goal);
+	this->m_goalCell = new AStarSearchCell(this->generateCellId(goal.m_xCoord, goal.m_yCoord), goal.m_xCoord, goal.m_yCoord, &goal);
 
 	this->m_openList.push_back(this->m_startCell);
 }
@@ -151,7 +151,7 @@ void AStarFinding::isInOpenedList(int x, int y, float newCost, AStarSearchCell* 
 
 	AStarSearchCell* newChild = new AStarSearchCell(this->generateCellId(x, y), x, y, parent);
 	newChild->m_g = newCost;
-	newChild->m_h = newChild->getManhattanDistance(this->m_goalCell);
+	newChild->setManhattanDistanceToHeuristic(this->m_goalCell);
 
 
 	for (AStarSearchCell* openCell : this->m_openList)
@@ -210,7 +210,7 @@ void AStarFinding::continuePath()
 {
 	const int POSIBLE_MAP_MOVES = 4;
 
-	for (int i = 0; i < POSIBLE_MAP_MOVES; i++)
+	//for (int i = 0; i < POSIBLE_MAP_MOVES; i++)
 	{
 		if (this->m_openList.empty())
 		{
@@ -243,10 +243,10 @@ void AStarFinding::continuePath()
 			this->isInOpenedList(currentCell->m_xCoord, currentCell->m_yCoord - 1, currentCell->m_g + 1, currentCell);
 			
 			// To calculate diagonals, add/subtract appropriate x/y
-			/*this->isInOpenedList(currentCell->m_xCoord + 1, currentCell->m_yCoord + 1, currentCell->m_g + 1, currentCell);
+			this->isInOpenedList(currentCell->m_xCoord + 1, currentCell->m_yCoord + 1, currentCell->m_g + 1, currentCell);
 			this->isInOpenedList(currentCell->m_xCoord + 1, currentCell->m_yCoord - 1, currentCell->m_g + 1, currentCell);
 			this->isInOpenedList(currentCell->m_xCoord - 1, currentCell->m_yCoord - 1, currentCell->m_g + 1, currentCell);
-			this->isInOpenedList(currentCell->m_xCoord - 1, currentCell->m_yCoord + 1, currentCell->m_g + 1, currentCell);*/
+			this->isInOpenedList(currentCell->m_xCoord - 1, currentCell->m_yCoord + 1, currentCell->m_g + 1, currentCell);
 
 			for (unsigned int i = 0; i < this->m_openList.size(); i++)
 			{

@@ -96,11 +96,15 @@ void TextureManager::renderFrame(std::string id, int x, int y, int frameWidth, i
 
 void TextureManager::renderRect(SDL_Rect rect)
 {
-	this->renderRect(rect.x, rect.y, rect.w, rect.h);
+	this->renderRect(rect.x, rect.y, rect.w, rect.h, SDLUtils::getSDLColor(255, 0, 0, 255));
 }
 
-
 void TextureManager::renderRect(float x, float y, float width, float height)
+{
+	this->renderRect(x, y, width, height, SDLUtils::getSDLColor(255, 0, 0, 255));
+}
+
+void TextureManager::renderRect(float x, float y, float width, float height, SDL_Color color)
 {
 	Vector2D cam = Camera::getInstance()->getPosition();
 
@@ -108,7 +112,7 @@ void TextureManager::renderRect(float x, float y, float width, float height)
 		x - cam.x, y - cam.y,
 		width, height };
 
-	SDL_SetRenderDrawColor(Engine::getInstance()->getRenderer(), 255, 0, 0, 255);
+	SDL_SetRenderDrawColor(Engine::getInstance()->getRenderer(), color.r, color.g, color.b, color.a);
 	SDL_RenderDrawRect(Engine::getInstance()->getRenderer(), &rect);
 }
 
