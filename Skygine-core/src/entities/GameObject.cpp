@@ -7,6 +7,10 @@ GameObject::GameObject(std::string id, std::string name, int x, int y, TiledMap*
 	this->m_transform = new Transform(x, y);
 	this->m_origin = new Point(x, y);
 	this->belongsToMap = map;
+	this->m_type = GameObjectType::DEFAULT;
+
+	this->m_isDisabled = false;
+	this->m_wantsRemove = false;
 }
 
 Point* GameObject::getOrigin()
@@ -27,4 +31,24 @@ int GameObject::getMapCellCoordX()
 int GameObject::getMapCellCoordY()
 {
 	return (int) (this->m_origin->y / belongsToMap->getTileSize());
+}
+
+SDL_Rect GameObject::getCollider()
+{
+	return this->m_collider;
+}
+
+GameObjectType GameObject::getType()
+{
+	return this->m_type;
+}
+
+bool GameObject::isDisabled()
+{
+	return this->m_isDisabled;
+}
+
+bool GameObject::wantsRemove()
+{
+	return this->m_wantsRemove;
 }

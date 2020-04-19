@@ -20,10 +20,10 @@ Player::Player(std::string id, std::string name, int x, int y, TiledMap* map)
 
 	// TODO Load for the collision handler the map
 
-	setCollidernRegion();
+	setColliderRegion();
 }
 
-void Player::setCollidernRegion()
+void Player::setColliderRegion()
 {
 	this->m_collider = {
 		static_cast<int>(this->m_transform->x),
@@ -47,20 +47,20 @@ void Player::update(float delta)
 
 void Player::draw()
 {
-	for (int i = 0; i < this->belongsToMap->getColliders().size(); i++)
-	{
-		TextureManager::getInstance()->renderRect(this->belongsToMap->getColliders()[i]);
-	}
-
 	this->m_currentAnimation->render(this->m_transform->x, this->m_transform->y);
-
-	TextureManager::getInstance()->renderPoint(this->m_origin->x, this->m_origin->y);
-	TextureManager::getInstance()->renderRect(this->m_collider);
 }
 
 void Player::dispose()
 {
 	// TODO Dispose Sprites
+}
+
+void Player::interact(GameObject* other)
+{
+}
+
+void Player::proximityInteract(GameObject* other)
+{
 }
 
 void Player::input(float delta)
@@ -69,22 +69,22 @@ void Player::input(float delta)
 
 	if (!this->m_isAttacking)
 	{
-		if (InputHandler::getInstance()->isAxisKey(AxisDirection::RIGHT))
+		if (InputHandler::getInstance()->isAxisKeyDown(AxisDirection::RIGHT))
 		{
 			this->m_rigitBody->setForceX(this->m_speed);
 		}
 
-		if (InputHandler::getInstance()->isAxisKey(AxisDirection::LEFT))
+		if (InputHandler::getInstance()->isAxisKeyDown(AxisDirection::LEFT))
 		{
 			this->m_rigitBody->setForceX(-this->m_speed);
 		}
 
-		if (InputHandler::getInstance()->isAxisKey(AxisDirection::UP))
+		if (InputHandler::getInstance()->isAxisKeyDown(AxisDirection::UP))
 		{
 			this->m_rigitBody->setForceY(-this->m_speed);
 		}
 
-		if (InputHandler::getInstance()->isAxisKey(AxisDirection::DOWN))
+		if (InputHandler::getInstance()->isAxisKeyDown(AxisDirection::DOWN))
 		{
 			this->m_rigitBody->setForceY(this->m_speed);
 		}

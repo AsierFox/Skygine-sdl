@@ -68,6 +68,19 @@ void TextureManager::render(std::string id, int x, int y, int frameWidth, int fr
 	SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
 }
 
+void TextureManager::renderFixed(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight, SDL_RendererFlip flip, float moveCameraWithScalar)
+{
+	SDL_Rect srcRect = {
+		0, 0,
+		frameWidth, frameHeight };
+
+	SDL_Rect destRect = {
+		x, y,
+		scaledWidth, scaledHeight };
+
+	SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
+}
+
 void TextureManager::renderFrame(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight, int col, int row)
 {
 	this->renderFrame(id, x, y, frameWidth, frameHeight, scaledWidth, scaledHeight, col, row, SDL_FLIP_NONE);
@@ -92,6 +105,19 @@ void TextureManager::renderFrame(std::string id, int x, int y, int frameWidth, i
 	{
 		SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
 	}
+}
+
+void TextureManager::renderFrameFixed(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight, int col, int row, SDL_RendererFlip flip)
+{
+	SDL_Rect srcRect = {
+		col * frameWidth, row * frameHeight,
+		frameWidth, frameHeight };
+
+	SDL_Rect destRect = {
+		x, y,
+		scaledWidth, scaledHeight };
+
+	SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
 }
 
 void TextureManager::renderRect(SDL_Rect rect)
@@ -148,7 +174,7 @@ void TextureManager::dispose()
 	{
 		SDL_DestroyTexture(it->second);
 	}
-	
+
 	this->m_loadedTextures.clear();
 }
 

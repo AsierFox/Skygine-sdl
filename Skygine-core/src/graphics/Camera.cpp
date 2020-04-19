@@ -29,16 +29,16 @@ void Camera::updateTarget(Point* newTarget)
 	this->m_target = newTarget;
 }
 
-void Camera::update(float delta)
+void Camera::update()
 {
 	if (nullptr == this->m_target)
 	{
-		spdlog::critical("[Camera::update] The camera doesn't have any target!");
+		spdlog::debug("[Camera::update] The camera doesn't have any target!");
 		return;
 	}
 	else if (this->m_mapTotalWidth == 0 || this->m_mapTotalHeight == 0)
 	{
-		spdlog::critical("[Camera::update] The camera doesn't have any map dimensions!");
+		spdlog::debug("[Camera::update] The camera doesn't have any map dimensions!");
 		return;
 	}
 

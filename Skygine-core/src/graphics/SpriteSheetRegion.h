@@ -18,7 +18,12 @@ public:
 	SpriteSheetRegion(std::string textureId, std::string resourcePath, int col, int row, int totalCols, int totalRows, float scale, SDL_RendererFlip flip);
 
 	void render(float x, float y) override;
+	void renderFixed(float x, float y) override;
 	void dispose() override;
 	float getWidth() override;
 	float getHeight() override;
+	int getCol();
+	void updateCol(int newCol);
+	int getRow();
+	void updateRow(int newRow);
 };

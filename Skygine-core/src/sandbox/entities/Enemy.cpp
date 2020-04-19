@@ -14,7 +14,7 @@ Enemy::Enemy(std::string id, std::string name, int x, int y, TiledMap* map)
 	this->aStar = new AStarFinding(map);
 }
 
-void Enemy::setCollidernRegion()
+void Enemy::setColliderRegion()
 {
 	this->m_collider = {
 		static_cast<int>(this->m_transform->x),
@@ -35,19 +35,25 @@ void Enemy::update(float delta)
 void Enemy::draw()
 {
 	this->m_currentAnimation->render(this->m_transform->x, this->m_transform->y);
-	TextureManager::getInstance()->renderRect(this->m_collider);
 
 	if (aStar->isGoalFounded())
 	{
 		SDL_Rect nextStepRect = { this->nextCell.x * this->belongsToMap->getTileSize(), this->nextCell.y * this->belongsToMap->getTileSize(),
 			this->belongsToMap->getTileSize(), this->belongsToMap->getTileSize() };
-		TextureManager::getInstance()->renderRect(nextStepRect);
 	}
 }
 
 void Enemy::dispose()
 {
 	delete this->aStar;
+}
+
+void Enemy::interact(GameObject* other)
+{
+}
+
+void Enemy::proximityInteract(GameObject* other)
+{
 }
 
 void Enemy::updatePathFinding(Entity* target)

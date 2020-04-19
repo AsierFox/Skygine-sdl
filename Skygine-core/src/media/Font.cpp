@@ -28,8 +28,6 @@ void Font::renderFont(int x, int y)
 	this->m_fontRect.x = x;
 	this->m_fontRect.y = y;
 	SDL_RenderCopy(Engine::getInstance()->getRenderer(), this->m_fontTexture, NULL, &this->m_fontRect);
-
-	TextureManager::getInstance()->renderRect(this->m_fontRect);
 }
 
 void Font::dispose()

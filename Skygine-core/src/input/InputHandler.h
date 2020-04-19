@@ -23,7 +23,7 @@ public:
 
 	void listen();
 	bool isKeyDown(SDL_Scancode key);
-	bool isAxisKey(AxisDirection key);
+	bool isAxisKeyDown(AxisDirection key);
 	bool isMouseClicked();
 	Vector2D getMousePosition();
 

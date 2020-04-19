@@ -1,11 +1,11 @@
 #include "TiledMap.h"
 
-TiledMap::TiledMap(int tileSize, int totalCols, int totalRows, std::vector<TileLayer*> tileLayers, ObjectLayer* objectLayer)
-	: TiledMap(tileSize, totalCols, totalRows, tileLayers, objectLayer, 1)
+TiledMap::TiledMap(int tileSize, int totalCols, int totalRows, std::vector<TileLayer*> tileLayers, ObjectLayer* objectLayer, std::vector<MapSpawnPoint> spawns)
+	: TiledMap(tileSize, totalCols, totalRows, tileLayers, objectLayer, spawns, 1)
 {
 }
 
-TiledMap::TiledMap(int tileSize, int totalCols, int totalRows, std::vector<TileLayer*> tileLayers, ObjectLayer* objectLayer, float scale)
+TiledMap::TiledMap(int tileSize, int totalCols, int totalRows, std::vector<TileLayer*> tileLayers, ObjectLayer* objectLayer, std::vector<MapSpawnPoint> spawns, float scale)
 {
 	this->m_tileSize = tileSize;
 	this->m_totalCols = totalCols;
@@ -13,6 +13,7 @@ TiledMap::TiledMap(int tileSize, int totalCols, int totalRows, std::vector<TileL
 	this->m_tileLayers = tileLayers;
 	this->m_totalTileLayers = tileLayers.size();
 	this->m_objectLayer = objectLayer;
+	this->m_spawns = spawns;
 	this->m_scale = scale;
 }
 
@@ -42,7 +43,7 @@ void TiledMap::dispose()
 	{
 		delete this->m_tileLayers.back(), this->m_tileLayers.pop_back();
 	}
-	
+
 	delete this->m_objectLayer;
 }
 
@@ -79,4 +80,9 @@ int TiledMap::getTotalHeight()
 std::vector<SDL_Rect> TiledMap::getColliders()
 {
 	return this->m_objectLayer->getColliders();
+}
+
+std::vector<MapSpawnPoint> TiledMap::getSpawns()
+{
+	return this->m_spawns;
 }

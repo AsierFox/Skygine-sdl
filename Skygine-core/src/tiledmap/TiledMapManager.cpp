@@ -39,8 +39,8 @@ TiledMap* TiledMapManager::load(std::string mapId, std::string resourcesDirPath,
 
 		int tileCount = tilesetJson["tilecount"];
 		tileset.m_firstId = tilesetJson["firstgid"];
-		tileset.m_lastId  = tileset.m_firstId + (tileCount - 1);
-		tileset.m_name    = tilesetJson["name"].get<std::string>();
+		tileset.m_lastId = tileset.m_firstId + (tileCount - 1);
+		tileset.m_name = tilesetJson["name"].get<std::string>();
 		tileset.m_tileSize = mapTileSize;
 		tileset.m_totalTileSize = mapTileSize * scale;
 		tileset.m_totalCols = tilesetJson["columns"];
@@ -52,6 +52,7 @@ TiledMap* TiledMapManager::load(std::string mapId, std::string resourcesDirPath,
 
 	std::vector<TileLayer*> mapTileLayers;
 	std::vector<TiledObject> mapObjects;
+	std::vector<MapSpawnPoint> mapSpawns;
 
 	for (unsigned int i = 0; i < mapJson["layers"].size(); i++)
 	{
@@ -74,39 +75,67 @@ TiledMap* TiledMapManager::load(std::string mapId, std::string resourcesDirPath,
 			}
 
 			mapTileLayers.push_back(new TileLayer(tileMapIds, mapTilesets, scale));
-			
+
 			tileMapIds.clear();
 		}
+
 		else if (std::string("objectgroup").compare(layerJson["type"].get<std::string>()) == 0)
 		{
-			std::vector<TiledObject> objects;
 
 			for (unsigned int j = 0; j < layerJson["objects"].size(); j++)
 			{
 				nlohmann::json objectJson = layerJson["objects"][j];
-				TiledObject tiledObject;
 
-				tiledObject.m_x = objectJson["x"];
-				tiledObject.m_y = objectJson["y"];
-				tiledObject.m_width = objectJson["width"];
-				tiledObject.m_height = objectJson["height"];
+				if (!objectJson["point"].is_null() && objectJson["point"].get<bool>())
+				{
+					// Create map spawn point
+					MapSpawnPoint spawnPoint;
 
-				tiledObject.m_collider = {
-					static_cast<int>(tiledObject.m_x * scale),
-					static_cast<int>(tiledObject.m_y * scale),
-					static_cast<int>(tiledObject.m_width * scale),
-					static_cast<int>(tiledObject.m_height * scale) };
+					spawnPoint.point = Point(objectJson["x"] * scale, objectJson["y"] * scale);
 
-				mapObjects.push_back(tiledObject);
+					if (!objectJson["properties"].is_null())
+					{
+						for (int i = 0; i < objectJson["properties"].size(); i++)
+						{
+							nlohmann::json propertyJson = objectJson["properties"][i];
+							MapSpawnProperty spawnProperty;
 
-				objects.push_back(tiledObject);
+							spawnProperty.type = propertyJson["name"].get<std::string>();
+							spawnProperty.value = propertyJson["value"].get<std::string>();
+
+							spawnPoint.properties.push_back(spawnProperty);
+						}
+					}
+					else
+					{
+						spdlog::critical("[TiledMapManager::load] No properties in a map point!");
+					}
+
+					mapSpawns.push_back(spawnPoint);
+				}
+				else
+				{
+					// Is rectable, so create collider
+					TiledObject tiledObject;
+
+					tiledObject.m_x = objectJson["x"];
+					tiledObject.m_y = objectJson["y"];
+					tiledObject.m_width = objectJson["width"];
+					tiledObject.m_height = objectJson["height"];
+
+					tiledObject.m_collider = {
+						static_cast<int>(tiledObject.m_x * scale),
+						static_cast<int>(tiledObject.m_y * scale),
+						static_cast<int>(tiledObject.m_width * scale),
+						static_cast<int>(tiledObject.m_height * scale) };
+
+					mapObjects.push_back(tiledObject);
+				}
 			}
-
-			objects.clear();
 		}
 	}
 
-	TiledMap* tiledMap = new TiledMap(mapTileSize, mapTileCols, mapTileRows, mapTileLayers, new ObjectLayer(mapObjects, scale), scale);
+	TiledMap* tiledMap = new TiledMap(mapTileSize, mapTileCols, mapTileRows, mapTileLayers, new ObjectLayer(mapObjects, scale), mapSpawns, scale);
 	this->m_maps.insert({ mapId, tiledMap });
 
 	spdlog::debug("[TiledMapManager::load] The map with id '{0}' loaded successfully!", mapId);

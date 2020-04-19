@@ -25,7 +25,7 @@ void ExSideGame::update(float delta)
 
 	this->currentScene->update(delta);
 
-	Camera::getInstance()->update(delta);
+	Camera::getInstance()->update();
 }
 
 void ExSideGame::draw()

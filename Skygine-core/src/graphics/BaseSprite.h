@@ -21,10 +21,12 @@ public:
 	BaseSprite(std::string textureId, std::string resourcePath);
 
 	virtual void render(float x, float y) = 0;
+	virtual void renderFixed(float x, float y) = 0;
 	virtual void dispose() = 0;
 	virtual float getWidth() = 0;
 	virtual float getHeight() = 0;
 
 	std::string getTextureId();
 	float getFlip();
+	void setFlip(SDL_RendererFlip flip);
 };

@@ -13,7 +13,7 @@ SpriteAnimation::SpriteAnimation(std::string textureId, std::string resourcePath
 SpriteAnimation::SpriteAnimation(std::string textureId, std::string resourcePath, int rowToAnimate, int totalFrames, int totalCols, int totalRows, float scale, SDL_RendererFlip flip)
 	: BaseSprite(textureId, resourcePath)
 {
-	// Subtract 1 to be the first row 1 for contructor
+	// Subtract 1 to be the first row 1 for constructor
 	this->m_currentRow = rowToAnimate - 1;
 	this->m_totalFrames = totalFrames;
 	this->m_totalCols = totalCols;
@@ -25,7 +25,7 @@ SpriteAnimation::SpriteAnimation(std::string textureId, std::string resourcePath
 	TextureManager::getInstance()->queryWidthAndHeight(textureId, &textureWidth, &textureHeight);
 
 	this->m_frameWidth = textureWidth / this->m_totalCols;
-	this->m_frameHeight = textureHeight  / this->m_totalRows;
+	this->m_frameHeight = textureHeight / this->m_totalRows;
 
 	this->m_flip = flip;
 
@@ -44,6 +44,11 @@ void SpriteAnimation::render(float x, float y)
 	TextureManager::getInstance()->renderFrame(this->getTextureId(), x, y, this->m_frameWidth, this->m_frameHeight, this->getWidth(), this->getHeight(), this->m_currentFrame, this->m_currentRow, this->m_flip);
 }
 
+void SpriteAnimation::renderFixed(float x, float y)
+{
+	TextureManager::getInstance()->renderFrameFixed(this->getTextureId(), x, y, this->m_frameWidth, this->m_frameHeight, this->getWidth(), this->getHeight(), this->m_currentFrame, this->m_currentRow, this->m_flip);
+}
+
 void SpriteAnimation::dispose()
 {
 	TextureManager::getInstance()->destroy(this->getTextureId());
@@ -57,4 +62,14 @@ float SpriteAnimation::getWidth()
 float SpriteAnimation::getHeight()
 {
 	return this->m_frameHeight * this->m_scale;
+}
+
+int SpriteAnimation::getCurrentRowAnimation()
+{
+	return this->m_currentRow + 1;
+}
+
+void SpriteAnimation::updateRowAnimation(int newRowToAnimate)
+{
+	this->m_currentRow = newRowToAnimate - 1;
 }

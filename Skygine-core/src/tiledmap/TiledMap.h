@@ -6,6 +6,7 @@
 
 #include "TileLayer.h"
 #include "ObjectLayer.h"
+#include "MapSpawnPoint.h"
 
 class TiledMap
 {
@@ -17,11 +18,12 @@ class TiledMap
 
 	std::vector<TileLayer*> m_tileLayers;
 	ObjectLayer* m_objectLayer;
+	std::vector<MapSpawnPoint> m_spawns;
 
 public:
 
-	TiledMap(int tileSize, int totalCols, int totalRows, std::vector<TileLayer*> tileLayers, ObjectLayer* objectLayer);
-	TiledMap(int tileSize, int totalCols, int totalRows, std::vector<TileLayer*> tileLayers, ObjectLayer* objectLayer, float scale);
+	TiledMap(int tileSize, int totalCols, int totalRows, std::vector<TileLayer*> tileLayers, ObjectLayer* objectLayer, std::vector<MapSpawnPoint> spawns);
+	TiledMap(int tileSize, int totalCols, int totalRows, std::vector<TileLayer*> tileLayers, ObjectLayer* objectLayer, std::vector<MapSpawnPoint> spawns, float scale);
 
 	void update();
 	void render();
@@ -35,4 +37,5 @@ public:
 	int getTotalWidth();
 	int getTotalHeight();
 	std::vector<SDL_Rect> getColliders();
+	std::vector<MapSpawnPoint> getSpawns();
 };

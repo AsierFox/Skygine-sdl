@@ -28,7 +28,7 @@ public:
 	Camera();
 
 	void updateTarget(Point* newTarget);
-	void update(float delta);
+	void update();
 	void drawDebug();
 
 	void setSceneMapDimensions(int mapTotalWidth, int mapTotalHeight);

@@ -22,7 +22,11 @@ public:
 
 	void update();
 	void render(float x, float y) override;
+	void renderFixed(float x, float y) override;
 	void dispose() override;
 	float getWidth() override;
 	float getHeight() override;
+
+	int getCurrentRowAnimation();
+	void updateRowAnimation(int newRowToAnimate);
 };

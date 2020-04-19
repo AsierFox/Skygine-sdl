@@ -16,6 +16,7 @@ protected:
 	Player* m_player;
 	std::vector<Entity*> m_entities;
 	std::vector<Enemy*> m_enemies;
+	std::vector<GameObject*> m_objects;
 
 	TiledMap* m_map;
 

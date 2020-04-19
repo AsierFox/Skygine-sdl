@@ -26,8 +26,10 @@ public:
 	SDL_Texture* load(std::string id, std::string resourcePath);
 	void render(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight);
 	void render(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight, SDL_RendererFlip flip, float moveCameraWithScalar);
+	void renderFixed(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight, SDL_RendererFlip flip, float moveCameraWithScalar);
 	void renderFrame(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight, int col, int row);
 	void renderFrame(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight, int col, int row, SDL_RendererFlip flip);
+	void renderFrameFixed(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight, int col, int row, SDL_RendererFlip flip);
 	void renderRect(SDL_Rect rect);
 	void renderRect(float x, float y, float width, float height);
 	void renderRect(float x, float y, float width, float height, SDL_Color color);
