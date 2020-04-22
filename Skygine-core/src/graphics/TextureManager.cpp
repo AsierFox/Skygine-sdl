@@ -88,21 +88,23 @@ void TextureManager::renderFrame(std::string id, int x, int y, int frameWidth, i
 
 void TextureManager::renderFrame(std::string id, int x, int y, int frameWidth, int frameHeight, int scaledWidth, int scaledHeight, int col, int row, SDL_RendererFlip flip)
 {
-	Vector2D cam = Camera::getInstance()->getPosition();
+	SDL_Rect cameraViewport = Camera::getInstance()->getViewport();
 
-	SDL_Rect srcRect = {
-		col * frameWidth, row * frameHeight,
-		frameWidth, frameHeight };
-
-	SDL_Rect destRect = {
-		x - cam.x, y - cam.y,
-		scaledWidth, scaledHeight };
-
-	if (x + scaledWidth > Camera::getInstance()->getViewport().x
-		&& y + scaledHeight > Camera::getInstance()->getViewport().y
-		&& x < (Camera::getInstance()->getViewport().x + Camera::getInstance()->getViewport().w)
-		&& y < (Camera::getInstance()->getViewport().y + Camera::getInstance()->getViewport().h))
+	if (x + scaledWidth > cameraViewport.x
+		&& y + scaledHeight > cameraViewport.y
+		&& x < (cameraViewport.x + cameraViewport.w)
+		&& y < (cameraViewport.y + cameraViewport.h))
 	{
+		Vector2D camPosition = Camera::getInstance()->getPosition();
+
+		SDL_Rect srcRect = {
+			col * frameWidth, row * frameHeight,
+			frameWidth, frameHeight };
+
+		SDL_Rect destRect = {
+			x - camPosition.x, y - camPosition.y,
+			scaledWidth, scaledHeight };
+
 		SDL_RenderCopyEx(Engine::getInstance()->getRenderer(), this->m_loadedTextures[id], &srcRect, &destRect, 0, nullptr, flip);
 	}
 }

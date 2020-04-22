@@ -1,15 +1,5 @@
 #include "TileLayer.h"
 
-void TileLayer::loadTilesetsTextures()
-{
-	for (unsigned int i = 0; i < this->m_tilesets.size(); i++)
-	{
-		Tileset tileset = this->m_tilesets[i];
-
-		TextureManager::getInstance()->load(tileset.m_name, tileset.m_resourcePath);
-	}
-}
-
 TileLayer::TileLayer(std::vector<std::vector<int> > tileMapIds, std::vector<Tileset> tilesets)
 	: TileLayer(tileMapIds, tilesets, 1)
 {
@@ -17,11 +7,10 @@ TileLayer::TileLayer(std::vector<std::vector<int> > tileMapIds, std::vector<Tile
 
 TileLayer::TileLayer(std::vector<std::vector<int> > tileMapIds, std::vector<Tileset> tilesets, float scale)
 {
-	this->m_tileMapIds = tileMapIds;
-	this->m_tilesets = tilesets;
 	this->m_scale = scale;
 
-	this->loadTilesetsTextures();
+	this->loadTilesetsTextures(tilesets);
+	this->loadTiles(tileMapIds, tilesets);
 }
 
 
@@ -31,32 +20,60 @@ void TileLayer::update()
 
 void TileLayer::render()
 {
-	for (unsigned int row = 0; row < this->m_tileMapIds.size(); row++)
+	for (TiledTile tile : this->m_tiles)
 	{
-		for (unsigned int col = 0; col < this->m_tileMapIds[row].size(); col++)
+		TextureManager::getInstance()->renderFrame(tile.m_textureId,
+			tile.m_pos.x, tile.m_pos.y,
+			tile.m_textureFrameSize, tile.m_textureFrameSize,
+			tile.m_totalSize, tile.m_totalSize,
+			tile.m_col, tile.m_row);
+	}
+}
+
+void TileLayer::loadTilesetsTextures(std::vector<Tileset> tilesets)
+{
+	for (unsigned int i = 0; i < tilesets.size(); i++)
+	{
+		Tileset tileset = tilesets[i];
+
+		TextureManager::getInstance()->load(tileset.m_name, tileset.m_resourcePath);
+	}
+}
+
+void TileLayer::loadTiles(std::vector<std::vector<int> > tileMapIds, std::vector<Tileset> tilesets)
+{
+	for (unsigned int row = 0; row < tileMapIds.size(); row++)
+	{
+		for (unsigned int col = 0; col < tileMapIds[row].size(); col++)
 		{
-			int tileId = this->m_tileMapIds[row][col];
+			int tileId = tileMapIds[row][col];
 
 			if (0 == tileId)
 			{
 				continue;
 			}
 
-			for (unsigned int i = 0; i < this->m_tilesets.size(); i++)
+			for (unsigned int i = 0; i < tilesets.size(); i++)
 			{
-				Tileset tileset = this->m_tilesets[i];
+				Tileset tileset = tilesets[i];
 
 				if (tileId >= tileset.m_firstId && tileId <= tileset.m_lastId)
 				{
-					TextureManager::getInstance()->renderFrame(tileset.m_name,
-						col * tileset.m_totalTileSize, row * tileset.m_totalTileSize,
-						tileset.m_tileSize, tileset.m_tileSize, tileset.m_totalTileSize, tileset.m_totalTileSize,
-						(tileId - tileset.m_firstId) % tileset.m_totalCols, (tileId - tileset.m_firstId) / tileset.m_totalCols);
+					TiledTile tile;
 
-					//SDL_Rect tileRect = {
-					//	col * tileset.m_totalTileSize, row * tileset.m_totalTileSize,
-					//	tileset.m_totalTileSize, tileset.m_totalTileSize };
-					//TextureManager::getInstance()->renderRect(tileRect);
+					tile.m_textureId = tileset.m_name;
+
+					tile.m_pos.x = col * tileset.m_totalTileSize;
+					tile.m_pos.y = row * tileset.m_totalTileSize;
+
+					tile.m_textureFrameSize = tileset.m_tileSize;
+					tile.m_totalSize = tileset.m_totalTileSize;
+
+					tile.m_col = (tileId - tileset.m_firstId) % tileset.m_totalCols;
+					tile.m_row = (tileId - tileset.m_firstId) / tileset.m_totalCols;
+
+					this->m_tiles.push_back(tile);
+
 					break;
 				}
 			}

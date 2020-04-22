@@ -70,6 +70,7 @@
     <ClInclude Include="src\scenes\SceneManager.h" />
     <ClInclude Include="src\tiledmap\MapSpawnPoint.h" />
     <ClInclude Include="src\tiledmap\MapSpawnProperty.h" />
+    <ClInclude Include="src\tiledmap\TiledTile.h" />
     <ClInclude Include="src\types\EntityStrategy.h" />
     <ClInclude Include="src\entities\Entity.h" />
     <ClInclude Include="src\entities\GameObjectFactory.h" />

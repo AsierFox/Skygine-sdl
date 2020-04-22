@@ -26,9 +26,8 @@ public:
 	virtual void interact(GameObject* other) override;
 	virtual void proximityInteract(GameObject* other) override;
 
-	virtual void updatePathFinding(Entity* target);
-
 private:
 
+	void updatePathFinding(GameObject* target);
 	void checkCollisions(float delta);
 };

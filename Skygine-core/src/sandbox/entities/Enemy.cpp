@@ -54,9 +54,10 @@ void Enemy::interact(GameObject* other)
 
 void Enemy::proximityInteract(GameObject* other)
 {
+	this->updatePathFinding(other);
 }
 
-void Enemy::updatePathFinding(Entity* target)
+void Enemy::updatePathFinding(GameObject* target)
 {
 	if (aStar->isGoalFounded()
 		&& (target->getMapCellCoordX() != aStar->getGoalCell()->m_xCoord

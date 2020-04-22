@@ -6,7 +6,7 @@ TestLevelScene::TestLevelScene()
 
 	this->m_player = new Player("player", "SkyFoXx", 250, 230, this->m_map);
 	this->m_entities.push_back(GameObjectFactory::getInstance()->createEnemy(500, 300, this->m_map));
-	this->m_enemies.push_back(GameObjectFactory::getInstance()->createEnemy(400, 350, this->m_map));
+	this->m_entities.push_back(GameObjectFactory::getInstance()->createEnemy(400, 350, this->m_map));
 
 	Camera::getInstance()->updateTarget(this->m_player->getOrigin());
 	Camera::getInstance()->setSceneMapDimensions(this->m_map->getTotalWidth(), this->m_map->getTotalHeight());
@@ -20,13 +20,8 @@ void TestLevelScene::update(float delta)
 
 	for (Entity* entity : this->m_entities)
 	{
+		entity->proximityInteract(this->m_player);
 		entity->update(delta);
-	}
-
-	for (Enemy* enemy : this->m_enemies)
-	{
-		enemy->updatePathFinding(this->m_player);
-		enemy->update(delta);
 	}
 }
 
@@ -37,11 +32,6 @@ void TestLevelScene::draw()
 	for (Entity* entity : this->m_entities)
 	{
 		entity->draw();
-	}
-
-	for (Enemy* enemy : this->m_enemies)
-	{
-		enemy->draw();
 	}
 
 	this->m_player->draw();
